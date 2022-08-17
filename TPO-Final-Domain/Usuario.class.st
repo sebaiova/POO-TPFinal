@@ -41,6 +41,11 @@ Usuario >> hasDNI: unDNI [
 	
 ]
 
+{ #category : #testing }
+Usuario >> hasPassword: aPassword [
+	^password = aPassword.
+]
+
 { #category : #comparing }
 Usuario >> hash [ 
 	^dni hash.

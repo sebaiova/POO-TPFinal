@@ -19,11 +19,6 @@ Sistema >> existeUsuario: unDNI [
 	
 ]
 
-{ #category : #'as yet unclassified' }
-Sistema >> getUniversidadesDondeEstudia: unDNI [
-	^universidades select: [ :universidad | universidad esEstudiando: unDNI ].
-]
-
 { #category : #initialization }
 Sistema >> initialize [
 	super initialize.
@@ -32,7 +27,10 @@ Sistema >> initialize [
 	^self.
 ]
 
-{ #category : #'as yet unclassified' }
-Sistema >> pushUniversidad: aUniversidad [
-	universidades add: aUniversidad .
+{ #category : #accessing }
+Sistema >> logging: aUserName password: aPassword [
+	|user|
+	user := colUsuarios at: aUserName.
+	user ifNotNil: [(user hasPassword: aPassword) ifFalse: [ user := nil ]].
+	^user.
 ]
