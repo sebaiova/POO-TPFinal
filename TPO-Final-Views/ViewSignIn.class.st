@@ -3,7 +3,8 @@ Class {
 	#superclass : #View,
 	#instVars : [
 		'tfUsuario',
-		'tfContraseña'
+		'tfContraseña',
+		'tagError'
 	],
 	#category : #'TPO-Final-Views'
 }
@@ -21,8 +22,9 @@ ViewSignIn >> crearUsuario [
 { #category : #button }
 ViewSignIn >> iniciarSesion [
 	|user|
-	user := model logging: (tfUsuario text) password: (tfContraseña text).
-	Transcript show: user; cr.
+	user := model logging: (tfUsuario text asInteger) password: (tfContraseña text).
+	user ifNil: [ tagError contents: 'Usuario o contraseña incorrectos!' ]
+			ifNotNil: [ tagError clear ].
 	^user.
 ]
 
@@ -37,8 +39,9 @@ ViewSignIn >> initialize [
 							addMorph: Spacer new;
 							yourself);
 			addMorph: Spacer new;
-			addMorph: (tfContraseña := TextField new: 'Contraseña:');
-			addMorph: (tfUsuario := TextField new: 'Usuario:');
+			addMorph: (tfContraseña := TextField new: (Tag contents: 'Contraseña:'));
+			addMorph: (tfUsuario := TextField new: (Tag contents: 'Usuario:'));
+			addMorph: (tagError := TagError new);	
 			addMorph: Spacer new;
 			yourself.
 ]

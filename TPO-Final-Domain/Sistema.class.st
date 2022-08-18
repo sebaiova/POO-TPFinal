@@ -30,7 +30,7 @@ Sistema >> initialize [
 { #category : #accessing }
 Sistema >> logging: aUserName password: aPassword [
 	|user|
-	user := colUsuarios at: aUserName.
+	user := colUsuarios at: aUserName ifAbsent: [nil].
 	user ifNotNil: [(user hasPassword: aPassword) ifFalse: [ user := nil ]].
 	^user.
 ]

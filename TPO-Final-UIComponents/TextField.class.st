@@ -20,11 +20,6 @@ TextField >> accepted [
 ]
 
 { #category : #initialization }
-TextField >> error: aString [
-	border color: Color red.
-]
-
-{ #category : #initialization }
 TextField >> initialize: aTag [
 	self initialize.
 	^self	layoutPolicy: TableLayout new;
@@ -32,7 +27,7 @@ TextField >> initialize: aTag [
 			vResizing: #shrinkWrap;
 			width: 280;
 			cellInset: 4;
-			addMorph: (LabelMorph contents: aTag);
+			addMorph: (aTag);
 			addMorph: (border := Morph new 
 							layoutPolicy: StackLayout new;
 							hResizing: #shrinkWrap;
@@ -41,6 +36,11 @@ TextField >> initialize: aTag [
 							color: Color gray;
 							addMorph: (textField := RubTextFieldMorph new width: 200));
 			yourself.
+]
+
+{ #category : #initialization }
+TextField >> rejected [
+	border color: Color red.
 ]
 
 { #category : #accessing }

@@ -6,28 +6,29 @@ Class {
 		'tfApellido',
 		'tfDNI',
 		'tfContraseña',
-		'tfContraseña2'
+		'tfContraseña2',
+		'tagError'
 	],
 	#category : #'TPO-Final-Views'
 }
 
 { #category : #button }
 ViewSignUp >> crear [
-	tfNombre text ifEmpty: [ tfNombre error: 'Debe ingresar un nombre.' ] 
+	tfNombre text ifEmpty: [ tfNombre rejected. tagError contents: 'Debe ingresar un nombre.' ] 
 	ifNotEmpty: [
 			tfNombre accepted.
-			tfApellido text ifEmpty: [ tfApellido error: 'Debe ingresar un apellido' ] 
+			tfApellido text ifEmpty: [ tfApellido rejected. tagError contents: 'Debe ingresar un apellido' ] 
 			ifNotEmpty: [ 
 				tfApellido accepted.
-				tfDNI text asInteger ifNil: [ tfDNI error: 'DNI inválido.' ] 
+				tfDNI text asInteger ifNil: [ tfDNI rejected. tagError contents: 'DNI inválido.' ] 
 				ifNotNil: [
-					(model existeUsuario: tfDNI text asInteger) ifTrue: [ tfDNI error: 'El DNI ya existe en el sistema.' ] 
+					(model existeUsuario: tfDNI text asInteger) ifTrue: [ tfDNI rejected. tagError contents: 'El DNI ya existe en el sistema.' ] 
 					ifFalse: [  
 						tfDNI accepted.
-					 	tfContraseña text ifEmpty: [ tfContraseña error: 'Debe ingresar una contraseña.' ]
+					 	tfContraseña text ifEmpty: [ tfContraseña rejected. tagError contents: 'Debe ingresar una contraseña.' ]
 							ifNotEmpty: [
 							tfContraseña accepted.
-							( tfContraseña text ~= tfContraseña2 text) ifTrue: [ tfContraseña2 error: 'Las contraseñas no coinciden.' ] 
+							( tfContraseña text ~= tfContraseña2 text) ifTrue: [ tfContraseña2 rejected. tagError contents: 'Las contraseñas no coinciden.' ] 
 								ifFalse: [ 
 								model agregarUsuario: tfDNI text asInteger nombre: tfNombre text apellido: tfApellido text password:  tfContraseña text.
 								self close.
@@ -48,11 +49,12 @@ ViewSignUp >> initialize [
 				addMorph: (Button new: 'Atras' target: self message: #close)
 				);
 			addMorph: Spacer new;
-			addMorph: (tfContraseña2	:= TextField new: 'Repetir Constraseña:');
-			addMorph: (tfContraseña 	:= TextField new: 'Contraseña:');
-			addMorph: (tfDNI 			:= TextField new: 'DNI:');
-			addMorph: (tfApellido 	:= TextField new: 'Apellido:');		
-			addMorph: (tfNombre 		:= TextField new: 'Nombre:');
+			addMorph: (tfContraseña2	:= TextField new: (Tag contents: 'Repetir Constraseña:'));
+			addMorph: (tfContraseña 	:= TextField new: (Tag contents:'Contraseña:'));
+			addMorph: (tfDNI 			:= TextField new: (Tag contents:'DNI:'));
+			addMorph: (tfApellido 	:= TextField new: (Tag contents:'Apellido:'));		
+			addMorph: (tfNombre 		:= TextField new: (Tag contents:'Nombre:'));
+			addMorph: (tagError := TagError new);
 			addMorph: Spacer new;
 			yourself.
 ]
