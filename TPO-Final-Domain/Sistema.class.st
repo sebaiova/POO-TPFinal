@@ -34,3 +34,13 @@ Sistema >> logging: aUserName password: aPassword [
 	user ifNotNil: [(user hasPassword: aPassword) ifFalse: [ user := nil ]].
 	^user.
 ]
+
+{ #category : #accessing }
+Sistema >> obtenerUsuario: aDNI [
+	^colUsuarios detect: [ :user | user hasDNI: aDNI ] ifNone: nil.
+]
+
+{ #category : #accessing }
+Sistema >> usuarios [
+	^colUsuarios 
+]
