@@ -7,7 +7,7 @@ Class {
 { #category : #initialization }
 ViewMain >> initialize [
 	super initialize.
-	model := ModelInterface new.
+	model := Sistema new.
 	^self	extent: 480@360;
 			layoutPolicy: StackLayout new;
 			addMorph: (ViewSignIn new model: model);		

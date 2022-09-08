@@ -10,19 +10,19 @@ Class {
 
 { #category : #adding }
 Sistema >> agregarUsuario: unDNI nombre: unNombre apellido: unApellido password: unPassword [ 
-	colUsuarios at: unDNI put: (Usuario newDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword).
+	colUsuarios add: (Usuario newDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword).
 ]
 
 { #category : #accessing }
 Sistema >> existeUsuario: unDNI [
-	^colUsuarios at: unDNI ifPresent: [ true ] ifAbsent: [ false ].
+	^colUsuarios detect: [ :user | user hasDNI: unDNI ] ifFound: [true] ifNone: [false]. 
 	
 ]
 
 { #category : #initialization }
 Sistema >> initialize [
 	super initialize.
-	colUsuarios := Dictionary new.
+	colUsuarios := OrderedCollection new.
 	colBibliotecas := OrderedCollection new.
 	^self.
 ]
@@ -30,7 +30,7 @@ Sistema >> initialize [
 { #category : #accessing }
 Sistema >> logging: aUserName password: aPassword [
 	|user|
-	user := colUsuarios at: aUserName ifAbsent: [nil].
+	user := self obtenerUsuario: aUserName.
 	user ifNotNil: [(user hasPassword: aPassword) ifFalse: [ user := nil ]].
 	^user.
 ]

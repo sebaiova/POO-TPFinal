@@ -11,7 +11,7 @@ Class {
 
 { #category : #button }
 ViewSignIn >> admin [
-	self stack: ViewAdmin new. 
+	self stack: (ViewUsers new: model usuarios). 
 ]
 
 { #category : #button }
