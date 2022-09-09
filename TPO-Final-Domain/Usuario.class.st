@@ -61,3 +61,8 @@ Usuario >> initializeDNI: unDNI nombre: unNombre apellido: unApellido password: 
 	colBibliotecasInteres := OrderedCollection new.
 	^self.
 ]
+
+{ #category : #accessing }
+Usuario >> nombre [
+	^nombre.
+]
