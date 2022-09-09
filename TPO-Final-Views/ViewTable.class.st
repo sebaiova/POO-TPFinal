@@ -2,14 +2,15 @@ Class {
 	#name : #ViewTable,
 	#superclass : #View,
 	#instVars : [
-		'ft_table'
+		'ft_table',
+		'ft_model'
 	],
 	#category : #'TPO-Final-Views'
 }
 
-{ #category : #'instance creation' }
-ViewTable class >> new: data [
-	^self new initialize: data.
+{ #category : #adding }
+ViewTable >> addColumn: headerName [
+	^ft_table addColumn: (FTColumn id: headerName).
 ]
 
 { #category : #accessing }
@@ -18,19 +19,23 @@ ViewTable >> data: data [
 ]
 
 { #category : #initialization }
-ViewTable >> initialize: data [
-	^self	
-			initialize
-			addMorph: (Row new 
-							addMorph: (Button new: 'Agregar' target: self message: #iniciarSesion);
-							addMorph: (Button new: 'Eliminar' target: self message: #crearUsuario);
-							addMorph: (Button new: 'Editar' target: self message: #admin);
-							addMorph: Spacer new;
-							addMorph: (Button new: 'Atras' target: self message: #close);
-							yourself);
-			addMorph: (Spacer new addMorph: (ft_table := FTEasyListMorph new
-																			vResizing: #spaceFill;
-																			hResizing: #spaceFill));
-			data: data;
+ViewTable >> initialize [
+		super initialize.
+		^self	
+			addMorph: (Row new addMorph: (Button new: 'Agregar' target: self message: #iniciarSesion);
+									addMorph: (Button new: 'Eliminar' target: self message: #crearUsuario);
+									addMorph: (Button new: 'Editar' target: self message: #admin);
+									addMorph: Spacer new;
+									addMorph: (Button new: 'Atras' target: self message: #close);
+									yourself);
+			addMorph: (Spacer new addMorph: 
+					(ft_table := FTTableMorph new vResizing: #spaceFill; hResizing: #spaceFill));
 			yourself.
+]
+
+{ #category : #accessing }
+ViewTable >> model: aModel [
+	ft_model := FTSimpleDataSource new.
+	ft_model elements: (OrderedCollection new add: 'ASD'; yourself).
+	ft_table dataSource: ft_model.
 ]
