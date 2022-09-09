@@ -35,7 +35,5 @@ ViewTable >> initialize [
 
 { #category : #accessing }
 ViewTable >> model: aModel [
-	ft_model := FTSimpleDataSource new.
-	ft_model elements: (OrderedCollection new add: 'ASD'; yourself).
-	ft_table dataSource: ft_model.
+	ft_table dataSource: aModel.
 ]

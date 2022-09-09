@@ -4,12 +4,17 @@ Class {
 	#category : #'TPO-Final-Views'
 }
 
+{ #category : #'instance creation' }
+ViewUsers class >> new: aSeqCol [
+	^self new initialize: aSeqCol; yourself.
+]
+
 { #category : #initialization }
-ViewUsers >> initialize [ 
-	super initialize.
+ViewUsers >> initialize: aColSeq [
+	self initialize.
 	^self addColumn: 'DNI'; 
 			addColumn: 'Apellido'; 
 			addColumn: 'Nombre';
-			model: 4;
+			model: (ModelUsuarios new: aColSeq);
 			yourself.
 ]
