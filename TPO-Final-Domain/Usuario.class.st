@@ -18,16 +18,14 @@ Usuario class >> newDNI: unDNI nombre: unNombre apellido: unApellido password: u
 		yourself.
 ]
 
-{ #category : #comparing }
-Usuario >> = other [
-	^dni = other dni.
-
-	
-]
-
 { #category : #adding }
 Usuario >> addBibliotecaInteres: unaBiblioteca [
 	colBibliotecasInteres add: unaBiblioteca .
+]
+
+{ #category : #accessing }
+Usuario >> apellido [
+	^apellido
 ]
 
 { #category : #accessing }
@@ -44,11 +42,6 @@ Usuario >> hasDNI: unDNI [
 { #category : #testing }
 Usuario >> hasPassword: aPassword [
 	^password = aPassword.
-]
-
-{ #category : #comparing }
-Usuario >> hash [ 
-	^dni hash.
 ]
 
 { #category : #initialization }
