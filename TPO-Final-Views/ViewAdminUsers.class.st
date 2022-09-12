@@ -1,18 +1,19 @@
 Class {
-	#name : #ViewUsers,
+	#name : #ViewAdminUsers,
 	#superclass : #ViewTable,
 	#category : #'TPO-Final-Views'
 }
 
 { #category : #'instance creation' }
-ViewUsers class >> new: aSeqCol [
+ViewAdminUsers class >> new: aSeqCol [
 	^self new initialize: aSeqCol; yourself.
 ]
 
 { #category : #initialization }
-ViewUsers >> initialize: aColSeq [
+ViewAdminUsers >> initialize: aColSeq [
 	self initialize.
-	^self addColumn: 'DNI'; 
+	^self	addTitle: 'Usuarios'; 
+			addColumn: 'DNI'; 
 			addColumn: 'Apellido'; 
 			addColumn: 'Nombre';
 			model: (ModelUsuarios new: aColSeq);

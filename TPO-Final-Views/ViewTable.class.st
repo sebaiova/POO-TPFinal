@@ -28,8 +28,7 @@ ViewTable >> initialize [
 									addMorph: Spacer new;
 									addMorph: (Button new: 'Atras' target: self message: #close);
 									yourself);
-			addMorph: (Spacer new addMorph: 
-					(ft_table := FTTableMorph new vResizing: #spaceFill; hResizing: #spaceFill));
+			addMorph: (Spacer new addMorph: (ft_table := FTTableMorph new vResizing: #spaceFill; hResizing: #spaceFill));
 			yourself.
 ]
 

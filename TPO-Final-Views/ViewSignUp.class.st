@@ -43,7 +43,8 @@ ViewSignUp >> crear [
 { #category : #initialization }
 ViewSignUp >> initialize [ 
 	super initialize.
-	^self addMorph: (Row new 
+	^self	
+			addMorph: (Row new 
 				addMorph: (Button new: 'Crear' target: self message: #crear);
 				addMorph: Spacer new;
 				addMorph: (Button new: 'Atras' target: self message: #close)
@@ -56,5 +57,6 @@ ViewSignUp >> initialize [
 			addMorph: (tfNombre 		:= TextField new: (Tag contents:'Nombre:'));
 			addMorph: (tagError := TagError new);
 			addMorph: Spacer new;
+			addTitle: 'Creando un usuario';
 			yourself.
 ]

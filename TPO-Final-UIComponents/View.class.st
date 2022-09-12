@@ -7,6 +7,11 @@ Class {
 	#category : #'TPO-Final-UIComponents'
 }
 
+{ #category : #adding }
+View >> addTitle: title [
+	self addMorph: ((Tag newLabel: title) hResizing: #spaceFill; backgroundColor: Color gray darker darker darker).
+]
+
 { #category : #'initialize-release' }
 View >> close [
 	self delete.

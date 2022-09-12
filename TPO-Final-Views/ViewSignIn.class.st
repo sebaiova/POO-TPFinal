@@ -11,7 +11,7 @@ Class {
 
 { #category : #button }
 ViewSignIn >> admin [
-	self stack: (ViewUsers new: model usuarios).
+	self stack: (ViewAdminUsers new: model usuarios).
 ]
 
 { #category : #button }
@@ -43,5 +43,6 @@ ViewSignIn >> initialize [
 			addMorph: (tfUsuario := TextField new: (Tag contents: 'Usuario:'));
 			addMorph: (tagError := TagError new);	
 			addMorph: Spacer new;
+			addTitle: 'Iniciando sesion';
 			yourself.
 ]
