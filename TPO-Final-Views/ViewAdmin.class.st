@@ -1,13 +1,27 @@
 Class {
 	#name : #ViewAdmin,
 	#superclass : #View,
+	#instVars : [
+		'tabs'
+	],
 	#category : #'TPO-Final-Views'
 }
 
+{ #category : #'instance creation' }
+ViewAdmin class >> new: sistema [
+	^self new initialize: sistema. 
+]
+
 { #category : #initialization }
-ViewAdmin >> initialize [ 
-	super initialize.
-	^self addMorph: (Button new: 'Atras' target: self message: #close);
-			addMorph: Spacer new;
-		yourself.
+ViewAdmin >> initialize: sistema [
+	self	initialize
+			addMorph: (tabs := Tabs new).
+			
+	tabs addPage: (ViewAdminUsers new: sistema usuarios) label: 'Usuarios'.
+	tabs addPage: (ViewAdminUsers new: sistema usuarios) label: 'Bibliotecas'.
+	tabs addPage: (ViewAdminUsers new: sistema usuarios) label: 'Libros'.
+		
+	tabs selectedPageIndex: 1.
+	^self.
+
 ]

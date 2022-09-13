@@ -1,34 +1,44 @@
 Class {
-	#name : #ViewTable,
+	#name : #ViewAdminTable,
 	#superclass : #View,
 	#instVars : [
 		'ft_table',
-		'ft_model'
+		'ft_model',
+		'parent'
 	],
 	#category : #'TPO-Final-Views'
 }
 
+{ #category : #'instance creation' }
+ViewAdminTable class >> new: aParent [
+	^self new initialize: aParent.
+]
+
 { #category : #adding }
-ViewTable >> addColumn: headerName [
+ViewAdminTable >> addColumn: headerName [
 	^ft_table addColumn: (FTColumn id: headerName).
 ]
 
+{ #category : #'initialize-release' }
+ViewAdminTable >> close [ 
+	parent delete.
+]
+
 { #category : #accessing }
-ViewTable >> data: data [
+ViewAdminTable >> data: data [
 	ft_table elements: data.
 ]
 
 { #category : #button }
-ViewTable >> eliminar [
+ViewAdminTable >> eliminar [
 	ft_table hasSelection ifFalse: [ ^ self ].
 	ft_model removeAt: ft_table selectedIndex.
 	ft_table deselectAll
 ]
 
 { #category : #initialization }
-ViewTable >> initialize [
-		super initialize.
-		^self	
+ViewAdminTable >> initialize [
+	 ^super initialize	
 			addMorph: (Row new addMorph: (Button new: 'Agregar' target: self message: #iniciarSesion);
 									addMorph: (Button new: 'Eliminar' target: self message: #eliminar);
 									addMorph: (Button new: 'Editar' target: self message: #admin);
@@ -40,8 +50,13 @@ ViewTable >> initialize [
 ]
 
 { #category : #accessing }
-ViewTable >> model: aModel [
+ViewAdminTable >> model: aModel [
 	ft_model := aModel.
 	ft_table dataSource: ft_model.
 	ft_model addDependent: ft_table.
+]
+
+{ #category : #accessing }
+ViewAdminTable >> parent: aParent [
+	parent := aParent.
 ]
