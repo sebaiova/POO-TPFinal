@@ -39,6 +39,11 @@ Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion
 ]
 
 { #category : #accessing }
+Biblioteca >> nombre [ 	
+	^nombre.
+]
+
+{ #category : #accessing }
 Biblioteca >> representante [
 	^representante 
 ]
