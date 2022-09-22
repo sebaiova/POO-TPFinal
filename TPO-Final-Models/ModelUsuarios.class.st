@@ -1,6 +1,6 @@
 Class {
 	#name : #ModelUsuarios,
-	#superclass : #FTSimpleDataSource,
+	#superclass : #ModelAbstract,
 	#category : #'TPO-Final-Models'
 }
 
@@ -20,10 +20,4 @@ ModelUsuarios >> cellColumn: column row: rowIndex [
 	^ FTCellMorph new
 		  addMorphBack: text asMorph;
 		  yourself
-]
-
-{ #category : #removing }
-ModelUsuarios >> removeAt: row [
-	elements removeAt: row.
-	self changed: #refresh.
 ]

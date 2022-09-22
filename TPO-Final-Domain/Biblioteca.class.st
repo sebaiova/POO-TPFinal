@@ -20,6 +20,11 @@ Biblioteca class >> newID: unID nombre: unNombre telefono: unTelefono direccion:
 		yourself.
 ]
 
+{ #category : #accessing }
+Biblioteca >> direccion [
+	^direccion.
+]
+
 { #category : #initialization }
 Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresentante [
 	self initialize.
@@ -31,4 +36,14 @@ Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion
 	colLibros := OrderedCollection new.
 	colPrestamos := OrderedCollection new.
 	^self.
+]
+
+{ #category : #accessing }
+Biblioteca >> representante [
+	^representante 
+]
+
+{ #category : #accessing }
+Biblioteca >> telefono [
+	^telefono .
 ]

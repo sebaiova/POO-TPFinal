@@ -9,11 +9,6 @@ Class {
 	#category : #'TPO-Final-Views'
 }
 
-{ #category : #'instance creation' }
-ViewAdminTable class >> new: aParent [
-	^self new initialize: aParent.
-]
-
 { #category : #adding }
 ViewAdminTable >> addColumn: headerName [
 	^ft_table addColumn: (FTColumn id: headerName).

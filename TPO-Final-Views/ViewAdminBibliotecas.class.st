@@ -1,20 +1,21 @@
 Class {
-	#name : #ViewAdminUsers,
+	#name : #ViewAdminBibliotecas,
 	#superclass : #ViewAdminTable,
 	#category : #'TPO-Final-Views'
 }
 
 { #category : #'instance creation' }
-ViewAdminUsers class >> new: aSeqCol [
+ViewAdminBibliotecas class >> new: aSeqCol [
 	^self new initialize: aSeqCol; yourself.
 ]
 
 { #category : #initialization }
-ViewAdminUsers >> initialize: aModel [
+ViewAdminBibliotecas >> initialize: aModel [
 	self initialize.
-	^self	addColumn: 'DNI'; 
-			addColumn: 'Apellido'; 
-			addColumn: 'Nombre';
+	^self	addColumn: 'Nombre'; 
+			addColumn: 'Dirección'; 
+			addColumn: 'Teléfono';
+			addColumn: 'Representante';
 			model: aModel;
 			yourself.
 ]

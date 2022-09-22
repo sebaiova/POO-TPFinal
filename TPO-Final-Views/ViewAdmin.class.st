@@ -18,7 +18,7 @@ ViewAdmin >> initialize: sistema [
 			addMorph: (tabs := Tabs new).
 			
 	tabs addPage: (ViewAdminUsers new: sistema usuarios) label: 'Usuarios'.
-	tabs addPage: (ViewAdminUsers new: sistema usuarios) label: 'Bibliotecas'.
+	tabs addPage: (ViewAdminBibliotecas new: sistema bibliotecas) label: 'Bibliotecas'.
 	tabs addPage: (ViewAdminUsers new: sistema usuarios) label: 'Libros'.
 		
 	tabs selectedPageIndex: 1.
