@@ -14,6 +14,11 @@ ViewAdminTable >> addColumn: headerName [
 	^ft_table addColumn: (FTColumn id: headerName).
 ]
 
+{ #category : #button }
+ViewAdminTable >> agregar [
+	^nil.
+]
+
 { #category : #'initialize-release' }
 ViewAdminTable >> close [ 
 	parent delete.
@@ -34,7 +39,7 @@ ViewAdminTable >> eliminar [
 { #category : #initialization }
 ViewAdminTable >> initialize [
 	 ^super initialize	
-			addMorph: (Row new addMorph: (Button new: 'Agregar' target: self message: #iniciarSesion);
+			addMorph: (Row new addMorph: (Button new: 'Agregar' target: self message: #agregar);
 									addMorph: (Button new: 'Eliminar' target: self message: #eliminar);
 									addMorph: (Button new: 'Editar' target: self message: #admin);
 									addMorph: Spacer new;

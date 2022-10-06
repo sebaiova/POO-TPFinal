@@ -27,6 +27,11 @@ View >> initialize [
 ]
 
 { #category : #accessing }
+View >> model [
+	^model
+]
+
+{ #category : #accessing }
 View >> model: aModel [
 	model := aModel.
 ]

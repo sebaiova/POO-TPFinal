@@ -8,7 +8,7 @@ Class {
 ViewMain >> initialize [
 	super initialize.
 	model := ModelSistema new.
-	^self	extent: 480@360;
+	^self	extent: 800@512;
 			layoutPolicy: StackLayout new;
 			addMorph: (ViewSignIn new model: model);		
 			openInWindowLabeled: 'Sistema de Bibliotecas';

@@ -8,6 +8,12 @@ Class {
 	#category : #'TPO-Final-Models'
 }
 
+{ #category : #adding }
+ModelSistema >> agregarUsuario: unDNI nombre: unNombre apellido: unApellido password: unPassword [
+	super agregarUsuario: unDNI nombre: unNombre apellido: unApellido password: unPassword.
+	model_usuarios changed: #refresh.
+]
+
 { #category : #accessing }
 ModelSistema >> bibliotecas [
 	^model_bibliotecas 
