@@ -24,11 +24,6 @@ ViewAdminTable >> close [
 	parent delete.
 ]
 
-{ #category : #accessing }
-ViewAdminTable >> data: data [
-	ft_table elements: data.
-]
-
 { #category : #button }
 ViewAdminTable >> eliminar [
 	ft_table hasSelection ifFalse: [ ^ self ].
