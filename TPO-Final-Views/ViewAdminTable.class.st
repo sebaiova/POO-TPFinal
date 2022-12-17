@@ -1,9 +1,8 @@
 Class {
 	#name : #ViewAdminTable,
-	#superclass : #View,
+	#superclass : #TabPage,
 	#instVars : [
-		'table',
-		'parent'
+		'table'
 	],
 	#category : #'TPO-Final-Views'
 }
@@ -18,17 +17,12 @@ ViewAdminTable >> agregar [
 	^nil.
 ]
 
-{ #category : #'initialize-release' }
-ViewAdminTable >> close [ 
-	parent delete.
-]
-
 { #category : #button }
 ViewAdminTable >> editar [
 	| selected | 
 	selected := table selected.
 	selected ifNotNil: [ 
-		parent stack: (self editor new).
+		parent stack: (self editor new: selected).
 		 ] 
 ]
 
@@ -49,9 +43,4 @@ ViewAdminTable >> initialize [
 									yourself);
 			addMorph: (Spacer new addMorph: table);
 			yourself.
-]
-
-{ #category : #accessing }
-ViewAdminTable >> parent: aParent [
-	parent := aParent.
 ]
