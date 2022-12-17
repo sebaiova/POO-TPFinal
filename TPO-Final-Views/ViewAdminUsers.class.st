@@ -17,9 +17,9 @@ ViewAdminUsers >> agregar [
 { #category : #initialization }
 ViewAdminUsers >> initialize: aModel [
 	self initialize.
-	^self	addColumn: 'DNI'; 
-			addColumn: 'Apellido'; 
-			addColumn: 'Nombre';
-			model: aModel;
-			yourself.
+	table addColumn: 'DNI'. 
+	table addColumn: 'Apellido'. 
+	table addColumn: 'Nombre'.
+	table model: aModel.
+	^self.
 ]

@@ -10,12 +10,17 @@ ViewAdminBibliotecas class >> new: aSeqCol [
 ]
 
 { #category : #initialization }
+ViewAdminBibliotecas >> editar [
+	parent stack: (ViewEditBiblioteca new).
+]
+
+{ #category : #initialization }
 ViewAdminBibliotecas >> initialize: aModel [
 	self initialize.
-	^self	addColumn: 'Nombre'; 
-			addColumn: 'Dirección'; 
-			addColumn: 'Teléfono';
-			addColumn: 'Representante';
-			model: aModel;
-			yourself.
+	table addColumn: 'Nombre'.
+	table addColumn: 'Dirección'.
+	table	addColumn: 'Teléfono'.
+	table	addColumn: 'Representante'.
+	table model: aModel.
+	^self.
 ]
