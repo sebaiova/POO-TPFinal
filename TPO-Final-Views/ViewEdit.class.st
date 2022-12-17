@@ -12,11 +12,16 @@ ViewEdit class >> new: editable [
 	^ self new initialize: editable.
 ]
 
+{ #category : #button }
+ViewEdit >> aceptar [
+	self close.
+]
+
 { #category : #initialization }
 ViewEdit >> initialize [ 
 	super initialize.
 	^self	addMorph: (Row new 
-				addMorph: (Button new: 'Crear' target: self message: #crear);
+				addMorph: (Button new: 'Aceptar' target: self message: #aceptar);
 				addMorph: Spacer new;
 				addMorph: (Button new: 'Cancelar' target: self message: #close)
 				);

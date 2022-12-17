@@ -25,7 +25,16 @@ ViewAdminTable >> close [
 
 { #category : #button }
 ViewAdminTable >> editar [
-	^nil.
+	| selected | 
+	selected := table selected.
+	selected ifNotNil: [ 
+		parent stack: (self editor new).
+		 ] 
+]
+
+{ #category : #accessing }
+ViewAdminTable >> editor [
+	^self subclassResponsibility.
 ]
 
 { #category : #initialization }

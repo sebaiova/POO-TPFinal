@@ -39,3 +39,9 @@ Table >> model: aModel [
 	table dataSource: model.
 	model addDependent: table.
 ]
+
+{ #category : #accessing }
+Table >> selected [ 
+	table hasSelection ifFalse: [ ^ nil ].
+	^model at: (table selectedIndex).
+]

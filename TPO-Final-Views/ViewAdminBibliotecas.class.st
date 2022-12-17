@@ -9,9 +9,9 @@ ViewAdminBibliotecas class >> new: aSeqCol [
 	^self new initialize: aSeqCol; yourself.
 ]
 
-{ #category : #initialization }
-ViewAdminBibliotecas >> editar [
-	parent stack: (ViewEditBiblioteca new).
+{ #category : #accessing }
+ViewAdminBibliotecas >> editor [ 
+	^ViewEditBiblioteca .
 ]
 
 { #category : #initialization }
