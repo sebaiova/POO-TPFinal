@@ -15,7 +15,6 @@ ViewAdmin class >> new: sistema [
 { #category : #initialization }
 ViewAdmin >> initialize: sistema [
 	self	initialize
-			model: sistema;
 			addMorph: (tabs := Tabs new).	
 	tabs addPage: (ViewAdminUsers new: sistema usuarios) label: 'Usuarios'.
 	tabs addPage: (ViewAdminBibliotecas new: sistema bibliotecas) label: 'Bibliotecas'.	
