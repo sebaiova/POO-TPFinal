@@ -20,14 +20,14 @@ TextField >> accepted [
 ]
 
 { #category : #initialization }
-TextField >> initialize: aTag [
+TextField >> initialize: string [
 	self initialize.
 	^self	layoutPolicy: TableLayout new;
 			listDirection: #rightToLeft;
 			vResizing: #shrinkWrap;
 			width: 280;
 			cellInset: 4;
-			addMorph: (aTag);
+			addMorph: (Tag contents: string);
 			addMorph: (border := Morph new 
 							layoutPolicy: StackLayout new;
 							hResizing: #shrinkWrap;
@@ -46,4 +46,9 @@ TextField >> rejected [
 { #category : #accessing }
 TextField >> text [ 
 	^ textField text string.
+]
+
+{ #category : #accessing }
+TextField >> text: string [
+	textField updateTextWith: string.
 ]

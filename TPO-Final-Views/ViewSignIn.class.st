@@ -40,8 +40,8 @@ ViewSignIn >> initialize [
 							addMorph: Spacer new;
 							yourself);
 			addMorph: Spacer new;
-			addMorph: (tfContraseña := TextField new: (Tag contents: 'Contraseña:'));
-			addMorph: (tfUsuario := TextField new: (Tag contents: 'Usuario:'));
+			addMorph: (tfContraseña := TextField new: 'Contraseña:');
+			addMorph: (tfUsuario := TextField new: 'Usuario:');
 			addMorph: (tagError := TagError new);	
 			addMorph: Spacer new;
 			addTitle: 'Iniciando sesion';
