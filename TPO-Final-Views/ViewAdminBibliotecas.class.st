@@ -11,7 +11,7 @@ ViewAdminBibliotecas class >> new: aSeqCol [
 
 { #category : #accessing }
 ViewAdminBibliotecas >> editor [ 
-	^ViewEditBiblioteca .
+	^ViewBiblioteca .
 ]
 
 { #category : #initialization }

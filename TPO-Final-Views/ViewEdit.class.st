@@ -1,9 +1,6 @@
 Class {
 	#name : #ViewEdit,
-	#superclass : #View,
-	#instVars : [
-		'object'
-	],
+	#superclass : #TabPage,
 	#category : #'TPO-Final-Views'
 }
 
@@ -17,19 +14,17 @@ ViewEdit >> aceptar [
 	self close.
 ]
 
+{ #category : #button }
+ViewEdit >> confirmar [
+	^self subclassResponsibility .
+]
+
 { #category : #initialization }
 ViewEdit >> initialize [ 
 	super initialize.
 	^self	addMorph: (Row new 
-				addMorph: (Button new: 'Aceptar' target: self message: #aceptar);
-				addMorph: Spacer new;
-				addMorph: (Button new: 'Cancelar' target: self message: #close)
-				);
+							addMorph: (Button new: 'Confirmar' target: self message: #confirmar);
+							addMorph: Spacer new;
+							yourself);
 			yourself .
-]
-
-{ #category : #initialization }
-ViewEdit >> initialize: editable [
-	super initialize.
-	object := editable.
 ]

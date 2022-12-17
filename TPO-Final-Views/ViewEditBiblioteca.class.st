@@ -1,17 +1,25 @@
 Class {
 	#name : #ViewEditBiblioteca,
 	#superclass : #ViewEdit,
+	#instVars : [
+		'tfNombre',
+		'tagError'
+	],
 	#category : #'TPO-Final-Views'
 }
 
+{ #category : #button }
+ViewEditBiblioteca >> confirmar [
+	^nil.
+]
+
 { #category : #initialization }
-ViewEditBiblioteca >> initialize: biblioteca [
-	| tabs |
-	self	initialize
-			addMorph: (tabs := Tabs new).	
-	tabs addPage: (TabPage new) label: 'Datos'.
-	tabs addPage: (TabPage new) label: 'Libros'.	
-	tabs addPage: (TabPage new) label: 'Prestamos'.	
-	tabs selectedPageIndex: 1.
-	^self.
+ViewEditBiblioteca >> initialize [
+	super initialize.
+	^self	
+			addMorph: Spacer new;
+			addMorph: (tfNombre := TextField new: (Tag contents: 'Nombre:'));
+			addMorph: (tagError := TagError new);	
+			addMorph: Spacer new;
+			yourself.
 ]
