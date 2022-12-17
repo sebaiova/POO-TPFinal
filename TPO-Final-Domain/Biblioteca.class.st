@@ -44,6 +44,11 @@ Biblioteca >> nombre [
 ]
 
 { #category : #accessing }
+Biblioteca >> nombre: aNombre [
+	nombre := aNombre.
+]
+
+{ #category : #accessing }
 Biblioteca >> representante [
 	^representante 
 ]
