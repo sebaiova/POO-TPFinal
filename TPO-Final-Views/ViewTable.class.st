@@ -1,5 +1,5 @@
 Class {
-	#name : #ViewAdminTable,
+	#name : #ViewTable,
 	#superclass : #TabPage,
 	#instVars : [
 		'table'
@@ -8,31 +8,32 @@ Class {
 }
 
 { #category : #'instance creation' }
-ViewAdminTable class >> new: aModel [
+ViewTable class >> new: aModel [
 	^self new initialize: aModel.
 ]
 
 { #category : #button }
-ViewAdminTable >> agregar [
+ViewTable >> agregar [
 	^nil.
 ]
 
 { #category : #button }
-ViewAdminTable >> editar [
+ViewTable >> editar [
 	| selected | 
 	selected := table selected.
-	selected ifNotNil: [ 
+	selected ifNotNil: [
+		table addDependency: selected. 
 		parent stack: (self editor new: selected).
-		 ] 
+		 ]
 ]
 
 { #category : #accessing }
-ViewAdminTable >> editor [
+ViewTable >> editor [
 	^self subclassResponsibility.
 ]
 
 { #category : #initialization }
-ViewAdminTable >> initialize [
+ViewTable >> initialize [
 	 super initialize.
 	 table := Table new.	
 	 ^self addMorph: (Row new addMorph: (Button new: 'Agregar' target: self message: #agregar);

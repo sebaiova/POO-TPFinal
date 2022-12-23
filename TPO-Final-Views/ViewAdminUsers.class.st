@@ -1,6 +1,6 @@
 Class {
 	#name : #ViewAdminUsers,
-	#superclass : #ViewAdminTable,
+	#superclass : #ViewTable,
 	#category : #'TPO-Final-Views'
 }
 

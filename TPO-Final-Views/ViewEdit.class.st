@@ -16,7 +16,7 @@ ViewEdit >> aceptar [
 
 { #category : #button }
 ViewEdit >> confirmar [
-	^self subclassResponsibility .
+	model changed: #refresh.
 ]
 
 { #category : #initialization }

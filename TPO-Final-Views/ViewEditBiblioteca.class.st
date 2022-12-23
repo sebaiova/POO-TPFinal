@@ -11,6 +11,7 @@ Class {
 { #category : #button }
 ViewEditBiblioteca >> confirmar [
 	model nombre: tfNombre text.
+	super confirmar.
 ]
 
 { #category : #initialization }

@@ -18,6 +18,11 @@ Table >> addColumn: headerName [
 	^table addColumn: (FTColumn id: headerName).
 ]
 
+{ #category : #adding }
+Table >> addDependency: element [
+	element addDependent: table.
+]
+
 { #category : #removing }
 Table >> eliminar [
 	table hasSelection ifFalse: [ ^ self ].
