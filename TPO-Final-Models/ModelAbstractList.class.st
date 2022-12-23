@@ -1,16 +1,16 @@
 Class {
-	#name : #ModelAbstract,
+	#name : #ModelAbstractList,
 	#superclass : #FTSimpleDataSource,
 	#category : #'TPO-Final-Models'
 }
 
 { #category : #accessing }
-ModelAbstract >> at: index [
+ModelAbstractList >> at: index [
 	^ self elementAt: index.
 ]
 
 { #category : #accessing }
-ModelAbstract >> removeAt: row [
+ModelAbstractList >> removeAt: row [
 	elements removeAt: row.
 	self changed: #refresh.
 ]

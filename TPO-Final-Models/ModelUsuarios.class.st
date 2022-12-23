@@ -1,6 +1,6 @@
 Class {
 	#name : #ModelUsuarios,
-	#superclass : #ModelAbstract,
+	#superclass : #ModelAbstractList,
 	#category : #'TPO-Final-Models'
 }
 

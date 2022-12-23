@@ -1,6 +1,6 @@
 Class {
 	#name : #ModelBibliotecas,
-	#superclass : #ModelAbstract,
+	#superclass : #ModelAbstractList,
 	#category : #'TPO-Final-Models'
 }
 
