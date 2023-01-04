@@ -12,6 +12,11 @@ Autor class >> new: aNombre [
 	^self new initialize: aNombre.
 ]
 
+{ #category : #converting }
+Autor >> asString [ 
+	^nombre.
+]
+
 { #category : #initialization }
 Autor >> initialize: aNombre [
 	nombre := aNombre

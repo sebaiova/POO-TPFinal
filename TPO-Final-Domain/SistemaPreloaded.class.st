@@ -14,12 +14,10 @@ SistemaPreloaded >> initialize [
 			agregarUsuario: 44287842 nombre: 'Cristopher' apellido: 'Ovaillos' password: 1234;
 			
 			agregarBiblioteca: ((Biblioteca newID: 01 nombre: 'Juan Bautista Alberdi'  telefono: 45228338 direccion: 'Av. Argentina 844' representante: 'Bernardino Teruel')
-				agregarLibro: (Libro newNombre: 'OpenGL SuperBible' editorial: 'Addison-Wesley Professional' año: 2013 autores: {
-					(Autor new: 'Graham Sellers'),
-					(Autor new: 'Richard S. Wright, Jr.'),
-					(Autor new: 'Nicholas Haemel')}));
+				agregarLibro: (Libro newNombre: 'OpenGL SuperBible' editorial: 'Addison-Wesley Professional' año: 2013 autores: (self cargarAutores: #('Graham Sellers' 'Richard S. Wright' 'Jr. Nicholas Haemel')))
+				);
 			
 			agregarBiblioteca: 02 nombre: 'Francisco P. Moreno'  direccion: 'Av. Leloir y Sta Fe'  telefono: 45132458  representante: 'Yeray Salazar';
 			agregarBiblioteca: 03 nombre: 'Juan Jose Brion'  direccion: 'Av. Leloir 842'  telefono: 42658752  representante: 'Guillermina Llorens';
-	yourself.
+			yourself.
 ]

@@ -49,6 +49,11 @@ Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion
 ]
 
 { #category : #accessing }
+Biblioteca >> libros [ 
+	^colLibros .
+]
+
+{ #category : #accessing }
 Biblioteca >> nombre [ 	
 	^nombre.
 ]

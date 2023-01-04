@@ -3,20 +3,38 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'colBibliotecas',
-		'colUsuarios'
+		'colUsuarios',
+		'colAutores'
 	],
 	#category : #'TPO-Final-Domain'
 }
 
+{ #category : #'as yet unclassified' }
+Sistema >> agregarBiblioteca: aBiblioteca [
+	colBibliotecas add: aBiblioteca .
+	^aBiblioteca .
+]
+
 { #category : #adding }
 Sistema >> agregarBiblioteca: id nombre: aNombre direccion: aDireccion telefono: aTelefono representante: aRepresentante [
-	colBibliotecas add: (Biblioteca newID: id nombre: aNombre telefono: aTelefono direccion: aDireccion representante: aRepresentante)
+	|biblioteca|
+	biblioteca := (Biblioteca newID: id nombre: aNombre telefono: aTelefono direccion: aDireccion representante: aRepresentante).
+	colBibliotecas add: biblioteca.
+	^biblioteca.
 	
 ]
 
 { #category : #adding }
 Sistema >> agregarUsuario: unDNI nombre: unNombre apellido: unApellido password: unPassword [ 
 	colUsuarios add: (Usuario newDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword).
+]
+
+{ #category : #'as yet unclassified' }
+Sistema >> cargarAutores: anArrayNombres [
+	|autores autor|
+	autores := OrderedCollection new.
+	anArrayNombres do: [ :aNombre | autor := (Autor new: aNombre). colAutores add: autor. autores add: autor].
+	^autores.
 ]
 
 { #category : #accessing }
@@ -30,6 +48,7 @@ Sistema >> initialize [
 	super initialize.
 	colUsuarios := OrderedCollection new.
 	colBibliotecas := OrderedCollection new.
+	colAutores := Set new.
 	^self.
 ]
 

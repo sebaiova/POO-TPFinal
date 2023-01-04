@@ -17,17 +17,42 @@ Libro class >> newNombre: unNombre editorial: unaEditorial año: unAño autores:
 ]
 
 { #category : #accessing }
+Libro >> autores [	
+	^colAutores
+]
+
+{ #category : #accessing }
+Libro >> año [
+	^año.
+]
+
+{ #category : #accessing }
+Libro >> editorial [ 
+	^editorial
+]
+
+{ #category : #accessing }
 Libro >> esAudioLibro [
 	^false.
 ]
 
 { #category : #initialization }
-Libro >> initializeNombre: unNombre editorial: unaEditorial año: unAño autores: losAutores [
+Libro >> initializeNombre: unNombre editorial: unaEditorial año: unAño autores: aColAutores [
 	self initialize.
 	nombre := unNombre.
 	editorial := unaEditorial.
 	año := unAño.
-	colAutores := OrderedCollection newFrom: losAutores.
+	colAutores := aColAutores.
 	prestado := false.
 	^self.
+]
+
+{ #category : #accessing }
+Libro >> nombre [
+	^nombre
+]
+
+{ #category : #accessing }
+Libro >> prestado [ 
+	^prestado.
 ]

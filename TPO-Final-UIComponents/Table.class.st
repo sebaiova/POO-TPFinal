@@ -19,6 +19,12 @@ Table >> addColumn: headerName [
 ]
 
 { #category : #adding }
+Table >> addColumn: headerName width: aWidth [
+	^table addColumn: ((FTColumn id: headerName) width: aWidth; yourself).
+	
+]
+
+{ #category : #adding }
 Table >> addDependency: element [
 	element addDependent: table.
 ]
@@ -33,7 +39,11 @@ Table >> eliminar [
 { #category : #initialization }
 Table >> initialize [
 	super initialize.
-	table := FTTableMorph new vResizing: #spaceFill; hResizing: #spaceFill.
+	table := FTTableMorph new 
+		intercellSpacing: 1;
+		beResizable;
+		vResizing: #spaceFill; hResizing: #spaceFill.
+		
 	^self vResizing: #spaceFill; hResizing: #spaceFill; addMorph: table. 
 
 ]

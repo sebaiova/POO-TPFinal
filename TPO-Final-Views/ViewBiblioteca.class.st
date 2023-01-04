@@ -16,7 +16,7 @@ ViewBiblioteca >> initialize: biblioteca [
 			addTitle: 'Administrar Biblioteca'.
 			
 	tabs addPage: (ViewEditBiblioteca new: biblioteca) label: 'Datos'.
-	tabs addPage: (TabPage new addMorph: Table new) label: 'Libros'.	
+	tabs addPage: (ViewAdminLibros new: (ModelLibros new: biblioteca libros)) label: 'Libros'.	
 	tabs addPage: (TabPage new) label: 'Prestamos'.
 	tabs selectedPageIndex: 1.
 	^self.
