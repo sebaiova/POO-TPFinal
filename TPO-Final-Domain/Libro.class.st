@@ -11,6 +11,11 @@ Class {
 	#category : #'TPO-Final-Domain'
 }
 
+{ #category : #'instance creation' }
+Libro class >> newNombre: unNombre editorial: unaEditorial año: unAño autores: losAutores [
+	^self new initializeNombre: unNombre editorial: unaEditorial año: unAño autores: losAutores.
+]
+
 { #category : #accessing }
 Libro >> esAudioLibro [
 	^false.

@@ -20,6 +20,11 @@ Biblioteca class >> newID: unID nombre: unNombre telefono: unTelefono direccion:
 		yourself.
 ]
 
+{ #category : #adding }
+Biblioteca >> agregarLibro: aLibro [
+	colLibros add: aLibro.
+]
+
 { #category : #accessing }
 Biblioteca >> direccion [
 	^direccion.
