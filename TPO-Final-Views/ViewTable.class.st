@@ -40,7 +40,6 @@ ViewTable >> initialize [
 									addMorph: (Button new: 'Eliminar' target: table message: #eliminar);
 									addMorph: (Button new: 'Editar' target: self message: #editar);
 									addMorph: Spacer new;
-									"addMorph: (Button new: 'Atras' target: self message: #close);"
 									yourself);
 			addMorph: (Spacer new addMorph: table);
 			yourself.

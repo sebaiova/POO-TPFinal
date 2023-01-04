@@ -13,7 +13,7 @@ ViewBiblioteca >> initialize: biblioteca [
 				addMorph: (Button new: 'Atras' target: self message: #close)
 				);
 			addMorph: (Spacer new addMorph: (tabs := Tabs new));
-			addTitle: 'Administrando Biblioteca'.
+			addTitle: 'Administrar Biblioteca'.
 			
 	tabs addPage: (ViewEditBiblioteca new: biblioteca) label: 'Datos'.
 	tabs addPage: (TabPage new addMorph: Table new) label: 'Libros'.	
