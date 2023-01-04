@@ -25,6 +25,11 @@ Biblioteca >> direccion [
 	^direccion.
 ]
 
+{ #category : #accessing }
+Biblioteca >> direccion: aDireccion [
+	direccion := aDireccion
+]
+
 { #category : #initialization }
 Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresentante [
 	self initialize.
@@ -54,6 +59,16 @@ Biblioteca >> representante [
 ]
 
 { #category : #accessing }
+Biblioteca >> representante: aRepresentante [
+	representante := aRepresentante .
+]
+
+{ #category : #accessing }
 Biblioteca >> telefono [
 	^telefono .
+]
+
+{ #category : #accessing }
+Biblioteca >> telefono: aTelefono [
+	telefono := aTelefono.
 ]
