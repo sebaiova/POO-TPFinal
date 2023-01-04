@@ -15,7 +15,11 @@ ViewAdmin class >> new: sistema [
 { #category : #initialization }
 ViewAdmin >> initialize: sistema [
 	self	initialize
-			addMorph: (tabs := Tabs new);
+			addMorph: (Row new 
+				addMorph: Spacer new;
+				addMorph: (Button new: 'Atras' target: self message: #close)
+				);
+			addMorph: (Spacer new addMorph: (tabs := Tabs new));
 			addTitle: 'Administrar'.
 	tabs addPage: (ViewAdminUsers new: sistema usuarios) label: 'Usuarios'.
 	tabs addPage: (ViewAdminBibliotecas new: sistema bibliotecas) label: 'Bibliotecas'.	

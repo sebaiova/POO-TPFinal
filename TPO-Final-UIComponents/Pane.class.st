@@ -13,3 +13,8 @@ Pane >> initialize [
 			layoutInset: 4;
 			yourself.
 ]
+
+{ #category : #accessing }
+Pane >> stack: aMenu [
+	owner stack: aMenu.
+]

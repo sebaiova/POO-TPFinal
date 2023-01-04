@@ -47,8 +47,3 @@ View >> model [
 View >> model: aModel [
 	model := aModel.
 ]
-
-{ #category : #accessing }
-View >> stack: aMenu [
-	owner stack: aMenu.
-]
