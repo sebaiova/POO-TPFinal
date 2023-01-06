@@ -8,17 +8,27 @@ Class {
 }
 
 { #category : #'instance creation' }
-Autor class >> new: aNombre [
-	^self new initialize: aNombre.
+Autor class >> new [ 
+	self error: 'Usar nombre: en lugar de new.'
 ]
 
-{ #category : #converting }
-Autor >> asString [ 
-	^nombre.
+{ #category : #accessing }
+Autor class >> nombre: unNombre [ 
+	^super new initializeNombre: unNombre.
+]
+
+{ #category : #comparing }
+Autor >> = other [
+	^ self nombre = other nombre.
+]
+
+{ #category : #comparing }
+Autor >> hash [ 
+	^nombre hash.
 ]
 
 { #category : #initialization }
-Autor >> initialize: aNombre [
+Autor >> initializeNombre: aNombre [
 	nombre := aNombre
 ]
 

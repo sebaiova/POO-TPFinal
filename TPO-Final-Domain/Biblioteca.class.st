@@ -14,14 +14,22 @@ Class {
 }
 
 { #category : #'instance creation' }
-Biblioteca class >> newID: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresent [
-	^self new
+Biblioteca class >> id: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresent [
+	^super new
 		initializeID: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresent;
 		yourself.
 ]
 
+{ #category : #'instance creation' }
+Biblioteca class >> new [ 
+	self error: 'No usar new'
+]
+
 { #category : #adding }
 Biblioteca >> agregarLibro: aLibro [
+	"Deberia solo poder ser llamado por la clase Sistema. (private, friend class Sistema)
+	Los autores del libro tienen que ser registrados en el sistema.
+	 < Sistema agregarLibro:enLaBiblioteca:  >"
 	colLibros add: aLibro.
 ]
 
@@ -49,8 +57,8 @@ Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion
 ]
 
 { #category : #accessing }
-Biblioteca >> libros [ 
-	^colLibros .
+Biblioteca >> libros [
+	^colLibros asArray.
 ]
 
 { #category : #accessing }
@@ -61,6 +69,11 @@ Biblioteca >> nombre [
 { #category : #accessing }
 Biblioteca >> nombre: aNombre [
 	nombre := aNombre.
+]
+
+{ #category : #'as yet unclassified' }
+Biblioteca >> removerLibro: unLibro [ 
+	colLibros remove: unLibro ifAbsent: [ nil ].  
 ]
 
 { #category : #accessing }

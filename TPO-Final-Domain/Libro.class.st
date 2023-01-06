@@ -12,8 +12,13 @@ Class {
 }
 
 { #category : #'instance creation' }
-Libro class >> newNombre: unNombre editorial: unaEditorial año: unAño autores: losAutores [
-	^self new initializeNombre: unNombre editorial: unaEditorial año: unAño autores: losAutores.
+Libro class >> new [ 
+	self error: 'Usar nombre:editorial:año:autores: en lugar de new'.
+]
+
+{ #category : #'instance creation' }
+Libro class >> nombre: unNombre editorial: unaEditorial año: unAño autores: losAutores [
+	^super new initializeNombre: unNombre editorial: unaEditorial año: unAño autores: losAutores.
 ]
 
 { #category : #accessing }

@@ -1,13 +1,15 @@
 Class {
-	#name : #Spacer,
-	#superclass : #Pane,
+	#name : #SISpacer,
+	#superclass : #SIPane,
 	#category : #'TPO-Final-UIComponents'
 }
 
 { #category : #initialization }
-Spacer >> initialize [ 
+SISpacer >> initialize [ 
 	super initialize.
-	^self vResizing: #spaceFill; 
+	^self 	
+			layoutPolicy: TableLayout new;
 			hResizing: #spaceFill;
+			vResizing: #spaceFill;
 			yourself.
 ]

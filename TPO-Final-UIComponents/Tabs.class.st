@@ -7,13 +7,18 @@ Class {
 { #category : #adding }
 Tabs >> addPage: morph label: label [
 	super addPage: morph label: label.
-	morph parent: owner.
 ]
 
 { #category : #initialization }
 Tabs >> initialize [
 	super initialize.
-	^self	vResizing: #spaceFill; 
+
+	^self	
+			layoutPolicy: TableLayout new;
+			cellPositioning: #center;
+			listCentering: #center;
+			wrapCentering: #center;
+			vResizing: #spaceFill; 
 			hResizing: #spaceFill;
 			yourself.
 ]

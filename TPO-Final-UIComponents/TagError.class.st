@@ -7,7 +7,7 @@ Class {
 { #category : #initialization }
 TagError >> initialize [ 
 	super initialize.
-	^ self contents: ''; 
+	^ self contents: '';
 		color: Color red;
 		yourself.
 ]

@@ -1,12 +1,20 @@
 Class {
 	#name : #ModelUsuarios,
-	#superclass : #ModelAbstractList,
+	#superclass : #ModelAbstractTable,
+	#instVars : [
+		'sistema'
+	],
 	#category : #'TPO-Final-Models'
 }
 
 { #category : #'instance creation' }
-ModelUsuarios class >> new: aSeqCol [
-	^self new elements: aSeqCol; yourself.
+ModelUsuarios class >> new [
+	self error: 'Usar sistema: en lugar de new.'
+]
+
+{ #category : #'instance creation' }
+ModelUsuarios class >> sistema: unSistema [ 
+	^super new initializeSistema: unSistema.
 ]
 
 { #category : #accessing }
@@ -20,4 +28,18 @@ ModelUsuarios >> cellColumn: column row: rowIndex [
 	^ FTCellMorph new
 		  addMorphBack: text asMorph;
 		  yourself
+]
+
+{ #category : #initialization }
+ModelUsuarios >> initializeSistema: unSistema [
+	self initialize.
+	sistema := unSistema.
+	self refresh.
+	^self.
+]
+
+{ #category : #accessing }
+ModelUsuarios >> refresh [ 
+	array := sistema usuarios.
+	self changed: #refresh.
 ]
