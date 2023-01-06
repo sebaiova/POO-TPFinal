@@ -1,6 +1,6 @@
 Class {
 	#name : #SIPane,
-	#superclass : #Morph,
+	#superclass : #BorderedMorph,
 	#category : #'TPO-Final-UIComponents'
 }
 
@@ -10,7 +10,7 @@ SIPane >> initialize [
 	^self	
 			layoutPolicy: TableLayout new;
 			color: Color darkGray darker;
-			layoutPolicy: TableLayout new;
+			borderColor: self color;
 		"	cellPositioning: #center;
 			listCentering: #center;
 			wrapCentering: #center;"
@@ -18,7 +18,7 @@ SIPane >> initialize [
 			"cellInset: 4"
 		"	listSpacing: 4"
 		"	cellSpacing: 4;"
-"			vResizing: #spaceFill; 
-			hResizing: #spaceFill;"
+			vResizing: #spaceFill; 
+			hResizing: #spaceFill;
 			yourself.
 ]

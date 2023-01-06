@@ -23,8 +23,13 @@ Sistema >> agregarLibro: unLibro enLaBiblioteca: unaBiblioteca [
 ]
 
 { #category : #adding }
+Sistema >> agregarUsuario: unUsuario [
+	colUsuarios add: unUsuario.
+]
+
+{ #category : #adding }
 Sistema >> agregarUsuario: unDNI nombre: unNombre apellido: unApellido password: unPassword [ 
-	colUsuarios add: (Usuario newDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword).
+	colUsuarios add: (Usuario dni: unDNI nombre: unNombre apellido: unApellido password: unPassword).
 ]
 
 { #category : #accessing }
@@ -66,6 +71,12 @@ Sistema >> logging: aUserName password: aPassword [
 { #category : #accessing }
 Sistema >> obtenerUsuario: aDNI [
 	^colUsuarios detect: [ :user | user hasDNI: aDNI ] ifNone: nil.
+]
+
+{ #category : #accessing }
+Sistema >> prestamosDeUsuario: unUsuario [
+	^colBibliotecas inject: OrderedCollection new into: [ :col :biblioteca | col addAll: (biblioteca prestamos select: [ :prestamo| prestamo esDeUsuario: unUsuario ]). col].
+		
 ]
 
 { #category : #'as yet unclassified' }

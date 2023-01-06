@@ -19,6 +19,6 @@ SITextFieldTagged class >> tag: aTag [
 SITextFieldTagged >> initializeTag: string [
 	self initialize.
 	^self	
-			addMorph: (Tag contents: string);
+			addMorph: (LabelMorph contents: string);
 			yourself.
 ]

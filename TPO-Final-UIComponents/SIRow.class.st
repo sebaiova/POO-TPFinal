@@ -7,7 +7,6 @@ Class {
 { #category : #initialization }
 SIRow >> initializeOrientation [
 	^self 	listDirection: #leftToRight;		
-			hResizing: #spaceFill;
 			vResizing: #shrinkWrap;
 			yourself.
 ]

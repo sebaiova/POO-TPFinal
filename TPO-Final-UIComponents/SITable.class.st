@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'table',
 		'model',
-		'doubleClickBlock'
+		'doubleClickBlock',
+		'clickBlock'
 	],
 	#category : #'TPO-Final-UIComponents'
 }
@@ -37,13 +38,27 @@ SITable >> initializeModel: aModel headers: colHeaders [
 			beResizable;
 			vResizing: #spaceFill; hResizing: #spaceFill;
 			onAnnouncement: FTStrongSelectionChanged do: [ :ann | doubleClickBlock value: self selectedIndex ];
+			onAnnouncement: FTSelectionChanged do: [ :ann | clickBlock value: self selectedIndex ];
 			dataSource: model.
 
 	model addDependent: table.
-	doubleClickBlock := [ :element | nil ]. "default no hace nada"
+	doubleClickBlock 	:= [ :element | nil ]. "default no hace nada"
+	clickBlock 			:= [ :element | nil ].
 	
 	^self  addMorph: (SIColumn new addMorph: table; yourself). 
 
+]
+
+{ #category : #accessing }
+SITable >> model: aModel [ 
+	model := aModel.
+	table dataSource: model.
+	table refresh.
+]
+
+{ #category : #'event handling' }
+SITable >> onClick: aBlock [ 
+	clickBlock := aBlock.
 ]
 
 { #category : #'event handling' }

@@ -1,6 +1,6 @@
 Class {
 	#name : #SIViewMain,
-	#superclass : #View,
+	#superclass : #SIView,
 	#instVars : [
 		'sistema',
 		'tfUsuario',

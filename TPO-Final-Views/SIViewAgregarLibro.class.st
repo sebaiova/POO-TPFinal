@@ -1,6 +1,6 @@
 Class {
 	#name : #SIViewAgregarLibro,
-	#superclass : #View,
+	#superclass : #SIView,
 	#instVars : [
 		'tfNombre',
 		'tfEditorial',
@@ -38,14 +38,14 @@ SIViewAgregarLibro >> initializeModel: aModelLibros [
 				addMorph: (SIRow new
 					addMorph: SISpacer new;	
 					addMorph: (SIColumn new 
-
 						addMorph: (tfNombre := SITextFieldTagged tag: 'Nombre');
 						addMorph: (tfAño := SITextFieldTagged tag: 'Año');
 						addMorph: (tfEditorial := SITextFieldTagged tag: 'Editorial');
 						yourself
-					
 					);
-					addMorph: (lfAutores := SIListInput new);
+					addMorph: (SIColumn new 
+						addMorph: (LabelMorph contents: 'Autores');
+						addMorph: (lfAutores := SIListInput new));
 					addMorph: SISpacer new;	
 					yourself
 				);

@@ -1,6 +1,6 @@
 Class {
 	#name : #TagError,
-	#superclass : #Tag,
+	#superclass : #LabelMorph,
 	#category : #'TPO-Final-UIComponents'
 }
 

@@ -51,6 +51,6 @@ SIListInput >> initialize [
 		addMorph: (SIButton label: 'Remover' target: self message: #eliminar);
 		yourself);
 		
-	addMorph: list;
-	addMorph: (Tag contents: 'Autores').
+	addMorph: list.
+
 ]

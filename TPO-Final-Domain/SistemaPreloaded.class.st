@@ -6,16 +6,28 @@ Class {
 
 { #category : #initialization }
 SistemaPreloaded >> initialize [ 
+	|seba|
 	super initialize.
-	^self agregarUsuario: 39062823 nombre: 'Sebastian' apellido: 'Iovaldi' password: 1234;
+	^self agregarUsuario: (seba := Usuario dni: 39062823 nombre: 'Sebastian' apellido: 'Iovaldi' password: 1234);
 			agregarUsuario: 43484212 nombre: 'Leonard' apellido: 'Fernandez' password: 1234;
 			agregarUsuario: 44216402 nombre: 'Medel' apellido: 'Joaquin' password: 1234;
 			agregarUsuario: 43275843 nombre: 'Leonel' apellido: 'Llancaqueo' password: 1234;
 			agregarUsuario: 44287842 nombre: 'Cristopher' apellido: 'Ovaillos' password: 1234;
 			
 			loadBooks: (self agregarBiblioteca: (Biblioteca id: 01 nombre: 'Juan Bautista Alberdi'  telefono: 45228338 direccion: 'Av. Argentina 844' representante: 'Bernardino Teruel'));
-			loadBooks: (self agregarBiblioteca: (Biblioteca id: 02 nombre: 'Francisco P. Moreno' telefono: 45132458 direccion: 'Av. Leloir y Sta Fe' representante: 'Yeray Salazar'));
-			loadBooks: (self agregarBiblioteca: (Biblioteca id: 03 nombre: 'Juan Jose Brion' telefono: 42658752 direccion: 'Av. Leloir 842'  representante: 'Guillermina Llorens'));
+			loadBooks: (self agregarBiblioteca: ((Biblioteca id: 02 nombre: 'Francisco P. Moreno' telefono: 45132458 direccion: 'Av. Leloir y Sta Fe' representante: 'Yeray Salazar')
+					registrarPrestamoUsuario: seba libros: 
+						(OrderedCollection new add: (Libro nombre: 'Deep Thinking: Where Machine Intelligence Ends and Human Creativity Begins' editorial: 'PublicAffairs' año: 2017 autores: (self cargarAutores: #('Axel Smith'))); 
+													add: (Libro nombre: 'My System' editorial: 'Quality Chess' año: 2007 autores: (self cargarAutores: #('Aron Nimzowitsch')));
+						yourself)
+					));
+
+			loadBooks: (self agregarBiblioteca: ((Biblioteca id: 03 nombre: 'Juan Jose Brion' telefono: 42658752 direccion: 'Av. Leloir 842'  representante: 'Guillermina Llorens' )
+					registrarPrestamoUsuario: seba libros: 
+							(OrderedCollection new add: (Libro nombre: 'My Great Predecessors, Part 1' editorial: 'Everyman Chess' año: 2020 autores: (self cargarAutores: #('Garry Kasparov'))); 
+							yourself)
+					))
+
 			yourself.
 ]
 

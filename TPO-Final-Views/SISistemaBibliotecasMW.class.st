@@ -1,6 +1,6 @@
 Class {
 	#name : #SISistemaBibliotecasMW,
-	#superclass : #View,
+	#superclass : #SIView,
 	#instVars : [
 		'sistema'
 	],

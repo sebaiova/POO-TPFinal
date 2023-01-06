@@ -1,6 +1,6 @@
 Class {
 	#name : #SIViewAdministrar,
-	#superclass : #View,
+	#superclass : #SIView,
 	#instVars : [
 		'tabs',
 		'sistema',
@@ -33,7 +33,7 @@ SIViewAdministrar >> initializeSistema: unSistema [
 	modelBiblioteca := (ModelBibliotecas sistema: sistema).
 	
 	self addMorph: (SIColumn new
-			addMorph: (tabs := Tabs new);
+			addMorph: (tabs := SITabs new);
 			addMorph: (SIRow new
 				addMorph: (SIButton label: 'Atras' target: self message: #delete);
 				addMorph: SISpacer new;
@@ -53,8 +53,8 @@ SIViewAdministrar >> initializeSistema: unSistema [
 	) label: 'Bibliotecas'.	
 	tabs selectedPageIndex: 1.
 	
-	tablaUsuarios onDoubleClick: [ :modelIndex | self addMorph: (SIViewDetalleUsuario modelIndex: modelIndex) ].
-	tablaBiblioteca onDoubleClick: [ :modelIndex | self addMorph: (SIViewEditarBiblioteca modelIndex: modelIndex)].
+	tablaUsuarios onDoubleClick: [ :modelIndex | self addMorph: (SIViewDetalleUsuario modelIndex: modelIndex sistema: sistema) ].
+	tablaBiblioteca onDoubleClick: [ :modelIndex | self addMorph: (SIViewDetalleBiblioteca modelIndex: modelIndex)].
 	^self.
 
 ]

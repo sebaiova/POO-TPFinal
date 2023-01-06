@@ -8,7 +8,7 @@ Class {
 SILayout >> initialize [
 	super initialize.
 	^self 
-			cellInset: 10;
+			cellInset: 4;
 			layoutInset: 4;
 			reverseTableCells: true;
 		"	cellPositioning: #center;"

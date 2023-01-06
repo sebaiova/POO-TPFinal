@@ -12,10 +12,15 @@ Class {
 }
 
 { #category : #'instance creation' }
-Usuario class >> newDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword [
+Usuario class >> dni: unDNI nombre: unNombre apellido: unApellido password: unPassword [
 	^self new
 		initializeDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword;
 		yourself.
+]
+
+{ #category : #comparing }
+Usuario >> = other [ 
+	^dni = other dni
 ]
 
 { #category : #adding }
@@ -42,6 +47,11 @@ Usuario >> hasDNI: unDNI [
 { #category : #testing }
 Usuario >> hasPassword: aPassword [
 	^password = aPassword.
+]
+
+{ #category : #comparing }
+Usuario >> hash [ 
+	^dni hash.
 ]
 
 { #category : #initialization }

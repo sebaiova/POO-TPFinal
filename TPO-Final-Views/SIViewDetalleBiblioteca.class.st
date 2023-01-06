@@ -1,6 +1,6 @@
 Class {
-	#name : #SIViewEditarBiblioteca,
-	#superclass : #View,
+	#name : #SIViewDetalleBiblioteca,
+	#superclass : #SIView,
 	#instVars : [
 		'ftRepresentante',
 		'ftDireccion',
@@ -14,22 +14,22 @@ Class {
 }
 
 { #category : #'instance creation' }
-SIViewEditarBiblioteca class >> modelIndex: aModelIndex [ 
+SIViewDetalleBiblioteca class >> modelIndex: aModelIndex [ 
 	^super new initializeModelIndex: aModelIndex.
 ]
 
 { #category : #'instance creation' }
-SIViewEditarBiblioteca class >> new [ 
+SIViewDetalleBiblioteca class >> new [ 
 	self error: 'No llamar new.'
 ]
 
 { #category : #button }
-SIViewEditarBiblioteca >> actionAgregarLibro [
+SIViewDetalleBiblioteca >> actionAgregarLibro [
 	^self addMorph: (SIViewAgregarLibro model: modelLibros).
 ]
 
 { #category : #button }
-SIViewEditarBiblioteca >> actionConfirmarDatos [
+SIViewDetalleBiblioteca >> actionConfirmarDatos [
 	|biblioteca|
 	biblioteca := modelIndex element.
 	biblioteca nombre: tfNombre text.
@@ -40,16 +40,17 @@ SIViewEditarBiblioteca >> actionConfirmarDatos [
 ]
 
 { #category : #'as yet unclassified' }
-SIViewEditarBiblioteca >> actionDarDeBaja [ 
+SIViewDetalleBiblioteca >> actionDarDeBaja [ 
 	modelLibros remove: tablaLibros selected.
 ]
 
 { #category : #initialization }
-SIViewEditarBiblioteca >> initializeModelIndex: aModelIndex [
- 	| biblioteca tabs |
+SIViewDetalleBiblioteca >> initializeModelIndex: aModelIndex [
+ 	| biblioteca tabs tablaPrestamos tableLibrosPrestamo |
+	
 	self initialize;
 		addMorph: (SIColumn new 
-			addMorph: (tabs := Tabs new);
+			addMorph: (tabs := SITabs new);
 			addMorph: (SIRow new 
 				addMorph: (SIButton label: 'Atras' target: self message: #delete);
 				addMorph: SISpacer new;
@@ -60,7 +61,7 @@ SIViewEditarBiblioteca >> initializeModelIndex: aModelIndex [
 	biblioteca := aModelIndex element.		
 	modelLibros := modelIndex model getModelLibros: modelIndex index.
 			
-	tabs addPage: (SIPane new addMorph: (SIColumn new
+	tabs addPage: (SIColumn new
 			addMorph: SISpacer new;
 			addMorph: (tfNombre := (SITextFieldTagged tag: 'Nombre:') text: biblioteca nombre);
 			addMorph: (ftTelefono := (SITextFieldTagged tag: 'Teléfono') text: biblioteca telefono asString);
@@ -68,38 +69,28 @@ SIViewEditarBiblioteca >> initializeModelIndex: aModelIndex [
 			addMorph: (ftRepresentante := (SITextFieldTagged tag: 'Representante') text: biblioteca representante);	
 			addMorph: SISpacer new;
 			addMorph: (SIButton label: 'Confirmar' target: self message: #actionConfirmarDatos);
-			addMorph: SISpacer new;
-			yourself	)
-	) 	label: 'Datos'.
+			addMorph: SISpacer new
+			)
+	 	label: 'Datos'.
 		
-		
-		tabs addPage: (( tablaLibros := SITable model: modelLibros headers: #(Nombre Estado Año Editorial Autores)) 		
-			addMorphBack: (SIRow new 
+	tabs addPage: (SIColumn new 
+			addMorph: (tablaLibros := SITable model: modelLibros headers: #(Nombre Estado Año Editorial Autores)); 		
+			addMorph: (SIRow new 
 				addMorph: SISpacer new;
 				addMorph: (SIButton label: 'Dar de Baja' target: self message: #actionDarDeBaja); 
-				addMorph: (SIButton label: 'Agregar Libro' target: self message: #actionAgregarLibro); 
-				yourself)
-			yourself
+				addMorph: (SIButton label: 'Agregar Libro' target: self message: #actionAgregarLibro)
+				)
 			)
 		label: 'Libros'.
-		
-				
+			
+	tabs addPage: (SIColumn new
+		addMorph: (tablaPrestamos := SITable model: (ModelPrestamosBiblioteca biblioteca: biblioteca) headers: #('Usuario' 'Fecha' 'Dias Prestado' 'Cantidad de Libros'));
+		addMorph: (tableLibrosPrestamo := SITable model: FTEasyListDataSource new headers: #(Nombre Año Editorial Autores))
 	
-			
-	"	tablaLibros addMorphBack: (SIButton label: 'Agregar Libro' target: self message: #actionAgregarLibro)."
-		
-		
-"	tabs addPage: (SIColumn new  
-""			addMorph: (tablaLibros := SITable model: modelLibros headers: #(Nombre Estado Año Editorial Autores));""
-			addMorph: (SIButton label: 'Agregar Libro' target: self message: #actionAgregarLibro);
-						addMorph: (SIButton label: 'Agregar Libro' target: self message: #actionAgregarLibro);
-			yourself) 
-	 	label: 'Libros'.	"
-			
-	tabs addPage: (TabPage new) label: 'Prestamos'.
+	) label: 'Prestamos'.
 	tabs selectedPageIndex: 1.
-
-"	tablaLibros addDependency: biblioteca."
+			
+	tablaPrestamos onClick: [ :index | tableLibrosPrestamo model: (ModelLibros prestamo: index element) ].
 
 	^self
 ]

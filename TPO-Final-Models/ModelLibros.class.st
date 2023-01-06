@@ -9,6 +9,11 @@ Class {
 }
 
 { #category : #'instance creation' }
+ModelLibros class >> biblioteca: unaBiblioteca [
+	^super new initializeBiblioteca: unaBiblioteca sistema: nil.
+]
+
+{ #category : #'instance creation' }
 ModelLibros class >> biblioteca: unaBiblioteca sistema: elSistema [
 	^super new initializeBiblioteca: unaBiblioteca sistema: elSistema.
 ]
@@ -16,6 +21,11 @@ ModelLibros class >> biblioteca: unaBiblioteca sistema: elSistema [
 { #category : #'instance creation' }
 ModelLibros class >> new [ 
 	self error: 'Usar biblioteca:sistema: en lugar de new'
+]
+
+{ #category : #accessing }
+ModelLibros class >> prestamo: unPrestamo [ 
+	^ self biblioteca: unPrestamo.
 ]
 
 { #category : #adding }
@@ -45,7 +55,6 @@ ModelLibros >> initializeBiblioteca: unaBiblioteca sistema: elSistema [
 	biblioteca := unaBiblioteca.
 	sistema := elSistema.
 	self refresh.
-"	self elements: sistema bibliotecas. "
 	^self.
 ]
 

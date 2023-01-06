@@ -71,7 +71,19 @@ Biblioteca >> nombre: aNombre [
 	nombre := aNombre.
 ]
 
+{ #category : #accessing }
+Biblioteca >> prestamos [
+	^colPrestamos asArray.
+]
+
 { #category : #'as yet unclassified' }
+Biblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [ 
+	colPrestamos detect: [ :prestamo | prestamo esDeUsuario: unUsuario] 
+		ifNone: [ colPrestamos add: (Prestamo usuario: unUsuario libros: losLibros dias: 10) ].
+
+]
+
+{ #category : #removing }
 Biblioteca >> removerLibro: unLibro [ 
 	colLibros remove: unLibro ifAbsent: [ nil ].  
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : #SIViewAgregarBiblioteca,
-	#superclass : #View,
+	#superclass : #SIView,
 	#instVars : [
 		'tfNombre',
 		'tfDireccion',

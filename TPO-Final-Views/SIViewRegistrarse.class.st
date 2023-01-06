@@ -1,6 +1,6 @@
 Class {
 	#name : #SIViewRegistrarse,
-	#superclass : #View,
+	#superclass : #SIView,
 	#instVars : [
 		'sistema',
 		'tfRepetirPass',

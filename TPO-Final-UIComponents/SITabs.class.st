@@ -1,16 +1,16 @@
 Class {
-	#name : #Tabs,
+	#name : #SITabs,
 	#superclass : #TabGroupMorph,
 	#category : #'TPO-Final-UIComponents'
 }
 
 { #category : #adding }
-Tabs >> addPage: morph label: label [
+SITabs >> addPage: morph label: label [
 	super addPage: morph label: label.
 ]
 
 { #category : #initialization }
-Tabs >> initialize [
+SITabs >> initialize [
 	super initialize.
 
 	^self	
