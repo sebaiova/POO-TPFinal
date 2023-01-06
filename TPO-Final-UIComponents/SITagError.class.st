@@ -1,11 +1,11 @@
 Class {
-	#name : #TagError,
+	#name : #SITagError,
 	#superclass : #LabelMorph,
 	#category : #'TPO-Final-UIComponents'
 }
 
 { #category : #initialization }
-TagError >> initialize [ 
+SITagError >> initialize [ 
 	super initialize.
 	^ self contents: '';
 		color: Color red;

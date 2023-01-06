@@ -9,13 +9,13 @@ Class {
 	#category : #'TPO-Final-Domain'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 Sistema >> agregarBiblioteca: aBiblioteca [
-	colBibliotecas add: aBiblioteca .
-	^aBiblioteca .
+	(self existeIDBiblioteca: aBiblioteca id) ifTrue: [^nil]
+														 ifFalse: [ colBibliotecas add: aBiblioteca. ^aBiblioteca].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Sistema >> agregarLibro: unLibro enLaBiblioteca: unaBiblioteca [
 	self registrarAutoresDelLibro: unLibro.
 	unaBiblioteca agregarLibro: unLibro.
@@ -46,9 +46,14 @@ Sistema >> cargarAutores: unArrayNombres [
 ]
 
 { #category : #accessing }
-Sistema >> existeUsuario: unDNI [
+Sistema >> existeDNIUsuario: unDNI [
 	^colUsuarios detect: [ :user | user hasDNI: unDNI ] ifFound: [true] ifNone: [false]. 
 	
+]
+
+{ #category : #accessing }
+Sistema >> existeIDBiblioteca: unID [	
+	^colBibliotecas detect: [ :biblioteca | biblioteca hasID: unID ] ifFound: [true] ifNone: [false]. 
 ]
 
 { #category : #initialization }

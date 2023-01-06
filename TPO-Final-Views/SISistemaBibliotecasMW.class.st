@@ -22,7 +22,7 @@ SISistemaBibliotecasMW >> initialize: unSistema [
 	self initialize.
 	sistema := unSistema.
 	^self	extent: 800@500;
-			addMorph: (SIViewMain sistema: sistema);
+			addMorph: (SIViewPrincipal sistema: sistema);
 			
 			openInWindowLabeled: 'Sistema de Bibliotecas';
 			yourself.

@@ -18,9 +18,11 @@ ModelBibliotecas class >> sistema: unSistema [
 ]
 
 { #category : #adding }
-ModelBibliotecas >> add: unaBiblioteca [
-	sistema agregarBiblioteca: unaBiblioteca.
+ModelBibliotecas >> agregar: unaBiblioteca [
+	| a |
+	a := sistema agregarBiblioteca: unaBiblioteca.
 	self refresh.
+	^a.
 ]
 
 { #category : #accessing }
@@ -32,12 +34,13 @@ ModelBibliotecas >> cellColumn: column row: rowIndex [
 	(column id = 'Representante')	ifTrue: [ text := element representante ].
 	(column id = 'Teléfono')			ifTrue: [ text := element telefono ].
 	(column id = 'Dirección')		ifTrue: [ text := element direccion ].
+	(column id = 'ID')					ifTrue: [ text := element id ].
 	^ FTCellMorph new
 		  addMorphBack: text asMorph;
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ModelBibliotecas >> getModelLibros: ofIndex [ 
 	^ModelLibros biblioteca: (self elementAt: ofIndex) sistema: sistema.
 	

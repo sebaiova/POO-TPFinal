@@ -8,11 +8,6 @@ Class {
 }
 
 { #category : #accessing }
-ModelAbstractTable >> add: anElement [
-	^nil.
-]
-
-{ #category : #accessing }
 ModelAbstractTable >> elementAt: anIndex [
 	^array at: anIndex.
 ]

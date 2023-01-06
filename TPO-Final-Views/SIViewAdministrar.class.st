@@ -43,7 +43,7 @@ SIViewAdministrar >> initializeSistema: unSistema [
 			).
 
 	tabs addPage: (tablaUsuarios := SITable model: (ModelUsuarios sistema: sistema) headers: #(Nombre Apellido DNI)) label: 'Usuarios'.
-	tabs addPage: ((tablaBiblioteca := SITable model: modelBiblioteca headers: #(Nombre Dirección Teléfono Representante)) 
+	tabs addPage: ((tablaBiblioteca := SITable model: modelBiblioteca headers: #(ID Nombre Dirección Teléfono Representante)) 
 		addMorphBack: (SIRow new 
 			addMorph: SISpacer new;
 			addMorph: (SIButton label: 'Agregar Biblioteca' target: self message: #actionAgregarBiblioteca);

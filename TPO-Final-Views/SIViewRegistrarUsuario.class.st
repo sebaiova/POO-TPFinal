@@ -1,5 +1,5 @@
 Class {
-	#name : #SIViewRegistrarse,
+	#name : #SIViewRegistrarUsuario,
 	#superclass : #SIView,
 	#instVars : [
 		'sistema',
@@ -14,17 +14,17 @@ Class {
 }
 
 { #category : #'instance creation' }
-SIViewRegistrarse class >> new [
+SIViewRegistrarUsuario class >> new [
 	self error: 'Usar sistema:unSistema en lugar de new.'
 ]
 
 { #category : #'instance creation' }
-SIViewRegistrarse class >> sistema: unSistema [
+SIViewRegistrarUsuario class >> sistema: unSistema [
 	^super new initializeSistema: unSistema.
 ]
 
 { #category : #button }
-SIViewRegistrarse >> actionRegistrar [
+SIViewRegistrarUsuario >> actionRegistrar [
 	self esNombreVacio ifFalse: [
 		self esApellidoVacio ifFalse: [ 
 			self esDNIInvalido ifFalse: [ 
@@ -41,44 +41,44 @@ SIViewRegistrarse >> actionRegistrar [
 			]
 ]
 
-{ #category : #'as yet unclassified' }
-SIViewRegistrarse >> esApellidoVacio [
+{ #category : #verification }
+SIViewRegistrarUsuario >> esApellidoVacio [
 	^ tfApellido text ifEmpty: [ tfApellido rejected. tagError contents: 'Debe ingresar un apellido'. true ] 
 			ifNotEmpty: [ tfApellido accepted. false ]
 ]
 
-{ #category : #'as yet unclassified' }
-SIViewRegistrarse >> esDNIInvalido [
+{ #category : #verification }
+SIViewRegistrarUsuario >> esDNIInvalido [
 	^tfDNI text asInteger ifNil: [ tfDNI rejected. tagError contents: 'DNI inválido.'. true] 
 							ifNotNil: [ tfDNI accepted. false ]
 ]
 
-{ #category : #'as yet unclassified' }
-SIViewRegistrarse >> esNombreVacio [
+{ #category : #verification }
+SIViewRegistrarUsuario >> esNombreVacio [
 	^ tfNombre text ifEmpty: [ tfNombre rejected. tagError contents: 'Debe ingresar un nombre.'. true ] 
 						 ifNotEmpty: [ tfNombre accepted. false ]
 ]
 
-{ #category : #'as yet unclassified' }
-SIViewRegistrarse >> esPassVacio [
+{ #category : #verification }
+SIViewRegistrarUsuario >> esPassVacio [
 	^tfPass text ifEmpty: [ tfPass rejected. tagError contents: 'Debe ingresar una contraseña.'. true ]
 					ifNotEmpty: [ tfPass accepted. false ]
 ]
 
-{ #category : #'as yet unclassified' }
-SIViewRegistrarse >> existeDNI [ 
-	^(sistema existeUsuario: tfDNI text asInteger) ifTrue: [ tfDNI rejected. tagError contents: 'El DNI ya existe en el sistema.'. true ] 
+{ #category : #verification }
+SIViewRegistrarUsuario >> existeDNI [ 
+	^(sistema existeDNIUsuario: tfDNI text asInteger) ifTrue: [ tfDNI rejected. tagError contents: 'El DNI ya existe en el sistema.'. true ] 
 																ifFalse: [ tfDNI accepted. false ]
 ]
 
 { #category : #initialization }
-SIViewRegistrarse >> initializeSistema: unSistema [
+SIViewRegistrarUsuario >> initializeSistema: unSistema [
 	self initialize.
 	sistema := unSistema.
 	^self
 		addMorph: (SIColumn new
 			addMorph: SISpacer new;
-			addMorph: (tagError 		:= TagError new);
+			addMorph: (tagError 		:= SITagError new);
 			addMorph: (tfNombre 		:= SITextFieldTagged tag: 'Nombre');
 			addMorph: (tfApellido 	:= SITextFieldTagged tag: 'Apellido');		
 			addMorph: (tfDNI 			:= SITextFieldTagged tag: 'DNI');
@@ -95,7 +95,7 @@ SIViewRegistrarse >> initializeSistema: unSistema [
 ]
 
 { #category : #button }
-SIViewRegistrarse >> passEquals [ 
+SIViewRegistrarUsuario >> passEquals [ 
 	^(tfPass text ~= tfRepetirPass text) ifTrue: [ tfRepetirPass rejected. tagError contents: 'Las contraseñas no coinciden.'. false ] 
 												ifFalse: [ tfRepetirPass accepted. true ]. 
 ]

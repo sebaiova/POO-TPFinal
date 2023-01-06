@@ -43,6 +43,16 @@ Biblioteca >> direccion: aDireccion [
 	direccion := aDireccion
 ]
 
+{ #category : #accessing }
+Biblioteca >> hasID: unID [ 
+	^ identificador = unID.
+]
+
+{ #category : #accessing }
+Biblioteca >> id [ 
+	^identificador.
+]
+
 { #category : #initialization }
 Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresentante [
 	self initialize.
