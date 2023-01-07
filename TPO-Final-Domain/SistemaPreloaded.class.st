@@ -4,6 +4,14 @@ Class {
 	#category : #'TPO-Final-Domain'
 }
 
+{ #category : #'as yet unclassified' }
+SistemaPreloaded >> cargarAutores: unArrayNombres [
+	|autores autor|
+	autores := OrderedCollection new.
+	unArrayNombres do: [ :aNombre | autor := (Autor nombre: aNombre). colAutores add: autor. autores add: autor].
+	^autores.
+]
+
 { #category : #initialization }
 SistemaPreloaded >> initialize [ 
 	|seba|

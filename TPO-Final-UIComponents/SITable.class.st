@@ -17,7 +17,7 @@ SITable class >> model: aModel headers: colHeaders [
 
 { #category : #'instance creation' }
 SITable class >> new [ 
-	self error: 'Usar model:headers: en lugar de new.'
+	self error: 'Usar array:headers: en lugar de new.'
 ]
 
 { #category : #removing }

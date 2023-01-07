@@ -27,16 +27,16 @@ SIViewPrincipal >> actionAdministrar [
 
 { #category : #button }
 SIViewPrincipal >> actionIniciarSesion [
-	| credencial|
+	| usuario |
 	
 	self esUsuarioVacio ifFalse: [
 		self esDNIInvalido ifFalse: [ 
 			self esContraseñaVacio ifFalse: [
-				credencial := sistema logging: tfUsuario text asInteger password: tfContraseña text.
-				credencial ifNil: [ tagError contents: 'Usuario o contraseña incorrectos' ] 
+				usuario := sistema logging: tfUsuario text asInteger password: tfContraseña text.
+				usuario ifNil: [ tagError contents: 'Usuario o contraseña incorrectos' ] 
 					  			ifNotNil: [ tfContraseña accepted. tfUsuario accepted.
 										tagError contents: ''.
-										self addMorph: (SIViewAdministrar sistema: sistema)]
+										self addMorph: ( SIViewBibliotecasDeInteres usuario: usuario bibliotecas: sistema bibliotecas)]
 						 ]
 					]
 				].

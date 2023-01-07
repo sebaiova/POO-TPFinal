@@ -1,6 +1,6 @@
 Class {
 	#name : #SIPane,
-	#superclass : #BorderedMorph,
+	#superclass : #PanelMorph,
 	#category : #'TPO-Final-UIComponents'
 }
 

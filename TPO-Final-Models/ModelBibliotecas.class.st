@@ -1,16 +1,11 @@
 Class {
 	#name : #ModelBibliotecas,
-	#superclass : #ModelAbstractTable,
+	#superclass : #SIModelAbstractTable,
 	#instVars : [
 		'sistema'
 	],
 	#category : #'TPO-Final-Models'
 }
-
-{ #category : #'instance creation' }
-ModelBibliotecas class >> new [ 
-	self error: 'Usar sistema: en lugar de new'
-]
 
 { #category : #'instance creation' }
 ModelBibliotecas class >> sistema: unSistema [ 
@@ -23,21 +18,6 @@ ModelBibliotecas >> agregar: unaBiblioteca [
 	a := sistema agregarBiblioteca: unaBiblioteca.
 	self refresh.
 	^a.
-]
-
-{ #category : #accessing }
-ModelBibliotecas >> cellColumn: column row: rowIndex [
-	| element text |
-	element := self elementAt: rowIndex.
-	text := element asString.
-	(column id = 'Nombre') 			ifTrue: [ text := element nombre ].
-	(column id = 'Representante')	ifTrue: [ text := element representante ].
-	(column id = 'Teléfono')			ifTrue: [ text := element telefono ].
-	(column id = 'Dirección')		ifTrue: [ text := element direccion ].
-	(column id = 'ID')					ifTrue: [ text := element id ].
-	^ FTCellMorph new
-		  addMorphBack: text asMorph;
-		  yourself
 ]
 
 { #category : #accessing }

@@ -34,6 +34,11 @@ Usuario >> apellido [
 ]
 
 { #category : #accessing }
+Usuario >> bibliotecasDeInteres: lasBibliotecas [
+	colBibliotecasInteres := lasBibliotecas
+]
+
+{ #category : #accessing }
 Usuario >> dni [
 	^dni.
 ]
@@ -68,4 +73,9 @@ Usuario >> initializeDNI: unDNI nombre: unNombre apellido: unApellido password: 
 { #category : #accessing }
 Usuario >> nombre [
 	^nombre.
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> tieneBibliotecasDeInteres [ 
+	^colBibliotecasInteres isNotEmpty .
 ]

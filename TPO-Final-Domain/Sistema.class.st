@@ -37,14 +37,6 @@ Sistema >> bibliotecas [
 	^colBibliotecas asArray. 
 ]
 
-{ #category : #'as yet unclassified' }
-Sistema >> cargarAutores: unArrayNombres [
-	|autores autor|
-	autores := OrderedCollection new.
-	unArrayNombres do: [ :aNombre | autor := (Autor nombre: aNombre). colAutores add: autor. autores add: autor].
-	^autores.
-]
-
 { #category : #accessing }
 Sistema >> existeDNIUsuario: unDNI [
 	^colUsuarios detect: [ :user | user hasDNI: unDNI ] ifFound: [true] ifNone: [false]. 
@@ -84,7 +76,7 @@ Sistema >> prestamosDeUsuario: unUsuario [
 		
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 Sistema >> registrarAutoresDelLibro: unLibro [ 
 	colAutores addAll: unLibro autores.
 ]
