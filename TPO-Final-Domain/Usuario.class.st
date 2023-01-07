@@ -33,6 +33,11 @@ Usuario >> apellido [
 	^apellido
 ]
 
+{ #category : #'as yet unclassified' }
+Usuario >> bibliotecasDeInteres [
+	^colBibliotecasInteres asArray.
+]
+
 { #category : #accessing }
 Usuario >> bibliotecasDeInteres: lasBibliotecas [
 	colBibliotecasInteres := lasBibliotecas

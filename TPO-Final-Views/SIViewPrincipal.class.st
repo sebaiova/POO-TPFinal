@@ -36,7 +36,8 @@ SIViewPrincipal >> actionIniciarSesion [
 				usuario ifNil: [ tagError contents: 'Usuario o contraseña incorrectos' ] 
 					  			ifNotNil: [ tfContraseña accepted. tfUsuario accepted.
 										tagError contents: ''.
-										self addMorph: ( SIViewBibliotecasDeInteres usuario: usuario bibliotecas: sistema bibliotecas)]
+										tfContraseña text: ''.
+										self addMorph: ( SIViewUsuario usuario: usuario sistema: sistema)]
 						 ]
 					]
 				].
