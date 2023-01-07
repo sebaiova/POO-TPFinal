@@ -5,7 +5,7 @@ Class {
 		'sistema',
 		'tfUsuario',
 		'tfContraseña',
-		'tagError'
+		'tag'
 	],
 	#category : #'TPO-Final-Views'
 }
@@ -33,9 +33,9 @@ SIViewPrincipal >> actionIniciarSesion [
 		self esDNIInvalido ifFalse: [ 
 			self esContraseñaVacio ifFalse: [
 				usuario := sistema logging: tfUsuario text asInteger password: tfContraseña text.
-				usuario ifNil: [ tagError contents: 'Usuario o contraseña incorrectos' ] 
+				usuario ifNil: [ tag bad: 'Usuario o contraseña incorrectos' ] 
 					  			ifNotNil: [ tfContraseña accepted. tfUsuario accepted.
-										tagError contents: ''.
+										tag clear.
 										tfContraseña text: ''.
 										self addMorph: ( SIViewUsuario usuario: usuario sistema: sistema)]
 						 ]
@@ -50,19 +50,19 @@ SIViewPrincipal >> actionRegistrarse [
 
 { #category : #'as yet unclassified' }
 SIViewPrincipal >> esContraseñaVacio [ 
-	tfContraseña text ifEmpty: [ tagError contents: 'Ingrese su contraseña'. tfContraseña rejected. ^true ]
+	tfContraseña text ifEmpty: [ tag bad: 'Ingrese su contraseña'. tfContraseña rejected. ^true ]
 						ifNotEmpty: [ tfContraseña accepted. ^false ].
 ]
 
 { #category : #verification }
 SIViewPrincipal >> esDNIInvalido [
-	^tfUsuario text asInteger ifNil: [ tfUsuario rejected. tagError contents: 'DNI inválido.'. true] 
+	^tfUsuario text asInteger ifNil: [ tfUsuario rejected. tag bad: 'DNI inválido.'. true] 
 							ifNotNil: [ tfUsuario accepted. false ]
 ]
 
 { #category : #'as yet unclassified' }
 SIViewPrincipal >> esUsuarioVacio [ 
-	tfUsuario text isEmpty ifTrue: [ tagError contents: 'Ingrese su DNI'. tfUsuario rejected. ^true ]
+	tfUsuario text isEmpty ifTrue: [ tag bad: 'Ingrese su DNI'. tfUsuario rejected. ^true ]
 									ifFalse: [ tfUsuario accepted. ^false ]
 ]
 
@@ -73,7 +73,7 @@ SIViewPrincipal >> initializeSistema: unSistema [
 	^self
 		addMorph: ( SIColumn new
 				addMorph: SISpacer new;
-				addMorph: (tagError := SITagError new);
+				addMorph: (tag := SITag new);
 				addMorph: (tfUsuario := SITextFieldTagged tag: 'DNI');
 				addMorph: (tfContraseña := SITextFieldTagged tag: 'Contraseña');
 				addMorph: SISpacer new;

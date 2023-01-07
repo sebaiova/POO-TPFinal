@@ -2,9 +2,9 @@ Class {
 	#name : #SIViewUsuarioBibliotecasDeInteres,
 	#superclass : #SIView,
 	#instVars : [
-		'tagError',
 		'outTable',
-		'usuario'
+		'usuario',
+		'tag'
 	],
 	#category : #'TPO-Final-Views'
 }
@@ -16,7 +16,7 @@ SIViewUsuarioBibliotecasDeInteres class >> usuario: unUsuario bibliotecas: lasBi
 
 { #category : #button }
 SIViewUsuarioBibliotecasDeInteres >> actionAceptar [
-	outTable elements ifEmpty: [ tagError contents: 'Seleccione al menos una biblioteca!']
+	outTable elements ifEmpty: [ tag bad: 'Seleccione al menos una biblioteca!']
 					ifNotEmpty: [ 
 							usuario bibliotecasDeInteres: outTable elements asArray.
 							self delete.
@@ -43,6 +43,6 @@ SIViewUsuarioBibliotecasDeInteres >> initializeUsuario: unUsuario bibliotecas: l
 			 addMorph: (SIRow new
 					  addMorph: (SIButton label: 'Cerrar Sesion' target: self message: #actionCerrarSesion);
 					  addMorph: SISpacer new;
-					  addMorph: (tagError := SITagError new);
+					  addMorph: (tag := SITag new);
 					  addMorph:(SIButton label: 'Aceptar' target: self message: #actionAceptar)))
 ]

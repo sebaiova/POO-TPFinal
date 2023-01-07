@@ -8,7 +8,7 @@ Class {
 		'tfRepresentante',
 		'modelBibliotecas',
 		'tfID',
-		'tagError'
+		'tag'
 	],
 	#category : #'TPO-Final-Views'
 }
@@ -25,10 +25,10 @@ SIViewAgregarBiblioteca class >> new [
 
 { #category : #button }
 SIViewAgregarBiblioteca >> actionAgregar [
-	(tfID text isEmpty) ifTrue: [ tagError contents: 'Ingrese una ID'. tfID rejected ]
+	(tfID text isEmpty) ifTrue: [ tag bad: 'Ingrese una ID'. tfID rejected ]
 							ifFalse: [  
 									(modelBibliotecas agregar: (Biblioteca id: tfID text nombre: tfNombre text telefono: tfTelefono text direccion: tfDireccion text representante: tfRepresentante text))
-									ifNil: 	  [ tagError contents: 'ID ya existente'. tfID rejected  ]  
+									ifNil: 	  [ tag bad: 'ID ya existente'. tfID rejected  ]  
 									ifNotNil:  [	self delete ]].
 ]
 
@@ -38,7 +38,7 @@ SIViewAgregarBiblioteca >> initializeModel: aModelBiblioteca [
 	modelBibliotecas := aModelBiblioteca.
 	^self addMorph: (SIColumn new 
 				addMorph: SISpacer new;
-				addMorph: (tagError := SITagError new);
+				addMorph: (tag := SITag new);
 				addMorph: (tfID := SITextFieldTagged tag: 'ID');
 				addMorph: (tfNombre := SITextFieldTagged tag: 'Nombre');
 				addMorph: (tfDireccion := SITextFieldTagged tag: 'Dirección');

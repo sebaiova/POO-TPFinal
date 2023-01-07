@@ -23,6 +23,11 @@ SIViewUsuario >> actionCambiarBibliotecasInteres [
 	self addMorph: (SIViewUsuarioBibliotecasDeInteres usuario: usuario bibliotecas: sistema bibliotecas).
 ]
 
+{ #category : #button }
+SIViewUsuario >> actionPedirYDevolver [
+	self addMorph: (SIViewUsuarioBibliotecas usuario: usuario).
+]
+
 { #category : #initialization }
 SIViewUsuario >> initializeUsuario: unUsuario sistema: elSistema [
 	| buttonSize |

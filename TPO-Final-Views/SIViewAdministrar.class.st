@@ -2,7 +2,6 @@ Class {
 	#name : #SIViewAdministrar,
 	#superclass : #SIView,
 	#instVars : [
-		'tabs',
 		'sistema',
 		'tablaBiblioteca',
 		'tablaUsuarios',
@@ -28,6 +27,7 @@ SIViewAdministrar >> actionAgregarBiblioteca [
 
 { #category : #initialization }
 SIViewAdministrar >> initializeSistema: unSistema [
+	| tabs |
 	self initialize.
 	sistema := unSistema.
 	modelBiblioteca := (ModelBibliotecas sistema: sistema).
@@ -41,7 +41,7 @@ SIViewAdministrar >> initializeSistema: unSistema [
 				);
 			yourself
 			).
-
+			
 	tabs addPage: (tablaUsuarios := SITable model: (ModelUsuarios sistema: sistema) headers: #(Nombre Apellido DNI)) label: 'Usuarios'.
 	tabs addPage: ((tablaBiblioteca := SITable model: modelBiblioteca headers: #(ID Nombre Dirección Teléfono Representante)) 
 		addMorphBack: (SIRow new 

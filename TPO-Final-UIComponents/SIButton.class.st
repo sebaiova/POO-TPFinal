@@ -1,6 +1,9 @@
 Class {
 	#name : #SIButton,
 	#superclass : #SimpleButtonMorph,
+	#instVars : [
+		'disabled'
+	],
 	#category : #'TPO-Final-UIComponents'
 }
 
@@ -16,12 +19,29 @@ SIButton class >> new [
 	self error: 'Usar label:target:message: en lugar de new.'
 ]
 
+{ #category : #protocol }
+SIButton >> disable [ 
+	self color: Color gray darker darker.
+	disabled := true.
+]
+
+{ #category : #protocol }
+SIButton >> enable [ 
+	self color: Color gray.
+	disabled := false.
+]
+
+{ #category : #events }
+SIButton >> handleEvent: anEvent [
+	disabled ifFalse:[	^anEvent sentTo: self].
+]
+
 { #category : #initialization }
 SIButton >> initializeLabel: aLabel target: aTarget message: aMessage [
 	^self label: aLabel;
 			target: aTarget;
 			actionSelector: aMessage;
-			color: Color gray;
+			enable;
 			yourself.
 	
 ]

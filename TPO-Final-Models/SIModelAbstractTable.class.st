@@ -19,7 +19,7 @@ SIModelAbstractTable >> cellColumn: column row: rowIndex [
 	(column id = 'Año')				ifTrue: [ text := element año ].
 	(column id = 'Estado')			ifTrue: [ text := element prestado ].
 	(column id = 'Autores')			ifTrue: [ text := element autores inject: '- ' into: [ :a :each | a, each nombre , ' - ' ]].
-	(column id = 'Fecha') 			ifTrue: [ text := element fecha ].
+	(column id = 'Fecha') 			ifTrue: [ text := element fecha ]. 
 	(column id = 'Usuario')			ifTrue: [ text := element usuario dni].
 	(column id = 'Dias Prestado')	ifTrue: [ text := element plazoDias ].
 	(column id = 'Cantidad de Libros')		ifTrue: [ text := element cantidadLibros ].

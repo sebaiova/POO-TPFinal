@@ -48,6 +48,11 @@ Usuario >> dni [
 	^dni.
 ]
 
+{ #category : #'as yet unclassified' }
+Usuario >> esPlus [ 
+	^false.
+]
+
 { #category : #testing }
 Usuario >> hasDNI: unDNI [
 	^ dni=unDNI.
