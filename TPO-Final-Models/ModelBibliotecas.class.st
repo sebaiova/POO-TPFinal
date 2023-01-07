@@ -36,6 +36,6 @@ ModelBibliotecas >> initializeSistema: unSistema [
 
 { #category : #refresh }
 ModelBibliotecas >> refresh [ 
-	array := sistema bibliotecas.
+	elements := sistema bibliotecas.
 	self changed: #refresh.
 ]

@@ -1,9 +1,6 @@
 Class {
 	#name : #SIModelAbstractTable,
 	#superclass : #FTSimpleDataSource,
-	#instVars : [
-		'array'
-	],
 	#category : #'TPO-Final-Models'
 }
 
@@ -36,12 +33,12 @@ SIModelAbstractTable >> cellColumn: column row: rowIndex [
 
 { #category : #accessing }
 SIModelAbstractTable >> elementAt: anIndex [
-	^array at: anIndex.
+	^elements at: anIndex.
 ]
 
 { #category : #accessing }
 SIModelAbstractTable >> numberOfRows [ 
-	^array size.
+	^elements size.
 ]
 
 { #category : #accessing }

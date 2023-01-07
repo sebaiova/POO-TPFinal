@@ -45,7 +45,7 @@ ModelLibros >> initializeBiblioteca: unaBiblioteca sistema: elSistema [
 
 { #category : #accessing }
 ModelLibros >> refresh [ 
-	array := biblioteca libros.
+	elements := biblioteca libros.
 	self changed: #refresh.
 ]
 

@@ -27,6 +27,6 @@ ModelPrestamosBiblioteca >> initializeBiblioteca: unaBiblioteca [
 
 { #category : #accessing }
 ModelPrestamosBiblioteca >> refresh [ 
-	array := biblioteca prestamos.
+	elements := biblioteca prestamos.
 	self changed: #refresh.
 ]

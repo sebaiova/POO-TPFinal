@@ -27,6 +27,6 @@ ModelUsuarios >> initializeSistema: unSistema [
 
 { #category : #accessing }
 ModelUsuarios >> refresh [ 
-	array := sistema usuarios.
+	elements := sistema usuarios.
 	self changed: #refresh.
 ]
