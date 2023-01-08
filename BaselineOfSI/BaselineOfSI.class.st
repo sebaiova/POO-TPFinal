@@ -14,7 +14,7 @@ BaselineOfSI >> baseline: spec [
 			spec 
 				package: 'SI-Domain';
 				package: 'SI-Models';
-				package: 'SI-Views';
+				package: 'SI-Views' with:[ spec requires: #('SI-UIComponents') ];
 				package: 'SI-UIComponents'
 		]
 ]
