@@ -74,7 +74,7 @@ SIViewDetalleBiblioteca >> initializeModelIndex: aModelIndex [
 	 	label: 'Datos'.
 		
 	tabs addPage: (SIColumn new 
-			addMorph: (tablaLibros := SITable model: modelLibros headers: #(Nombre Estado Año Editorial Autores)); 		
+			addMorph: (tablaLibros := SITable model: modelLibros headers: #(Titulo Disponible Año Editorial Autores)); 		
 			addMorph: (SIRow new 
 				addMorph: SISpacer new;
 				addMorph: (SIButton label: 'Dar de Baja' target: self message: #actionDarDeBaja); 
@@ -84,8 +84,8 @@ SIViewDetalleBiblioteca >> initializeModelIndex: aModelIndex [
 		label: 'Libros'.
 			
 	tabs addPage: (SIColumn new
-		addMorph: (tablaPrestamos := SITable model: (ModelPrestamosBiblioteca biblioteca: biblioteca) headers: #('Usuario' 'Fecha' 'Dias Prestado' 'Cantidad de Libros'));
-		addMorph: (tableLibrosPrestamo := SITable model: FTEasyListDataSource new headers: #(Nombre Año Editorial Autores))
+		addMorph: (tablaPrestamos := SITable model: (ModelPrestamosBiblioteca biblioteca: biblioteca) headers: #('Usuario' 'Fecha Inicio' 'Fecha Limite' 'Cantidad de Libros'));
+		addMorph: (tableLibrosPrestamo := SITable model: FTEasyListDataSource new headers: #(Titulo Año Editorial Autores))
 	
 	) label: 'Prestamos'.
 	tabs selectedPageIndex: 1.

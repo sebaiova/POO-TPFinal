@@ -4,6 +4,12 @@ Class {
 	#category : #'TPO-Final-UIComponents'
 }
 
+{ #category : #adding }
+SIDragAndDropTable >> addAll: anCollection [ 
+	model addAll: anCollection.
+	
+]
+
 { #category : #protocol }
 SIDragAndDropTable >> disable [ 
 	table dragEnabled: false;

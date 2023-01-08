@@ -6,7 +6,7 @@ Class {
 		'fechaEntrega',
 		'usuario',
 		'colLibros',
-		'plazoDias'
+		'fechaMaxima'
 	],
 	#category : #'TPO-Final-Domain'
 }
@@ -36,9 +36,19 @@ Prestamo >> estaActivo [
 	^ fechaEntrega isNil.
 ]
 
+{ #category : #'as yet unclassified' }
+Prestamo >> estaRetrasado [
+	^ self estaActivo and: (fechaMaxima isBefore: Date today). 
+]
+
 { #category : #accessing }
 Prestamo >> fecha [
 	^fechaCreacion
+]
+
+{ #category : #accessing }
+Prestamo >> fechaMaxima [ 
+	^fechaMaxima 
 ]
 
 { #category : #initialization }
@@ -46,7 +56,7 @@ Prestamo >> initializeUsuario: unUsuario libros: losLibros dias: losDias [
 	self initialize.
 	usuario := unUsuario .
 	colLibros := losLibros.
-	plazoDias := losDias.
+	fechaMaxima := Date today addDays: losDias.
 	fechaCreacion := Date today.
 	colLibros do: [ :libro | libro prestar ].
 ]
@@ -54,11 +64,6 @@ Prestamo >> initializeUsuario: unUsuario libros: losLibros dias: losDias [
 { #category : #accessing }
 Prestamo >> libros [ 
 	^colLibros asArray.
-]
-
-{ #category : #accessing }
-Prestamo >> plazoDias [ 
-	^plazoDias
 ]
 
 { #category : #registration }

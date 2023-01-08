@@ -1,9 +1,8 @@
 Class {
 	#name : #ModelLibros,
-	#superclass : #SIModelAbstractTable,
+	#superclass : #ModelBibliotecas,
 	#instVars : [
-		'biblioteca',
-		'sistema'
+		'biblioteca'
 	],
 	#category : #'TPO-Final-Models'
 }
@@ -18,11 +17,6 @@ ModelLibros class >> biblioteca: unaBiblioteca sistema: elSistema [
 	^super new initializeBiblioteca: unaBiblioteca sistema: elSistema.
 ]
 
-{ #category : #'instance creation' }
-ModelLibros class >> new [ 
-	self error: 'Usar biblioteca:sistema: en lugar de new'
-]
-
 { #category : #accessing }
 ModelLibros class >> prestamo: unPrestamo [ 
 	^ self biblioteca: unPrestamo.
@@ -32,6 +26,19 @@ ModelLibros class >> prestamo: unPrestamo [
 ModelLibros >> add: unLibro [
 	sistema agregarLibro: unLibro enLaBiblioteca:  biblioteca.
 	self refresh.
+]
+
+{ #category : #defaults }
+ModelLibros >> iconFor: anElement at: idColumn [ 
+	idColumn = 'Disponible' ifTrue: [
+				 anElement prestado ifTrue: [ ^ (self iconNamed: #testRed ) asMorph. ]
+										ifFalse: [ ^ (self iconNamed: #testGreen) asMorph.  ]
+		 ].
+	idColumn = 'Titulo' ifTrue: [ 
+				anElement esAudioLibro ifTrue: [ ^ (self iconNamed: #smallVolume) asMorph. ]
+											ifFalse: [ ^ (self iconNamed: #book) asMorph. ]
+		 ].
+	^nil.
 ]
 
 { #category : #initialization }
@@ -53,4 +60,15 @@ ModelLibros >> refresh [
 ModelLibros >> remove: unLibro [ 
 	biblioteca removerLibro: unLibro.
 	self refresh.
+]
+
+{ #category : #'as yet unclassified' }
+ModelLibros >> stringFor: anElement at: idColumn [
+	idColumn = 'Titulo'		ifTrue: [ ^anElement nombre ].
+	idColumn = 'Año'			ifTrue: [ ^anElement año ].
+	idColumn = 'Editorial'	ifTrue: [ ^anElement editorial ].
+	idColumn = 'Disponible'	ifTrue: [ ^'' ].
+	idColumn = 'Autores'		ifTrue: [ ^anElement autores inject: '- ' into: [ :a :each | a, each nombre , ' - ' ]].
+	^super stringFor: anElement at: idColumn .
+
 ]

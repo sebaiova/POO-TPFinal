@@ -7,8 +7,11 @@ Class {
 		'biblioteca',
 		'usuario',
 		'inTable',
-		'btnDevolver',
-		'btnPedir'
+		'btnPedir',
+		'btnDevolverLibros',
+		'btnDevolverAudioLibros',
+		'prestamoAudioLibro',
+		'prestamoLibro'
 	],
 	#category : #'TPO-Final-Views'
 }
@@ -24,23 +27,31 @@ SIViewUsuarioPedirYDevolver class >> usuario: unUsuario biblioteca: unaBibliotec
 ]
 
 { #category : #button }
-SIViewUsuarioPedirYDevolver >> actionDevolverPrestamo [ 
-	(biblioteca devolverPrestamo: usuario) ifTrue: [ self prepararPedirPrestamo].
+SIViewUsuarioPedirYDevolver >> actionDevolverAudioLibros [
+	(biblioteca devolverPrestamoAudioLibros: usuario) ifFalse: [ ^ self ].
+	prestamoAudioLibro := nil.
+	self refresh.
+	tag good: 'Prestamo de Audio Libros devuelto!'
+]
+
+{ #category : #button }
+SIViewUsuarioPedirYDevolver >> actionDevolverLibros [
+	(biblioteca devolverPrestamo: usuario) ifFalse: [ ^ self ].
+	prestamoLibro := nil.
+	self refresh.
+	tag good: 'Prestamo devuelto!'
 ]
 
 { #category : #button }
 SIViewUsuarioPedirYDevolver >> actionPedirPrestamo [ 
 	| libros |
 	libros := outTable elements.
-	libros ifEmpty: [ tag bad: 'Seleccione al menos un Libro!']
-					ifNotEmpty: [ 
-							(libros size > 5) ifTrue: [ tag bad: 'Máximo 5 libros por préstamo!' ]
-													ifFalse: [ 
-															(biblioteca registrarPrestamoUsuario: usuario libros: libros) ifTrue: [ self prepararDevolverPrestamo. tag good: 'Prestamo pedido!' ]
-																																			ifFalse: [ tag bad: 'Hubo un error al solicitar el prestamo!' ]
-															]
-													
-							]
+	libros ifEmpty: [ tag bad: 'Seleccione al menos un Libro!'. ^nil].
+	(libros size > 5) ifTrue: [ tag bad: 'Máximo 5 libros por préstamo!'. ^nil ].
+	((usuario esPlus) not and: (libros anySatisfy: [ :libro | libro esAudioLibro ])) ifTrue: [ tag bad: 'Debe ser usuario Plus para pedir Audio Libros! '. ^nil ].
+
+	(biblioteca registrarPrestamoUsuario: usuario libros: libros) ifTrue: [ self refresh. tag good: 'Prestamo pedido!' ]
+																					ifFalse: [ tag bad: 'Hubo un error al solicitar el prestamo!' ].
 ]
 
 { #category : #initialization }
@@ -49,36 +60,54 @@ SIViewUsuarioPedirYDevolver >> initializeUsuario: unUsuario biblioteca: unaBibli
 	usuario := unUsuario.
 	biblioteca := unaBiblioteca .
 	self addMorph: (SIColumn new 
-				addMorph: (inTable := SIDragAndDropTable model: (ModelDragAndDrop array: #()) headers: #(Nombre Autores));
-				addMorph: (outTable := (SIDragAndDropTable model: (ModelDragAndDrop array: #()) headers: #(Nombre Autores)) extent: 100@140; vResizing: #rigid; yourself);
+				addMorph: (inTable := SIDragAndDropTable model: (ModelDragAndDrop array: #()) headers: #(Titulo Autores));
+				addMorph: (outTable := (SIDragAndDropTable model: (ModelDragAndDrop array: #()) headers: #(Titulo Autores)) extent: 100@140; vResizing: #rigid; yourself);
 				addMorph: (SIRow new
 					addMorph: SISpacer new;
 					addMorph: (tag := SITag new);
-					addMorph: ((btnDevolver := SIButton label: 'Devolver Prestamo' target: self message: #actionDevolverPrestamo ));
+					addMorph: ((btnDevolverLibros := (SIButton label: 'Devolver Libros' target: self message: #actionDevolverLibros ) disable; yourself));
+					addMorph: ((btnDevolverAudioLibros := (SIButton label: 'Devolver Audio Libros' target: self message: #actionDevolverAudioLibros) disable; yourself));
 					addMorph: ((btnPedir := SIButton label: 'Pedir Prestamo' target: self message: #actionPedirPrestamo )
 					))
 			).
-	(biblioteca tienePrestamoActivo: usuario) ifTrue: [ self prepararDevolverPrestamo ]
-													ifFalse: [ self prepararPedirPrestamo  ].
+	self refresh.										
 	^self.
 ]
 
 { #category : #'display protocol' }
-SIViewUsuarioPedirYDevolver >> prepararDevolverPrestamo [ 
+SIViewUsuarioPedirYDevolver >> prepararDevolverAudioLibros [
 	inTable disable.
 	outTable disable.
 	btnPedir disable.
-	btnDevolver enable.
-	outTable model array: (biblioteca prestamoActivo: usuario) libros.
-	inTable model array: biblioteca librosDisponibles.
+	btnDevolverAudioLibros enable.
 ]
 
 { #category : #'display protocol' }
-SIViewUsuarioPedirYDevolver >> prepararPedirPrestamo [ 
+SIViewUsuarioPedirYDevolver >> prepararDevolverLibros [
+	inTable disable.
+	outTable disable.
+	btnPedir disable.
+	btnDevolverLibros enable.
+]
+
+{ #category : #'display protocol' }
+SIViewUsuarioPedirYDevolver >> prepararPedirPrestamo [
 	inTable enable.
 	outTable enable.
 	btnPedir enable.
-	btnDevolver disable.
-	outTable model array: #().
+	btnDevolverLibros disable.
+	btnDevolverAudioLibros disable.
+]
+
+{ #category : #refresh }
+SIViewUsuarioPedirYDevolver >> refresh [
+	| libros |
+	self prepararPedirPrestamo.
 	inTable model array: biblioteca librosDisponibles.
+	outTable model array: #().
+	(biblioteca prestamosActivosDe: usuario) do: [ :prestamo | libros := prestamo libros.
+																				outTable addAll: libros.
+																				(libros first esAudioLibro) ifTrue: [ prestamoAudioLibro := prestamo. self prepararDevolverAudioLibros]
+																													ifFalse: [ prestamoLibro := prestamo. self prepararDevolverLibros]].
+									
 ]

@@ -39,3 +39,13 @@ ModelBibliotecas >> refresh [
 	elements := sistema bibliotecas.
 	self changed: #refresh.
 ]
+
+{ #category : #'as yet unclassified' }
+ModelBibliotecas >> stringFor: anElement at: idColumn [
+	idColumn = 'Nombre'			ifTrue: [ ^anElement nombre ].
+	idColumn = 'Representante'	ifTrue: [ ^anElement representante ].
+	idColumn = 'Teléfono'			ifTrue: [ ^anElement telefono ].
+	idColumn = 'Dirección'		ifTrue: [ ^anElement direccion ].
+	idColumn = 'ID'					ifTrue: [ ^anElement id ].
+	^super stringFor: anElement at: idColumn .
+]

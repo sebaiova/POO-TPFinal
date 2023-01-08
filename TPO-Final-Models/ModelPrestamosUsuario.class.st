@@ -1,6 +1,6 @@
 Class {
 	#name : #ModelPrestamosUsuario,
-	#superclass : #SIModelAbstractTable,
+	#superclass : #ModelPrestamos,
 	#instVars : [
 		'sistema',
 		'usuario'

@@ -1,6 +1,6 @@
 Class {
 	#name : #ModelDragAndDrop,
-	#superclass : #SIModelAbstractTable,
+	#superclass : #ModelLibros,
 	#category : #'TPO-Final-Models'
 }
 
@@ -12,6 +12,12 @@ ModelDragAndDrop class >> array: unArrayBibliotecas [
 { #category : #'instance creation' }
 ModelDragAndDrop class >> new [ 
 	self error: 'Usar array: en lugar de new'
+]
+
+{ #category : #adding }
+ModelDragAndDrop >> addAll: anArray [
+	elements addAll: anArray.
+	self refresh.
 ]
 
 { #category : #'instance creation' }

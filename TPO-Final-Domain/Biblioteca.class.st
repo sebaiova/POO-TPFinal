@@ -36,11 +36,15 @@ Biblioteca >> agregarLibro: aLibro [
 
 { #category : #accessing }
 Biblioteca >> devolverPrestamo: unUsuario [ 
-	| prestamo |
-	prestamo := self prestamoActivo: unUsuario.
-	prestamo ifNil: [ ^false ].
-	prestamo terminar. 
-	^true.
+	(self prestamosActivosDe: unUsuario) do: [ :prestamo | prestamo libros first esAudioLibro ifFalse: [prestamo terminar. ^true]].
+	^false.
+]
+
+{ #category : #accessing }
+Biblioteca >> devolverPrestamoAudioLibros: unUsuario [
+	"Solo devuelve prestamos de libros normales. Para devolver audiolibros usar devolverPrestamoAudioLibros:"
+	(self prestamosActivosDe: unUsuario) do: [ :prestamo | prestamo libros first esAudioLibro ifTrue: [prestamo terminar. ^true]].
+	^false.
 ]
 
 { #category : #accessing }
@@ -71,6 +75,7 @@ Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion
 	telefono := unTelefono.
 	direccion := unaDireccion.
 	representante := unRepresentante.
+	diasPrestamo := 10.
 	colLibros := OrderedCollection new.
 	colPrestamos := OrderedCollection new.
 	^self.
@@ -97,11 +102,6 @@ Biblioteca >> nombre: aNombre [
 ]
 
 { #category : #accessing }
-Biblioteca >> prestamoActivo: unUsuario [ 
-	^colPrestamos detect: [ :prestamo | (prestamo esDeUsuario: unUsuario) and: prestamo estaActivo ] ifNone: [nil]
-]
-
-{ #category : #accessing }
 Biblioteca >> prestamos [
 	^colPrestamos asArray.
 ]
@@ -109,6 +109,11 @@ Biblioteca >> prestamos [
 { #category : #accessing }
 Biblioteca >> prestamosActivos [
 	^colPrestamos select: [ :prestamo | prestamo estaActivo ].
+]
+
+{ #category : #accessing }
+Biblioteca >> prestamosActivosDe: unUsuario [ 
+	^colPrestamos select: [ :prestamo | (prestamo esDeUsuario: unUsuario) and: prestamo estaActivo ].
 ]
 
 { #category : #accessing }
@@ -126,8 +131,8 @@ Biblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [
 	
 	unUsuario puedePedirAudioLibros ifFalse: [^false]. 
 	librosNormales := losLibros reject: [ :libro | libro esAudioLibro  ].
-				
-	colPrestamos add: (Prestamo usuario: unUsuario libros: librosNormales dias: diasPrestamo).
+	
+	librosNormales ifNotEmpty: [ colPrestamos add: (Prestamo usuario: unUsuario libros: librosNormales dias: diasPrestamo) ].
 	colPrestamos add: (Prestamo usuario: unUsuario libros: audioLibros dias: diasPrestamo/2).
 	^true.
 	

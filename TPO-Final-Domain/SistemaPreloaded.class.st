@@ -42,7 +42,7 @@ SistemaPreloaded >> loadBooks: biblioteca [
 			agregarLibro: (Libro nombre: 'Computer Organization and Design' editorial: 'Morgan Kaufmann' año: 2013 autores: (self cargarAutores: #('David A. Patterson' 'John L. Hennessy')));
 			agregarLibro: (Libro nombre: 'An Introduction to Formal Languages and Automata' editorial: 'Jones & Bartlett Learning' año: 2011 autores: (self cargarAutores: #('Peter Linz')));
 			agregarLibro: (Libro nombre: 'Pawn Structure Chess' editorial: 'Batsford' año: 2013 autores: (self cargarAutores: #('Andrew Soltis')));
-			agregarLibro: (Libro nombre: 'Dvoretsky''s Endgame Manual' editorial: 'Russell Enterprises, Inc' año: 2020 autores: (self cargarAutores: #('Mark Dvoretsky')));
+			agregarLibro: (AudioLibro nombre: 'Dvoretsky''s Endgame Manual' editorial: 'Russell Enterprises, Inc' año: 2020 autores: (self cargarAutores: #('Mark Dvoretsky')));
 			agregarLibro: (Libro nombre: 'Positional Decision Making in Chess' editorial: 'Quality Chess' año: 2016 autores: (self cargarAutores: #('Boris Gelfand' 'Jacob Aagaard')));
 			agregarLibro: (Libro nombre: 'Technical Decision Making in Chess' editorial: 'Quality Chess' año: 2021 autores: (self cargarAutores: #('Boris Gelfand' 'Jacob Aagaard')));
 			agregarLibro: (Libro nombre: 'Dynamic Decision Making in Chess' editorial: 'Quality Chess' año: 2017 autores: (self cargarAutores: #('Boris Gelfand' 'Jacob Aagaard')));
