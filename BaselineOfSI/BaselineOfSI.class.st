@@ -1,11 +1,11 @@
 Class {
-	#name : #SIBaseline,
+	#name : #BaselineOfSI,
 	#superclass : #BaselineOf,
-	#category : #SIBaseline
+	#category : #BaselineOfSI
 }
 
 { #category : #baselines }
-SIBaseline >> baseline: spec [
+BaselineOfSI >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
@@ -20,6 +20,6 @@ SIBaseline >> baseline: spec [
 ]
 
 { #category : #accessing }
-SIBaseline >> projectClass [
+BaselineOfSI >> projectClass [
 	^ MetacelloCypressBaselineProject
 ]
