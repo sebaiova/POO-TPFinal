@@ -40,7 +40,7 @@ SIModelIndex >> initializeModel: aModel index: aIndex [
 	model := aModel.
 	index := aIndex.
 	element := model elementAt: index.
-	^self.
+	^self .
 ]
 
 { #category : #accessing }

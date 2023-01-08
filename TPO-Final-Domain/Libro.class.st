@@ -31,6 +31,11 @@ Libro >> año [
 	^año.
 ]
 
+{ #category : #'changing state' }
+Libro >> devolver [ 
+	prestado := false.
+]
+
 { #category : #accessing }
 Libro >> editorial [ 
 	^editorial
@@ -39,6 +44,11 @@ Libro >> editorial [
 { #category : #accessing }
 Libro >> esAudioLibro [
 	^false.
+]
+
+{ #category : #accessing }
+Libro >> esPrestado [ 
+	^prestado.
 ]
 
 { #category : #initialization }
@@ -60,4 +70,9 @@ Libro >> nombre [
 { #category : #accessing }
 Libro >> prestado [ 
 	^prestado.
+]
+
+{ #category : #'changing state' }
+Libro >> prestar [ 
+	prestado := true.
 ]

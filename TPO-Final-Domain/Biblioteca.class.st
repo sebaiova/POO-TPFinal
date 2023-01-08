@@ -8,7 +8,8 @@ Class {
 		'telefono',
 		'representante',
 		'colLibros',
-		'colPrestamos'
+		'colPrestamos',
+		'diasPrestamo'
 	],
 	#category : #'TPO-Final-Domain'
 }
@@ -31,6 +32,15 @@ Biblioteca >> agregarLibro: aLibro [
 	Los autores del libro tienen que ser registrados en el sistema.
 	 < Sistema agregarLibro:enLaBiblioteca:  >"
 	colLibros add: aLibro.
+]
+
+{ #category : #accessing }
+Biblioteca >> devolverPrestamo: unUsuario [ 
+	| prestamo |
+	prestamo := self prestamoActivo: unUsuario.
+	prestamo ifNil: [ ^false ].
+	prestamo terminar. 
+	^true.
 ]
 
 { #category : #accessing }
@@ -72,6 +82,11 @@ Biblioteca >> libros [
 ]
 
 { #category : #accessing }
+Biblioteca >> librosDisponibles [
+	^(colLibros reject: [ :libro | libro esPrestado]) asArray.
+]
+
+{ #category : #accessing }
 Biblioteca >> nombre [ 	
 	^nombre.
 ]
@@ -82,14 +97,41 @@ Biblioteca >> nombre: aNombre [
 ]
 
 { #category : #accessing }
+Biblioteca >> prestamoActivo: unUsuario [ 
+	^colPrestamos detect: [ :prestamo | (prestamo esDeUsuario: unUsuario) and: prestamo estaActivo ] ifNone: [nil]
+]
+
+{ #category : #accessing }
 Biblioteca >> prestamos [
 	^colPrestamos asArray.
 ]
 
-{ #category : #'as yet unclassified' }
-Biblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [ 
-	colPrestamos detect: [ :prestamo | prestamo esDeUsuario: unUsuario] 
-		ifNone: [ colPrestamos add: (Prestamo usuario: unUsuario libros: losLibros dias: 10) ].
+{ #category : #accessing }
+Biblioteca >> prestamosActivos [
+	^colPrestamos select: [ :prestamo | prestamo estaActivo ].
+]
+
+{ #category : #accessing }
+Biblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [
+	| audioLibros librosNormales |
+	
+	(unUsuario estaSuspendido or: (
+		(self tienePrestamoActivo: unUsuario) or: (
+			losLibros size > 5 or: (
+				losLibros anySatisfy: [:libro | libro esPrestado])))) ifTrue: [^false].
+	
+	audioLibros 	:= losLibros select: [ :libro | libro esAudioLibro]. 
+	audioLibros ifEmpty: [ 
+							colPrestamos add: (Prestamo usuario: unUsuario libros: losLibros dias: diasPrestamo). ^true].
+	
+	unUsuario puedePedirAudioLibros ifFalse: [^false]. 
+	librosNormales := losLibros reject: [ :libro | libro esAudioLibro  ].
+				
+	colPrestamos add: (Prestamo usuario: unUsuario libros: librosNormales dias: diasPrestamo).
+	colPrestamos add: (Prestamo usuario: unUsuario libros: audioLibros dias: diasPrestamo/2).
+	^true.
+	
+			
 
 ]
 
@@ -116,4 +158,11 @@ Biblioteca >> telefono [
 { #category : #accessing }
 Biblioteca >> telefono: aTelefono [
 	telefono := aTelefono.
+]
+
+{ #category : #accessing }
+Biblioteca >> tienePrestamoActivo: unUsuario [ 
+	^colPrestamos detect: [ :prestamo | (prestamo esDeUsuario: unUsuario) and: (prestamo estaActivo ) ]
+					ifFound: [ true ]
+					ifNone:  [ false ].
 ]

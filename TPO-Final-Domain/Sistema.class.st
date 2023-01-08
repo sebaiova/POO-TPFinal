@@ -9,41 +9,55 @@ Class {
 	#category : #'TPO-Final-Domain'
 }
 
-{ #category : #adding }
+{ #category : #bibliotecas }
 Sistema >> agregarBiblioteca: aBiblioteca [
 	(self existeIDBiblioteca: aBiblioteca id) ifTrue: [^nil]
 														 ifFalse: [ colBibliotecas add: aBiblioteca. ^aBiblioteca].
 ]
 
-{ #category : #accessing }
+{ #category : #libros }
 Sistema >> agregarLibro: unLibro enLaBiblioteca: unaBiblioteca [
 	self registrarAutoresDelLibro: unLibro.
 	unaBiblioteca agregarLibro: unLibro.
 	^nil
 ]
 
-{ #category : #adding }
+{ #category : #usuarios }
 Sistema >> agregarUsuario: unUsuario [
 	colUsuarios add: unUsuario.
 ]
 
-{ #category : #adding }
+{ #category : #usuarios }
 Sistema >> agregarUsuario: unDNI nombre: unNombre apellido: unApellido password: unPassword [ 
 	colUsuarios add: (Usuario dni: unDNI nombre: unNombre apellido: unApellido password: unPassword).
 ]
 
-{ #category : #accessing }
+{ #category : #bibliotecas }
 Sistema >> bibliotecas [ 
 	^colBibliotecas asArray. 
 ]
 
-{ #category : #accessing }
+{ #category : #usuarios }
+Sistema >> convertirANormal: unUsuario [ 
+	colUsuarios remove: unUsuario ifAbsent: [ ^false ].
+	colUsuarios add: (Usuario from: unUsuario).
+	^true.
+]
+
+{ #category : #usuarios }
+Sistema >> convertirAPlus: unUsuario [ 
+	colUsuarios remove: unUsuario ifAbsent: [ ^false ].
+	colUsuarios add: (UsuarioPlus from: unUsuario).
+	^true.
+]
+
+{ #category : #usuarios }
 Sistema >> existeDNIUsuario: unDNI [
 	^colUsuarios detect: [ :user | user hasDNI: unDNI ] ifFound: [true] ifNone: [false]. 
 	
 ]
 
-{ #category : #accessing }
+{ #category : #bibliotecas }
 Sistema >> existeIDBiblioteca: unID [	
 	^colBibliotecas detect: [ :biblioteca | biblioteca hasID: unID ] ifFound: [true] ifNone: [false]. 
 ]
@@ -57,7 +71,7 @@ Sistema >> initialize [
 	^self.
 ]
 
-{ #category : #accessing }
+{ #category : #usuarios }
 Sistema >> logging: aUserName password: aPassword [
 	|user|
 	user := self obtenerUsuario: aUserName.
@@ -65,23 +79,29 @@ Sistema >> logging: aUserName password: aPassword [
 	^user.
 ]
 
-{ #category : #accessing }
+{ #category : #usuarios }
 Sistema >> obtenerUsuario: aDNI [
 	^colUsuarios detect: [ :user | user hasDNI: aDNI ] ifNone: nil.
 ]
 
-{ #category : #accessing }
+{ #category : #usuarios }
+Sistema >> prestamosActivosDeUsuario: unUsuario [
+	^colBibliotecas inject: OrderedCollection new into: [ :col :biblioteca | col addAll: (biblioteca prestamos select: [ :prestamo| (prestamo esDeUsuario: unUsuario) and: prestamo estaActivo ]). col].
+		
+]
+
+{ #category : #usuarios }
 Sistema >> prestamosDeUsuario: unUsuario [
 	^colBibliotecas inject: OrderedCollection new into: [ :col :biblioteca | col addAll: (biblioteca prestamos select: [ :prestamo| prestamo esDeUsuario: unUsuario ]). col].
 		
 ]
 
-{ #category : #adding }
+{ #category : #libros }
 Sistema >> registrarAutoresDelLibro: unLibro [ 
 	colAutores addAll: unLibro autores.
 ]
 
-{ #category : #accessing }
+{ #category : #usuarios }
 Sistema >> usuarios [ 
 	^colUsuarios asArray. 
 ]

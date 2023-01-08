@@ -26,7 +26,7 @@ Prestamo >> cantidadLibros [
 	^colLibros size.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Prestamo >> esDeUsuario: unUsuario [
 	^usuario = unUsuario.
 ]
@@ -48,6 +48,7 @@ Prestamo >> initializeUsuario: unUsuario libros: losLibros dias: losDias [
 	colLibros := losLibros.
 	plazoDias := losDias.
 	fechaCreacion := Date today.
+	colLibros do: [ :libro | libro prestar ].
 ]
 
 { #category : #accessing }
@@ -58,6 +59,12 @@ Prestamo >> libros [
 { #category : #accessing }
 Prestamo >> plazoDias [ 
 	^plazoDias
+]
+
+{ #category : #registration }
+Prestamo >> terminar [ 
+	fechaEntrega := Date today.
+	colLibros do: [ :libro | libro devolver ].
 ]
 
 { #category : #accessing }

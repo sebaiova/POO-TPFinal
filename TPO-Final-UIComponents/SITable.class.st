@@ -49,6 +49,11 @@ SITable >> initializeModel: aModel headers: colHeaders [
 
 ]
 
+{ #category : #menus }
+SITable >> model [ 
+	^model.
+]
+
 { #category : #accessing }
 SITable >> model: aModel [ 
 	model := aModel.

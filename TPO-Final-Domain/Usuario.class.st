@@ -6,16 +6,28 @@ Class {
 		'apellido',
 		'dni',
 		'password',
-		'colBibliotecasInteres'
+		'colBibliotecasInteres',
+		'diasSuspension'
 	],
 	#category : #'TPO-Final-Domain'
 }
 
 { #category : #'instance creation' }
 Usuario class >> dni: unDNI nombre: unNombre apellido: unApellido password: unPassword [
-	^self new
+	^super new
 		initializeDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword;
 		yourself.
+]
+
+{ #category : #'instance creation' }
+Usuario class >> from: other [ 
+	^super new initializeDNI: other dni nombre: other nombre apellido: other apellido password: other password;
+				  bibliotecasDeInteres: other bibliotecasDeInteres.
+]
+
+{ #category : #'instance creation' }
+Usuario class >> new [ 
+	self error: 'Usar dni:nombre:apellido:password o from: en lugar de new'.
 ]
 
 { #category : #comparing }
@@ -33,7 +45,7 @@ Usuario >> apellido [
 	^apellido
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> bibliotecasDeInteres [
 	^colBibliotecasInteres asArray.
 ]
@@ -48,9 +60,14 @@ Usuario >> dni [
 	^dni.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> esPlus [ 
 	^false.
+]
+
+{ #category : #accessing }
+Usuario >> estaSuspendido [
+	^diasSuspension > 0.
 ]
 
 { #category : #testing }
@@ -77,6 +94,7 @@ Usuario >> initializeDNI: unDNI nombre: unNombre apellido: unApellido password: 
 	apellido := unApellido.
 	password := unPassword.
 	colBibliotecasInteres := OrderedCollection new.
+	diasSuspension := 0.
 	^self.
 ]
 
@@ -85,7 +103,17 @@ Usuario >> nombre [
 	^nombre.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
+Usuario >> password [ 
+	^password.
+]
+
+{ #category : #accessing }
+Usuario >> puedePedirAudioLibros [ 
+	^false.
+]
+
+{ #category : #accessing }
 Usuario >> tieneBibliotecasDeInteres [ 
 	^colBibliotecasInteres isNotEmpty .
 ]

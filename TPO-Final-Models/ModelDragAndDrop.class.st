@@ -1,10 +1,6 @@
 Class {
 	#name : #ModelDragAndDrop,
 	#superclass : #SIModelAbstractTable,
-	#instVars : [
-		'tmp',
-		'dropCondition'
-	],
 	#category : #'TPO-Final-Models'
 }
 
@@ -18,6 +14,12 @@ ModelDragAndDrop class >> new [
 	self error: 'Usar array: en lugar de new'
 ]
 
+{ #category : #'instance creation' }
+ModelDragAndDrop >> array: anArray [
+	elements := OrderedCollection newFrom: anArray.
+	self refresh.
+]
+
 { #category : #'drag and drop' }
 ModelDragAndDrop >> dropElements: aCollection index: rowIndex [
 	elements addAll: (aCollection collect: [ :modelIndex | modelIndex element ]).
@@ -29,7 +31,6 @@ ModelDragAndDrop >> dropElements: aCollection index: rowIndex [
 ModelDragAndDrop >> initializeArray: unArray [
 	self initialize.
 	elements := OrderedCollection newFrom: unArray.
-	dropCondition := [ :element | false ].
 	^self refresh;
 		yourself.
 ]

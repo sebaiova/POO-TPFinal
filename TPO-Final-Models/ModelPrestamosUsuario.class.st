@@ -29,6 +29,6 @@ ModelPrestamosUsuario >> initializeSistema: unSistema usuario: unUsuario [
 
 { #category : #accessing }
 ModelPrestamosUsuario >> refresh [ 
-	elements := sistema prestamosDeUsuario: usuario.
+	elements := sistema prestamosActivosDeUsuario: usuario.
 	self changed: #refresh.
 ]
