@@ -1,5 +1,5 @@
 Class {
-	#name : #Libro,
+	#name : #SILibro,
 	#superclass : #Object,
 	#instVars : [
 		'nombre',
@@ -12,47 +12,47 @@ Class {
 }
 
 { #category : #'instance creation' }
-Libro class >> new [ 
+SILibro class >> new [ 
 	self error: 'Usar nombre:editorial:año:autores: en lugar de new'.
 ]
 
 { #category : #'instance creation' }
-Libro class >> nombre: unNombre editorial: unaEditorial año: unAño autores: losAutores [
+SILibro class >> nombre: unNombre editorial: unaEditorial año: unAño autores: losAutores [
 	^super new initializeNombre: unNombre editorial: unaEditorial año: unAño autores: losAutores.
 ]
 
 { #category : #accessing }
-Libro >> autores [	
+SILibro >> autores [	
 	^colAutores
 ]
 
 { #category : #accessing }
-Libro >> año [
+SILibro >> año [
 	^año.
 ]
 
 { #category : #'changing state' }
-Libro >> devolver [ 
+SILibro >> devolver [ 
 	prestado := false.
 ]
 
 { #category : #accessing }
-Libro >> editorial [ 
+SILibro >> editorial [ 
 	^editorial
 ]
 
 { #category : #accessing }
-Libro >> esAudioLibro [
+SILibro >> esAudioLibro [
 	^false.
 ]
 
 { #category : #accessing }
-Libro >> esPrestado [ 
+SILibro >> esPrestado [ 
 	^prestado.
 ]
 
 { #category : #initialization }
-Libro >> initializeNombre: unNombre editorial: unaEditorial año: unAño autores: aColAutores [
+SILibro >> initializeNombre: unNombre editorial: unaEditorial año: unAño autores: aColAutores [
 	self initialize.
 	nombre := unNombre.
 	editorial := unaEditorial.
@@ -63,16 +63,16 @@ Libro >> initializeNombre: unNombre editorial: unaEditorial año: unAño autores
 ]
 
 { #category : #accessing }
-Libro >> nombre [
+SILibro >> nombre [
 	^nombre
 ]
 
 { #category : #accessing }
-Libro >> prestado [ 
+SILibro >> prestado [ 
 	^prestado.
 ]
 
 { #category : #'changing state' }
-Libro >> prestar [ 
+SILibro >> prestar [ 
 	prestado := true.
 ]

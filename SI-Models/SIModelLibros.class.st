@@ -1,6 +1,6 @@
 Class {
-	#name : #ModelLibros,
-	#superclass : #ModelBibliotecas,
+	#name : #SIModelLibros,
+	#superclass : #SIModelBibliotecas,
 	#instVars : [
 		'biblioteca'
 	],
@@ -8,28 +8,28 @@ Class {
 }
 
 { #category : #'instance creation' }
-ModelLibros class >> biblioteca: unaBiblioteca [
+SIModelLibros class >> biblioteca: unaBiblioteca [
 	^super new initializeBiblioteca: unaBiblioteca sistema: nil.
 ]
 
 { #category : #'instance creation' }
-ModelLibros class >> biblioteca: unaBiblioteca sistema: elSistema [
+SIModelLibros class >> biblioteca: unaBiblioteca sistema: elSistema [
 	^super new initializeBiblioteca: unaBiblioteca sistema: elSistema.
 ]
 
 { #category : #accessing }
-ModelLibros class >> prestamo: unPrestamo [ 
+SIModelLibros class >> prestamo: unPrestamo [ 
 	^ self biblioteca: unPrestamo.
 ]
 
 { #category : #adding }
-ModelLibros >> add: unLibro [
+SIModelLibros >> add: unLibro [
 	sistema agregarLibro: unLibro enLaBiblioteca:  biblioteca.
 	self refresh.
 ]
 
 { #category : #defaults }
-ModelLibros >> iconFor: anElement at: idColumn [ 
+SIModelLibros >> iconFor: anElement at: idColumn [ 
 	idColumn = 'Disponible' ifTrue: [
 				 anElement prestado ifTrue: [ ^ (self iconNamed: #testRed ) asMorph. ]
 										ifFalse: [ ^ (self iconNamed: #testGreen) asMorph.  ]
@@ -42,7 +42,7 @@ ModelLibros >> iconFor: anElement at: idColumn [
 ]
 
 { #category : #initialization }
-ModelLibros >> initializeBiblioteca: unaBiblioteca sistema: elSistema [
+SIModelLibros >> initializeBiblioteca: unaBiblioteca sistema: elSistema [
 	self initialize.
 	biblioteca := unaBiblioteca.
 	sistema := elSistema.
@@ -51,19 +51,19 @@ ModelLibros >> initializeBiblioteca: unaBiblioteca sistema: elSistema [
 ]
 
 { #category : #accessing }
-ModelLibros >> refresh [ 
+SIModelLibros >> refresh [ 
 	elements := biblioteca libros.
 	self changed: #refresh.
 ]
 
 { #category : #removing }
-ModelLibros >> remove: unLibro [ 
+SIModelLibros >> remove: unLibro [ 
 	biblioteca removerLibro: unLibro.
 	self refresh.
 ]
 
 { #category : #'as yet unclassified' }
-ModelLibros >> stringFor: anElement at: idColumn [
+SIModelLibros >> stringFor: anElement at: idColumn [
 	idColumn = 'Titulo'		ifTrue: [ ^anElement nombre ].
 	idColumn = 'Año'			ifTrue: [ ^anElement año ].
 	idColumn = 'Editorial'	ifTrue: [ ^anElement editorial ].

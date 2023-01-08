@@ -1,6 +1,6 @@
 Class {
-	#name : #ModelPrestamosBiblioteca,
-	#superclass : #ModelPrestamos,
+	#name : #SIModelPrestamosBiblioteca,
+	#superclass : #SIModelPrestamos,
 	#instVars : [
 		'biblioteca'
 	],
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #'instance creation' }
-ModelPrestamosBiblioteca class >> biblioteca: unaBiblioteca [
+SIModelPrestamosBiblioteca class >> biblioteca: unaBiblioteca [
 	^super new initializeBiblioteca: unaBiblioteca.
 ]
 
 { #category : #'instance creation' }
-ModelPrestamosBiblioteca class >> sistema: unSistema usuario: unUsuario [
+SIModelPrestamosBiblioteca class >> sistema: unSistema usuario: unUsuario [
 	^super new initializeSistema: unSistema usuario: unUsuario.
 ]
 
 { #category : #initialization }
-ModelPrestamosBiblioteca >> initializeBiblioteca: unaBiblioteca [
+SIModelPrestamosBiblioteca >> initializeBiblioteca: unaBiblioteca [
 	self initialize.
 	biblioteca := unaBiblioteca.
 	self refresh.
@@ -26,7 +26,7 @@ ModelPrestamosBiblioteca >> initializeBiblioteca: unaBiblioteca [
 ]
 
 { #category : #accessing }
-ModelPrestamosBiblioteca >> refresh [ 
+SIModelPrestamosBiblioteca >> refresh [ 
 	elements := biblioteca prestamosActivos.
 	self changed: #refresh.
 ]

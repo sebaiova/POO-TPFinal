@@ -60,8 +60,8 @@ SIViewUsuarioPedirYDevolver >> initializeUsuario: unUsuario biblioteca: unaBibli
 	usuario := unUsuario.
 	biblioteca := unaBiblioteca .
 	self addMorph: (SIColumn new 
-				addMorph: (inTable := SIDragAndDropTable model: (ModelDragAndDrop array: #()) headers: #(Titulo Autores));
-				addMorph: (outTable := (SIDragAndDropTable model: (ModelDragAndDrop array: #()) headers: #(Titulo Autores)) extent: 100@140; vResizing: #rigid; yourself);
+				addMorph: (inTable := SIDragAndDropTable model: (SIModelDragAndDrop array: #()) headers: #(Titulo Autores));
+				addMorph: (outTable := (SIDragAndDropTable model: (SIModelDragAndDrop array: #()) headers: #(Titulo Autores)) extent: 100@140; vResizing: #rigid; yourself);
 				addMorph: (SIRow new
 					addMorph: SISpacer new;
 					addMorph: (tag := SITag new);

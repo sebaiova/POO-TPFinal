@@ -1,6 +1,6 @@
 Class {
-	#name : #ModelPrestamosUsuario,
-	#superclass : #ModelPrestamos,
+	#name : #SIModelPrestamosUsuario,
+	#superclass : #SIModelPrestamos,
 	#instVars : [
 		'sistema',
 		'usuario'
@@ -9,17 +9,17 @@ Class {
 }
 
 { #category : #'instance creation' }
-ModelPrestamosUsuario class >> new [
+SIModelPrestamosUsuario class >> new [
 	self error: 'Usar sistema:usuario en lugar de new.'
 ]
 
 { #category : #'instance creation' }
-ModelPrestamosUsuario class >> sistema: unSistema usuario: unUsuario [
+SIModelPrestamosUsuario class >> sistema: unSistema usuario: unUsuario [
 	^super new initializeSistema: unSistema usuario: unUsuario.
 ]
 
 { #category : #initialization }
-ModelPrestamosUsuario >> initializeSistema: unSistema usuario: unUsuario [
+SIModelPrestamosUsuario >> initializeSistema: unSistema usuario: unUsuario [
 	self initialize.
 	sistema := unSistema.
 	usuario := unUsuario.
@@ -28,7 +28,7 @@ ModelPrestamosUsuario >> initializeSistema: unSistema usuario: unUsuario [
 ]
 
 { #category : #accessing }
-ModelPrestamosUsuario >> refresh [ 
+SIModelPrestamosUsuario >> refresh [ 
 	elements := sistema prestamosActivosDeUsuario: usuario.
 	self changed: #refresh.
 ]

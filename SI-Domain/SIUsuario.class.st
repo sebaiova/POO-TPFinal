@@ -1,5 +1,5 @@
 Class {
-	#name : #Usuario,
+	#name : #SIUsuario,
 	#superclass : #Object,
 	#instVars : [
 		'nombre',
@@ -13,81 +13,81 @@ Class {
 }
 
 { #category : #'instance creation' }
-Usuario class >> dni: unDNI nombre: unNombre apellido: unApellido password: unPassword [
+SIUsuario class >> dni: unDNI nombre: unNombre apellido: unApellido password: unPassword [
 	^super new
 		initializeDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword;
 		yourself.
 ]
 
 { #category : #'instance creation' }
-Usuario class >> from: other [ 
+SIUsuario class >> from: other [ 
 	^super new initializeDNI: other dni nombre: other nombre apellido: other apellido password: other password;
 				  bibliotecasDeInteres: other bibliotecasDeInteres.
 ]
 
 { #category : #'instance creation' }
-Usuario class >> new [ 
+SIUsuario class >> new [ 
 	self error: 'Usar dni:nombre:apellido:password o from: en lugar de new'.
 ]
 
 { #category : #comparing }
-Usuario >> = other [ 
+SIUsuario >> = other [ 
 	^dni = other dni
 ]
 
 { #category : #adding }
-Usuario >> addBibliotecaInteres: unaBiblioteca [
+SIUsuario >> addBibliotecaInteres: unaBiblioteca [
 	colBibliotecasInteres add: unaBiblioteca .
 ]
 
 { #category : #accessing }
-Usuario >> apellido [
+SIUsuario >> apellido [
 	^apellido
 ]
 
 { #category : #accessing }
-Usuario >> bibliotecasDeInteres [
+SIUsuario >> bibliotecasDeInteres [
 	^colBibliotecasInteres asArray.
 ]
 
 { #category : #accessing }
-Usuario >> bibliotecasDeInteres: lasBibliotecas [
+SIUsuario >> bibliotecasDeInteres: lasBibliotecas [
 	colBibliotecasInteres := lasBibliotecas
 ]
 
 { #category : #accessing }
-Usuario >> dni [
+SIUsuario >> dni [
 	^dni.
 ]
 
 { #category : #accessing }
-Usuario >> esPlus [ 
+SIUsuario >> esPlus [ 
 	^false.
 ]
 
 { #category : #accessing }
-Usuario >> estaSuspendido [
+SIUsuario >> estaSuspendido [
 	^diasSuspension > 0.
 ]
 
 { #category : #testing }
-Usuario >> hasDNI: unDNI [
+SIUsuario >> hasDNI: unDNI [
 	^ dni=unDNI.
 	
 ]
 
 { #category : #testing }
-Usuario >> hasPassword: aPassword [
+SIUsuario >> hasPassword: aPassword [
 	^password = aPassword.
 ]
 
 { #category : #comparing }
-Usuario >> hash [ 
+SIUsuario >> hash [ 
 	^dni hash.
 ]
 
 { #category : #initialization }
-Usuario >> initializeDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword [
+SIUsuario >> initializeDNI: unDNI nombre: unNombre apellido: unApellido password: unPassword [
 	self initialize.
 	dni := unDNI.
 	nombre := unNombre.
@@ -99,21 +99,21 @@ Usuario >> initializeDNI: unDNI nombre: unNombre apellido: unApellido password: 
 ]
 
 { #category : #accessing }
-Usuario >> nombre [
+SIUsuario >> nombre [
 	^nombre.
 ]
 
 { #category : #accessing }
-Usuario >> password [ 
+SIUsuario >> password [ 
 	^password.
 ]
 
 { #category : #accessing }
-Usuario >> puedePedirAudioLibros [ 
+SIUsuario >> puedePedirAudioLibros [ 
 	^false.
 ]
 
 { #category : #accessing }
-Usuario >> tieneBibliotecasDeInteres [ 
+SIUsuario >> tieneBibliotecasDeInteres [ 
 	^colBibliotecasInteres isNotEmpty .
 ]

@@ -38,8 +38,8 @@ SIViewUsuarioBibliotecasDeInteres >> initializeUsuario: unUsuario bibliotecas: l
 	bibliotecasDeInteres := usuario bibliotecasDeInteres.
 	^self addMorph: (SIColumn new
 			 addMorph: (LabelMorph contents: 'Mueva a la tabla inferior las bibliotecas de su interes');
-			 addMorph: (SIDragAndDropTable model: (ModelDragAndDrop array:(lasBibliotecas reject: [ :b | bibliotecasDeInteres includes: b ])) headers: #( Nombre Dirección Teléfono Representante ));
-			 addMorph: (outTable := SIDragAndDropTable model: (ModelDragAndDrop array: bibliotecasDeInteres) headers: #( Nombre Dirección Teléfono Representante ));
+			 addMorph: (SIDragAndDropTable model: (SIModelDragAndDrop array:(lasBibliotecas reject: [ :b | bibliotecasDeInteres includes: b ])) headers: #( Nombre Dirección Teléfono Representante ));
+			 addMorph: (outTable := SIDragAndDropTable model: (SIModelDragAndDrop array: bibliotecasDeInteres) headers: #( Nombre Dirección Teléfono Representante ));
 			 addMorph: (SIRow new
 					  addMorph: (SIButton label: 'Cerrar Sesion' target: self message: #actionCerrarSesion);
 					  addMorph: SISpacer new;

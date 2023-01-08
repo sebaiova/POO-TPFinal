@@ -27,12 +27,12 @@ SIViewDetalleUsuario >> initializeModelIndex: aModelIndex sistema: elSistema [
 	self 	addMorph: (SIColumn new 
 			addMorph: (LabelMorph new contents: 'Usuario: ', usuario apellido, ', ', usuario nombre, ' - DNI: ', usuario dni asString);
 			addMorph: (LabelMorph new contents: 'Prestamos Activos');
-			addMorph: (tablaPrestamos := SITable model: (ModelPrestamosUsuario sistema: sistema usuario: usuario) headers: #('Fecha Inicio' 'Fecha Limite' 'Cantidad de Libros'));				
+			addMorph: (tablaPrestamos := SITable model: (SIModelPrestamosUsuario sistema: sistema usuario: usuario) headers: #('Fecha Inicio' 'Fecha Limite' 'Cantidad de Libros'));				
 			addMorph: (LabelMorph new contents: 'Libros del prestamo');
 			addMorph: (tablaLibros := SITable model: FTEasyListDataSource new headers: #(Titulo Año Editorial Autores));		
 			addMorph: (SIRow new 	addMorph: (SIButton label: 'Atras' target: self message: #delete);	addMorph: SISpacer new)
 		).
 		
-	tablaPrestamos onClick: [ :modelIndex | tablaLibros model: (ModelLibros prestamo: modelIndex element) ].
+	tablaPrestamos onClick: [ :modelIndex | tablaLibros model: (SIModelLibros prestamo: modelIndex element) ].
 	^self.
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : #Sistema,
+	#name : #SISistema,
 	#superclass : #Object,
 	#instVars : [
 		'colBibliotecas',
@@ -10,60 +10,60 @@ Class {
 }
 
 { #category : #bibliotecas }
-Sistema >> agregarBiblioteca: aBiblioteca [
+SISistema >> agregarBiblioteca: aBiblioteca [
 	(self existeIDBiblioteca: aBiblioteca id) ifTrue: [^nil]
 														 ifFalse: [ colBibliotecas add: aBiblioteca. ^aBiblioteca].
 ]
 
 { #category : #libros }
-Sistema >> agregarLibro: unLibro enLaBiblioteca: unaBiblioteca [
+SISistema >> agregarLibro: unLibro enLaBiblioteca: unaBiblioteca [
 	self registrarAutoresDelLibro: unLibro.
 	unaBiblioteca agregarLibro: unLibro.
 	^nil
 ]
 
 { #category : #usuarios }
-Sistema >> agregarUsuario: unUsuario [
+SISistema >> agregarUsuario: unUsuario [
 	colUsuarios add: unUsuario.
 ]
 
 { #category : #usuarios }
-Sistema >> agregarUsuario: unDNI nombre: unNombre apellido: unApellido password: unPassword [ 
-	colUsuarios add: (Usuario dni: unDNI nombre: unNombre apellido: unApellido password: unPassword).
+SISistema >> agregarUsuario: unDNI nombre: unNombre apellido: unApellido password: unPassword [ 
+	colUsuarios add: (SIUsuario dni: unDNI nombre: unNombre apellido: unApellido password: unPassword).
 ]
 
 { #category : #bibliotecas }
-Sistema >> bibliotecas [ 
+SISistema >> bibliotecas [ 
 	^colBibliotecas asArray. 
 ]
 
 { #category : #usuarios }
-Sistema >> convertirANormal: unUsuario [ 
+SISistema >> convertirANormal: unUsuario [ 
 	colUsuarios remove: unUsuario ifAbsent: [ ^false ].
-	colUsuarios add: (Usuario from: unUsuario).
+	colUsuarios add: (SIUsuario from: unUsuario).
 	^true.
 ]
 
 { #category : #usuarios }
-Sistema >> convertirAPlus: unUsuario [ 
+SISistema >> convertirAPlus: unUsuario [ 
 	colUsuarios remove: unUsuario ifAbsent: [ ^false ].
-	colUsuarios add: (UsuarioPlus from: unUsuario).
+	colUsuarios add: (SIUsuarioPlus from: unUsuario).
 	^true.
 ]
 
 { #category : #usuarios }
-Sistema >> existeDNIUsuario: unDNI [
+SISistema >> existeDNIUsuario: unDNI [
 	^colUsuarios detect: [ :user | user hasDNI: unDNI ] ifFound: [true] ifNone: [false]. 
 	
 ]
 
 { #category : #bibliotecas }
-Sistema >> existeIDBiblioteca: unID [	
+SISistema >> existeIDBiblioteca: unID [	
 	^colBibliotecas detect: [ :biblioteca | biblioteca hasID: unID ] ifFound: [true] ifNone: [false]. 
 ]
 
 { #category : #initialization }
-Sistema >> initialize [
+SISistema >> initialize [
 	super initialize.
 	colUsuarios := OrderedCollection new.
 	colBibliotecas := OrderedCollection new.
@@ -72,7 +72,7 @@ Sistema >> initialize [
 ]
 
 { #category : #usuarios }
-Sistema >> logging: aUserName password: aPassword [
+SISistema >> logging: aUserName password: aPassword [
 	|user|
 	user := self obtenerUsuario: aUserName.
 	user ifNotNil: [(user hasPassword: aPassword) ifFalse: [ user := nil ]].
@@ -80,28 +80,28 @@ Sistema >> logging: aUserName password: aPassword [
 ]
 
 { #category : #usuarios }
-Sistema >> obtenerUsuario: aDNI [
+SISistema >> obtenerUsuario: aDNI [
 	^colUsuarios detect: [ :user | user hasDNI: aDNI ] ifNone: nil.
 ]
 
 { #category : #usuarios }
-Sistema >> prestamosActivosDeUsuario: unUsuario [
+SISistema >> prestamosActivosDeUsuario: unUsuario [
 	^colBibliotecas inject: OrderedCollection new into: [ :col :biblioteca | col addAll: (biblioteca prestamos select: [ :prestamo| (prestamo esDeUsuario: unUsuario) and: prestamo estaActivo ]). col].
 		
 ]
 
 { #category : #usuarios }
-Sistema >> prestamosDeUsuario: unUsuario [
+SISistema >> prestamosDeUsuario: unUsuario [
 	^colBibliotecas inject: OrderedCollection new into: [ :col :biblioteca | col addAll: (biblioteca prestamos select: [ :prestamo| prestamo esDeUsuario: unUsuario ]). col].
 		
 ]
 
 { #category : #libros }
-Sistema >> registrarAutoresDelLibro: unLibro [ 
+SISistema >> registrarAutoresDelLibro: unLibro [ 
 	colAutores addAll: unLibro autores.
 ]
 
 { #category : #usuarios }
-Sistema >> usuarios [ 
+SISistema >> usuarios [ 
 	^colUsuarios asArray. 
 ]

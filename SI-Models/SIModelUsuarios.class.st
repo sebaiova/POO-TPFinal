@@ -1,5 +1,5 @@
 Class {
-	#name : #ModelUsuarios,
+	#name : #SIModelUsuarios,
 	#superclass : #SIModelAbstractTable,
 	#instVars : [
 		'sistema'
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #'instance creation' }
-ModelUsuarios class >> new [
+SIModelUsuarios class >> new [
 	self error: 'Usar sistema: en lugar de new.'
 ]
 
 { #category : #'instance creation' }
-ModelUsuarios class >> sistema: unSistema [ 
+SIModelUsuarios class >> sistema: unSistema [ 
 	^super new initializeSistema: unSistema.
 ]
 
 { #category : #defaults }
-ModelUsuarios >> iconFor: anElement at: idColumn [ 
+SIModelUsuarios >> iconFor: anElement at: idColumn [ 
 	(idColumn = 'Nombre') ifTrue: [
 				 anElement esPlus ifTrue: [ ^ (self iconNamed: #smallNew ) asMorph. ]
 										ifFalse: [ ^ (self iconNamed: #user) asMorph.  ]
@@ -27,7 +27,7 @@ ModelUsuarios >> iconFor: anElement at: idColumn [
 ]
 
 { #category : #initialization }
-ModelUsuarios >> initializeSistema: unSistema [
+SIModelUsuarios >> initializeSistema: unSistema [
 	self initialize.
 	sistema := unSistema.
 	self refresh.
@@ -35,13 +35,13 @@ ModelUsuarios >> initializeSistema: unSistema [
 ]
 
 { #category : #accessing }
-ModelUsuarios >> refresh [ 
+SIModelUsuarios >> refresh [ 
 	elements := sistema usuarios.
 	self changed: #refresh.
 ]
 
 { #category : #'as yet unclassified' }
-ModelUsuarios >> stringFor: anElement at: idColumn [
+SIModelUsuarios >> stringFor: anElement at: idColumn [
 	idColumn = 'Nombre'	ifTrue: [ ^anElement nombre ].
 	idColumn = 'Apellido'	ifTrue: [ ^anElement apellido ].
 	idColumn = 'DNI'		ifTrue: [ ^anElement dni ].

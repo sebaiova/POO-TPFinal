@@ -84,13 +84,13 @@ SIViewDetalleBiblioteca >> initializeModelIndex: aModelIndex [
 		label: 'Libros'.
 			
 	tabs addPage: (SIColumn new
-		addMorph: (tablaPrestamos := SITable model: (ModelPrestamosBiblioteca biblioteca: biblioteca) headers: #('Usuario' 'Fecha Inicio' 'Fecha Limite' 'Cantidad de Libros'));
+		addMorph: (tablaPrestamos := SITable model: (SIModelPrestamosBiblioteca biblioteca: biblioteca) headers: #('Usuario' 'Fecha Inicio' 'Fecha Limite' 'Cantidad de Libros'));
 		addMorph: (tableLibrosPrestamo := SITable model: FTEasyListDataSource new headers: #(Titulo Año Editorial Autores))
 	
 	) label: 'Prestamos'.
 	tabs selectedPageIndex: 1.
 			
-	tablaPrestamos onClick: [ :index | tableLibrosPrestamo model: (ModelLibros prestamo: index element) ].
+	tablaPrestamos onClick: [ :index | tableLibrosPrestamo model: (SIModelLibros prestamo: index element) ].
 
 	^self
 ]

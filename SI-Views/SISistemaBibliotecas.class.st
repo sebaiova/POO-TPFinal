@@ -1,5 +1,5 @@
 Class {
-	#name : #SISistemaBibliotecasMW,
+	#name : #SISistemaBibliotecas,
 	#superclass : #SIView,
 	#instVars : [
 		'sistema'
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #'instance creation' }
-SISistemaBibliotecasMW class >> run [
-	^self new initialize: Sistema new.
+SISistemaBibliotecas class >> run [
+	^self new initialize: SISistema new.
 ]
 
 { #category : #'instance creation' }
-SISistemaBibliotecasMW class >> runPreloaded [
-	^self new initialize: SistemaPreloaded new.
+SISistemaBibliotecas class >> runPreloaded [
+	^self new initialize: SISistemaPreloaded new.
 ]
 
 { #category : #initialization }
-SISistemaBibliotecasMW >> initialize: unSistema [
+SISistemaBibliotecas >> initialize: unSistema [
 	self initialize.
 	sistema := unSistema.
 	^self	extent: 800@500;

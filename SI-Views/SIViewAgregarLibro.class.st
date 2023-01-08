@@ -23,7 +23,7 @@ SIViewAgregarLibro class >> new [
 
 { #category : #button }
 SIViewAgregarLibro >> actionAgregar [
-	modelLibros add: (Libro nombre: tfNombre text editorial: tfEditorial text año: tfAño text autores: (lfAutores elements collect: [ :nombre | Autor nombre: nombre ])).
+	modelLibros add: (SILibro nombre: tfNombre text editorial: tfEditorial text año: tfAño text autores: (lfAutores elements collect: [ :nombre | SIAutor nombre: nombre ])).
 	self delete.
 
 ]

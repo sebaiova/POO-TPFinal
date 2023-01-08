@@ -1,5 +1,5 @@
 Class {
-	#name : #ModelBibliotecas,
+	#name : #SIModelBibliotecas,
 	#superclass : #SIModelAbstractTable,
 	#instVars : [
 		'sistema'
@@ -8,12 +8,12 @@ Class {
 }
 
 { #category : #'instance creation' }
-ModelBibliotecas class >> sistema: unSistema [ 
+SIModelBibliotecas class >> sistema: unSistema [ 
 	^super new initializeSistema: unSistema.
 ]
 
 { #category : #adding }
-ModelBibliotecas >> agregar: unaBiblioteca [
+SIModelBibliotecas >> agregar: unaBiblioteca [
 	| a |
 	a := sistema agregarBiblioteca: unaBiblioteca.
 	self refresh.
@@ -21,13 +21,13 @@ ModelBibliotecas >> agregar: unaBiblioteca [
 ]
 
 { #category : #accessing }
-ModelBibliotecas >> getModelLibros: ofIndex [ 
-	^ModelLibros biblioteca: (self elementAt: ofIndex) sistema: sistema.
+SIModelBibliotecas >> getModelLibros: ofIndex [ 
+	^SIModelLibros biblioteca: (self elementAt: ofIndex) sistema: sistema.
 	
 ]
 
 { #category : #initialization }
-ModelBibliotecas >> initializeSistema: unSistema [
+SIModelBibliotecas >> initializeSistema: unSistema [
 	self initialize.
 	sistema := unSistema.
 	self refresh.
@@ -35,13 +35,13 @@ ModelBibliotecas >> initializeSistema: unSistema [
 ]
 
 { #category : #refresh }
-ModelBibliotecas >> refresh [ 
+SIModelBibliotecas >> refresh [ 
 	elements := sistema bibliotecas.
 	self changed: #refresh.
 ]
 
 { #category : #'as yet unclassified' }
-ModelBibliotecas >> stringFor: anElement at: idColumn [
+SIModelBibliotecas >> stringFor: anElement at: idColumn [
 	idColumn = 'Nombre'			ifTrue: [ ^anElement nombre ].
 	idColumn = 'Representante'	ifTrue: [ ^anElement representante ].
 	idColumn = 'Teléfono'			ifTrue: [ ^anElement telefono ].

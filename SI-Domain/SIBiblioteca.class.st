@@ -1,5 +1,5 @@
 Class {
-	#name : #Biblioteca,
+	#name : #SIBiblioteca,
 	#superclass : #Object,
 	#instVars : [
 		'identificador',
@@ -15,19 +15,19 @@ Class {
 }
 
 { #category : #'instance creation' }
-Biblioteca class >> id: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresent [
+SIBiblioteca class >> id: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresent [
 	^super new
 		initializeID: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresent;
 		yourself.
 ]
 
 { #category : #'instance creation' }
-Biblioteca class >> new [ 
+SIBiblioteca class >> new [ 
 	self error: 'No usar new'
 ]
 
 { #category : #adding }
-Biblioteca >> agregarLibro: aLibro [
+SIBiblioteca >> agregarLibro: aLibro [
 	"Deberia solo poder ser llamado por la clase Sistema. (private, friend class Sistema)
 	Los autores del libro tienen que ser registrados en el sistema.
 	 < Sistema agregarLibro:enLaBiblioteca:  >"
@@ -35,40 +35,40 @@ Biblioteca >> agregarLibro: aLibro [
 ]
 
 { #category : #accessing }
-Biblioteca >> devolverPrestamo: unUsuario [ 
+SIBiblioteca >> devolverPrestamo: unUsuario [ 
 	(self prestamosActivosDe: unUsuario) do: [ :prestamo | prestamo libros first esAudioLibro ifFalse: [prestamo terminar. ^true]].
 	^false.
 ]
 
 { #category : #accessing }
-Biblioteca >> devolverPrestamoAudioLibros: unUsuario [
+SIBiblioteca >> devolverPrestamoAudioLibros: unUsuario [
 	"Solo devuelve prestamos de libros normales. Para devolver audiolibros usar devolverPrestamoAudioLibros:"
 	(self prestamosActivosDe: unUsuario) do: [ :prestamo | prestamo libros first esAudioLibro ifTrue: [prestamo terminar. ^true]].
 	^false.
 ]
 
 { #category : #accessing }
-Biblioteca >> direccion [
+SIBiblioteca >> direccion [
 	^direccion.
 ]
 
 { #category : #accessing }
-Biblioteca >> direccion: aDireccion [
+SIBiblioteca >> direccion: aDireccion [
 	direccion := aDireccion
 ]
 
 { #category : #accessing }
-Biblioteca >> hasID: unID [ 
+SIBiblioteca >> hasID: unID [ 
 	^ identificador = unID.
 ]
 
 { #category : #accessing }
-Biblioteca >> id [ 
+SIBiblioteca >> id [ 
 	^identificador.
 ]
 
 { #category : #initialization }
-Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresentante [
+SIBiblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresentante [
 	self initialize.
 	identificador := unID.
 	nombre := unNombre.
@@ -82,42 +82,42 @@ Biblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion
 ]
 
 { #category : #accessing }
-Biblioteca >> libros [
+SIBiblioteca >> libros [
 	^colLibros asArray.
 ]
 
 { #category : #accessing }
-Biblioteca >> librosDisponibles [
+SIBiblioteca >> librosDisponibles [
 	^(colLibros reject: [ :libro | libro esPrestado]) asArray.
 ]
 
 { #category : #accessing }
-Biblioteca >> nombre [ 	
+SIBiblioteca >> nombre [ 	
 	^nombre.
 ]
 
 { #category : #accessing }
-Biblioteca >> nombre: aNombre [
+SIBiblioteca >> nombre: aNombre [
 	nombre := aNombre.
 ]
 
 { #category : #accessing }
-Biblioteca >> prestamos [
+SIBiblioteca >> prestamos [
 	^colPrestamos asArray.
 ]
 
 { #category : #accessing }
-Biblioteca >> prestamosActivos [
+SIBiblioteca >> prestamosActivos [
 	^colPrestamos select: [ :prestamo | prestamo estaActivo ].
 ]
 
 { #category : #accessing }
-Biblioteca >> prestamosActivosDe: unUsuario [ 
+SIBiblioteca >> prestamosActivosDe: unUsuario [ 
 	^colPrestamos select: [ :prestamo | (prestamo esDeUsuario: unUsuario) and: prestamo estaActivo ].
 ]
 
 { #category : #accessing }
-Biblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [
+SIBiblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [
 	| audioLibros librosNormales |
 	
 	(unUsuario estaSuspendido or: (
@@ -127,13 +127,13 @@ Biblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [
 	
 	audioLibros 	:= losLibros select: [ :libro | libro esAudioLibro]. 
 	audioLibros ifEmpty: [ 
-							colPrestamos add: (Prestamo usuario: unUsuario libros: losLibros dias: diasPrestamo). ^true].
+							colPrestamos add: (SIPrestamo usuario: unUsuario libros: losLibros dias: diasPrestamo). ^true].
 	
 	unUsuario puedePedirAudioLibros ifFalse: [^false]. 
 	librosNormales := losLibros reject: [ :libro | libro esAudioLibro  ].
 	
-	librosNormales ifNotEmpty: [ colPrestamos add: (Prestamo usuario: unUsuario libros: librosNormales dias: diasPrestamo) ].
-	colPrestamos add: (Prestamo usuario: unUsuario libros: audioLibros dias: diasPrestamo/2).
+	librosNormales ifNotEmpty: [ colPrestamos add: (SIPrestamo usuario: unUsuario libros: librosNormales dias: diasPrestamo) ].
+	colPrestamos add: (SIPrestamo usuario: unUsuario libros: audioLibros dias: diasPrestamo/2).
 	^true.
 	
 			
@@ -141,32 +141,32 @@ Biblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [
 ]
 
 { #category : #removing }
-Biblioteca >> removerLibro: unLibro [ 
+SIBiblioteca >> removerLibro: unLibro [ 
 	colLibros remove: unLibro ifAbsent: [ nil ].  
 ]
 
 { #category : #accessing }
-Biblioteca >> representante [
+SIBiblioteca >> representante [
 	^representante 
 ]
 
 { #category : #accessing }
-Biblioteca >> representante: aRepresentante [
+SIBiblioteca >> representante: aRepresentante [
 	representante := aRepresentante .
 ]
 
 { #category : #accessing }
-Biblioteca >> telefono [
+SIBiblioteca >> telefono [
 	^telefono .
 ]
 
 { #category : #accessing }
-Biblioteca >> telefono: aTelefono [
+SIBiblioteca >> telefono: aTelefono [
 	telefono := aTelefono.
 ]
 
 { #category : #accessing }
-Biblioteca >> tienePrestamoActivo: unUsuario [ 
+SIBiblioteca >> tienePrestamoActivo: unUsuario [ 
 	^colPrestamos detect: [ :prestamo | (prestamo esDeUsuario: unUsuario) and: (prestamo estaActivo ) ]
 					ifFound: [ true ]
 					ifNone:  [ false ].

@@ -1,5 +1,5 @@
 Class {
-	#name : #Prestamo,
+	#name : #SIPrestamo,
 	#superclass : #Object,
 	#instVars : [
 		'fechaCreacion',
@@ -12,47 +12,47 @@ Class {
 }
 
 { #category : #'instance creation' }
-Prestamo class >> new [ 
+SIPrestamo class >> new [ 
 	self error: 'Usar usuario:libros:dias en lugar de new'.
 ]
 
 { #category : #'as yet unclassified' }
-Prestamo class >> usuario: unUsuario libros: losLibros dias: losDias [	
+SIPrestamo class >> usuario: unUsuario libros: losLibros dias: losDias [	
 	^super new initializeUsuario: unUsuario libros: losLibros dias: losDias.
 ]
 
 { #category : #accessing }
-Prestamo >> cantidadLibros [ 
+SIPrestamo >> cantidadLibros [ 
 	^colLibros size.
 ]
 
 { #category : #accessing }
-Prestamo >> esDeUsuario: unUsuario [
+SIPrestamo >> esDeUsuario: unUsuario [
 	^usuario = unUsuario.
 ]
 
 { #category : #accessing }
-Prestamo >> estaActivo [ 
+SIPrestamo >> estaActivo [ 
 	^ fechaEntrega isNil.
 ]
 
 { #category : #'as yet unclassified' }
-Prestamo >> estaRetrasado [
+SIPrestamo >> estaRetrasado [
 	^ self estaActivo and: (fechaMaxima isBefore: Date today). 
 ]
 
 { #category : #accessing }
-Prestamo >> fecha [
+SIPrestamo >> fecha [
 	^fechaCreacion
 ]
 
 { #category : #accessing }
-Prestamo >> fechaMaxima [ 
+SIPrestamo >> fechaMaxima [ 
 	^fechaMaxima 
 ]
 
 { #category : #initialization }
-Prestamo >> initializeUsuario: unUsuario libros: losLibros dias: losDias [
+SIPrestamo >> initializeUsuario: unUsuario libros: losLibros dias: losDias [
 	self initialize.
 	usuario := unUsuario .
 	colLibros := losLibros.
@@ -62,17 +62,17 @@ Prestamo >> initializeUsuario: unUsuario libros: losLibros dias: losDias [
 ]
 
 { #category : #accessing }
-Prestamo >> libros [ 
+SIPrestamo >> libros [ 
 	^colLibros asArray.
 ]
 
 { #category : #registration }
-Prestamo >> terminar [ 
+SIPrestamo >> terminar [ 
 	fechaEntrega := Date today.
 	colLibros do: [ :libro | libro devolver ].
 ]
 
 { #category : #accessing }
-Prestamo >> usuario [ 
+SIPrestamo >> usuario [ 
 	^usuario.
 ]

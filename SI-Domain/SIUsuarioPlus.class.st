@@ -1,20 +1,20 @@
 Class {
-	#name : #UsuarioPlus,
-	#superclass : #Usuario,
+	#name : #SIUsuarioPlus,
+	#superclass : #SIUsuario,
 	#category : #'SI-Domain'
 }
 
 { #category : #'as yet unclassified' }
-UsuarioPlus >> esPlus [ 
+SIUsuarioPlus >> esPlus [ 
 	^true.
 ]
 
 { #category : #accessing }
-UsuarioPlus >> estaAlDiaConCuota [
+SIUsuarioPlus >> estaAlDiaConCuota [
 	^true.
 ]
 
 { #category : #accessing }
-UsuarioPlus >> puedePedirAudioLibros [ 
+SIUsuarioPlus >> puedePedirAudioLibros [ 
 	^ self estaAlDiaConCuota.
 ]

@@ -27,7 +27,7 @@ SIViewAgregarBiblioteca class >> new [
 SIViewAgregarBiblioteca >> actionAgregar [
 	(tfID text isEmpty) ifTrue: [ tag bad: 'Ingrese una ID'. tfID rejected ]
 							ifFalse: [  
-									(modelBibliotecas agregar: (Biblioteca id: tfID text nombre: tfNombre text telefono: tfTelefono text direccion: tfDireccion text representante: tfRepresentante text))
+									(modelBibliotecas agregar: (SIBiblioteca id: tfID text nombre: tfNombre text telefono: tfTelefono text direccion: tfDireccion text representante: tfRepresentante text))
 									ifNil: 	  [ tag bad: 'ID ya existente'. tfID rejected  ]  
 									ifNotNil:  [	self delete ]].
 ]

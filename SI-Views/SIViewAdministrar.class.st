@@ -30,7 +30,7 @@ SIViewAdministrar >> initializeSistema: unSistema [
 	| tabs |
 	self initialize.
 	sistema := unSistema.
-	modelBiblioteca := (ModelBibliotecas sistema: sistema).
+	modelBiblioteca := (SIModelBibliotecas sistema: sistema).
 	
 	self addMorph: (SIColumn new
 			addMorph: (tabs := SITabs new);
@@ -42,7 +42,7 @@ SIViewAdministrar >> initializeSistema: unSistema [
 			yourself
 			).
 			
-	tabs addPage: (tablaUsuarios := SITable model: (ModelUsuarios sistema: sistema) headers: #(Nombre Apellido DNI)) label: 'Usuarios'.
+	tabs addPage: (tablaUsuarios := SITable model: (SIModelUsuarios sistema: sistema) headers: #(Nombre Apellido DNI)) label: 'Usuarios'.
 	tabs addPage: ((tablaBiblioteca := SITable model: modelBiblioteca headers: #(ID Nombre Dirección Teléfono Representante)) 
 		addMorphBack: (SIRow new 
 			addMorph: SISpacer new;

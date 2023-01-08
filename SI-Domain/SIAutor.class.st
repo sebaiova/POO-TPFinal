@@ -1,5 +1,5 @@
 Class {
-	#name : #Autor,
+	#name : #SIAutor,
 	#superclass : #Object,
 	#instVars : [
 		'nombre'
@@ -8,31 +8,31 @@ Class {
 }
 
 { #category : #'instance creation' }
-Autor class >> new [ 
+SIAutor class >> new [ 
 	self error: 'Usar nombre: en lugar de new.'
 ]
 
 { #category : #accessing }
-Autor class >> nombre: unNombre [ 
+SIAutor class >> nombre: unNombre [ 
 	^super new initializeNombre: unNombre.
 ]
 
 { #category : #comparing }
-Autor >> = other [
+SIAutor >> = other [
 	^ self nombre = other nombre.
 ]
 
 { #category : #comparing }
-Autor >> hash [ 
+SIAutor >> hash [ 
 	^nombre hash.
 ]
 
 { #category : #initialization }
-Autor >> initializeNombre: aNombre [
+SIAutor >> initializeNombre: aNombre [
 	nombre := aNombre
 ]
 
 { #category : #initialization }
-Autor >> nombre [
+SIAutor >> nombre [
 	^nombre.
 ]
