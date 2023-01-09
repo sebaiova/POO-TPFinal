@@ -37,10 +37,9 @@ SIBiblioteca >> agregarLibro: aLibro [
 { #category : #accessing }
 SIBiblioteca >> devolverPrestamo: unUsuario [
 	"Solo devuelve prestamos de libros normales. Para devolver audiolibros usar devolverPrestamoAudioLibros:"
-	(self prestamosActivosDe: unUsuario) detect: [ :prestamo | prestamo libros first esAudioLibro not] 
+	(self prestamosActivosDe: unUsuario) detect: [ :prestamo | prestamo tieneAudioLibros not] 
 		ifFound: [ :prestamo |
 			prestamo terminar. 
-			prestamo 	libros do: [ :libro | libro devolver ]
 		] 	ifNone: [ ^false ] .
 	^true.
 
@@ -48,10 +47,9 @@ SIBiblioteca >> devolverPrestamo: unUsuario [
 
 { #category : #accessing }
 SIBiblioteca >> devolverPrestamoAudioLibros: unUsuario [
-	(self prestamosActivosDe: unUsuario) detect: [ :prestamo | prestamo libros first esAudioLibro] 
+	(self prestamosActivosDe: unUsuario) detect: [ :prestamo | prestamo tieneAudioLibros] 
 		ifFound: [ :prestamo |
 			prestamo terminar. 
-			prestamo 	libros do: [ :libro | libro devolver ]
 		] 	ifNone: [ ^false ] .
 	^true.
 ]
@@ -135,16 +133,13 @@ SIBiblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [
 				losLibros anySatisfy: [:libro | libro esPrestado])))) ifTrue: [^false].
 	
 	audioLibros 	:= losLibros select: [ :libro | libro esAudioLibro]. 
-	audioLibros ifEmpty: [ 
-							colPrestamos add: (SIPrestamo usuario: unUsuario libros: losLibros dias: diasPrestamo). 
-							losLibros do: [ :libro | libro prestar ]]
-			ifNotEmpty: [
-					unUsuario puedePedirAudioLibros ifFalse: [^false]. 
-					librosNormales := losLibros reject: [ :libro | libro esAudioLibro ].
-					librosNormales ifNotEmpty: [ colPrestamos add: (SIPrestamo usuario: unUsuario libros: librosNormales dias: diasPrestamo) ].
-				 	colPrestamos add: (SIPrestamo usuario: unUsuario libros: audioLibros dias: diasPrestamo/2).
-				].
-	losLibros do: [ :libro | libro prestar ].
+	audioLibros ifEmpty: [colPrestamos add: (SIPrestamo usuario: unUsuario libros: losLibros dias: diasPrestamo)]
+					ifNotEmpty: [
+						unUsuario puedePedirAudioLibros ifFalse: [^false]. 
+						librosNormales := losLibros reject: [ :libro | libro esAudioLibro ].
+						librosNormales ifNotEmpty: [ colPrestamos add: (SIPrestamo usuario: unUsuario libros: librosNormales dias: diasPrestamo) ].
+				 		colPrestamos add: (SIPrestamo usuario: unUsuario libros: audioLibros dias: diasPrestamo/2).
+					].
 	^true.
 	
 			

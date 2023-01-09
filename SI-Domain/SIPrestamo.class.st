@@ -36,7 +36,7 @@ SIPrestamo >> estaActivo [
 	^ fechaEntrega isNil.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SIPrestamo >> estaRetrasado [
 	^ self estaActivo and: (fechaMaxima isBefore: Date today). 
 ]
@@ -56,6 +56,7 @@ SIPrestamo >> initializeUsuario: unUsuario libros: losLibros dias: losDias [
 	self initialize.
 	usuario := unUsuario .
 	colLibros := losLibros.
+	colLibros do: [ :libro | libro prestar].
 	fechaMaxima := Date today addDays: losDias.
 	fechaCreacion := Date today.
 ]
@@ -68,6 +69,12 @@ SIPrestamo >> libros [
 { #category : #registration }
 SIPrestamo >> terminar [ 
 	fechaEntrega := Date today.
+	colLibros do: [ :libro | libro devolver ].
+]
+
+{ #category : #accessing }
+SIPrestamo >> tieneAudioLibros [ 
+	^colLibros first esAudioLibro .
 ]
 
 { #category : #accessing }
