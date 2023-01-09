@@ -58,7 +58,6 @@ SIPrestamo >> initializeUsuario: unUsuario libros: losLibros dias: losDias [
 	colLibros := losLibros.
 	fechaMaxima := Date today addDays: losDias.
 	fechaCreacion := Date today.
-	colLibros do: [ :libro | libro prestar ].
 ]
 
 { #category : #accessing }
@@ -69,7 +68,6 @@ SIPrestamo >> libros [
 { #category : #registration }
 SIPrestamo >> terminar [ 
 	fechaEntrega := Date today.
-	colLibros do: [ :libro | libro devolver ].
 ]
 
 { #category : #accessing }
