@@ -24,8 +24,9 @@ SIViewDetalleUsuario >> initializeModelIndex: aModelIndex sistema: elSistema [
 	usuario := aModelIndex element.
 	sistema := elSistema.
 	
-	self 	addMorph: (SIColumn new 
-			addMorph: (LabelMorph new contents: 'Usuario: ', usuario apellido, ', ', usuario nombre, ' - DNI: ', usuario dni asString);
+	self 	addMorph: (SIColumn new
+				addMorph: (SIRow new addMorph: ((self iconNamed: (usuario esPlus ifTrue: [ #smallNew ] ifFalse: [ #user ])) asMorph);
+				addMorph: (LabelMorph new contents: 'Usuario: ', usuario apellido, ', ', usuario nombre, ' - DNI: ', usuario dni asString));
 			addMorph: (LabelMorph new contents: 'Prestamos Activos');
 			addMorph: (tablaPrestamos := SITable model: (SIModelPrestamosUsuario sistema: sistema usuario: usuario) headers: #('Fecha Inicio' 'Fecha Limite' 'Cantidad de Libros'));				
 			addMorph: (LabelMorph new contents: 'Libros del prestamo');

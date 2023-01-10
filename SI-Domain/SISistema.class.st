@@ -62,6 +62,17 @@ SISistema >> existeIDBiblioteca: unID [
 	^colBibliotecas detect: [ :biblioteca | biblioteca hasID: unID ] ifFound: [true] ifNone: [false]. 
 ]
 
+{ #category : #'as yet unclassified' }
+SISistema >> generarListadoUsuariosRegistrados [ 
+	|colRetrasos|
+	colRetrasos := OrderedCollection new.
+	colBibliotecas do: [ :biblioteca | biblioteca usuariosAtrasados 
+								collect: [ :usuario | {usuario. biblioteca}] into: colRetrasos
+						].
+	^colRetrasos
+	
+]
+
 { #category : #initialization }
 SISistema >> initialize [
 	super initialize.

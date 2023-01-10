@@ -9,11 +9,6 @@ SIView class >> new: aModel [
 	^self new initialize: aModel.
 ]
 
-{ #category : #adding }
-SIView >> addTitle: title [
-	self addMorph: ((Tag newLabel: title) hResizing: #spaceFill; backgroundColor: Color gray darker darker darker).
-]
-
 { #category : #initialization }
 SIView >> initialize [
 	super initialize. 			

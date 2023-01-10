@@ -11,6 +11,12 @@ Class {
 	#category : #'SI-Domain'
 }
 
+{ #category : #'as yet unclassified' }
+SIPrestamo class >> atrasado: unUsuario libros: losLibros dias: losDias [
+	"Para testear"
+	^super new initializeAtrasado: unUsuario libros: losLibros dias: losDias.
+]
+
 { #category : #'instance creation' }
 SIPrestamo class >> new [ 
 	self error: 'Usar usuario:libros:dias en lugar de new'.
@@ -24,6 +30,11 @@ SIPrestamo class >> usuario: unUsuario libros: losLibros dias: losDias [
 { #category : #accessing }
 SIPrestamo >> cantidadLibros [ 
 	^colLibros size.
+]
+
+{ #category : #'as yet unclassified' }
+SIPrestamo >> diasHastaVencimiento [ 	
+	^(fechaMaxima - Date today) asDays. 
 ]
 
 { #category : #accessing }
@@ -49,6 +60,18 @@ SIPrestamo >> fecha [
 { #category : #accessing }
 SIPrestamo >> fechaMaxima [ 
 	^fechaMaxima 
+]
+
+{ #category : #initialization }
+SIPrestamo >> initializeAtrasado: unUsuario libros: losLibros dias: losDias [
+	"testing"
+	self initialize.
+	usuario := unUsuario .
+	colLibros := losLibros.
+	colLibros do: [ :libro | libro prestar].
+	fechaCreacion := Date today subtractDays: losDias + 2.
+	fechaMaxima := fechaCreacion addDays: losDias.
+
 ]
 
 { #category : #initialization }

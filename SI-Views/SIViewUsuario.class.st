@@ -33,13 +33,17 @@ SIViewUsuario >> actionPedirYDevolver [
 { #category : #'as yet unclassified' }
 SIViewUsuario >> actionSolicituarNormal [
 	(sistema convertirANormal: usuario) ifFalse: [ tag bad: 'Hubo un problema al solicitar dejar de ser Plus.' ]
-												ifTrue: [ self delete ].
+												ifTrue: [ 
+													owner addMorph: (SIMessage contents: 'Ha dejado de ser Plus.').
+													self delete ].
 ]
 
 { #category : #'as yet unclassified' }
 SIViewUsuario >> actionSolicituarPlus [
 	(sistema convertirAPlus: usuario) ifFalse: [ tag bad: 'Hubo un problema al solicitar el cambio a Plus.' ]
-												ifTrue: [ self delete ].
+												ifTrue: [ 
+													owner addMorph: (SIMessage contents: 'Solicitud Plus Aceptada!').
+													self delete ].
 ]
 
 { #category : #initialization }

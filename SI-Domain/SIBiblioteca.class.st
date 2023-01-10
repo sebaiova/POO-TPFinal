@@ -123,6 +123,32 @@ SIBiblioteca >> prestamosActivosDe: unUsuario [
 	^colPrestamos select: [ :prestamo | (prestamo esDeUsuario: unUsuario) and: prestamo estaActivo ].
 ]
 
+{ #category : #'as yet unclassified' }
+SIBiblioteca >> prestamosAtrasados [ 
+	^colPrestamos select: [ :prestamo | prestamo estaRetrasado ].
+]
+
+{ #category : #test }
+SIBiblioteca >> registrarPrestamoAtrasadoUsuario: unUsuario libros: losLibros [
+	"Solo para testear"
+	| audioLibros librosNormales |
+	
+	(unUsuario estaSuspendido or: (
+		(self tienePrestamoActivo: unUsuario) or: (
+			losLibros size > 5 or: (
+				losLibros anySatisfy: [:libro | libro esPrestado])))) ifTrue: [^false].
+	
+	audioLibros 	:= losLibros select: [ :libro | libro esAudioLibro]. 
+	audioLibros ifEmpty: [colPrestamos add: (SIPrestamo atrasado: unUsuario libros: losLibros dias: diasPrestamo)]
+					ifNotEmpty: [
+						unUsuario puedePedirAudioLibros ifFalse: [^false]. 
+						librosNormales := losLibros reject: [ :libro | libro esAudioLibro ].
+						librosNormales ifNotEmpty: [ colPrestamos add: (SIPrestamo atrasado: unUsuario libros: librosNormales dias: diasPrestamo) ].
+				 		colPrestamos add: (SIPrestamo atrasado: unUsuario libros: audioLibros dias: diasPrestamo/2).
+					].
+	^true.
+]
+
 { #category : #accessing }
 SIBiblioteca >> registrarPrestamoUsuario: unUsuario libros: losLibros [
 	| audioLibros librosNormales |
@@ -176,4 +202,9 @@ SIBiblioteca >> tienePrestamoActivo: unUsuario [
 	^colPrestamos detect: [ :prestamo | (prestamo esDeUsuario: unUsuario) and: (prestamo estaActivo ) ]
 					ifFound: [ true ]
 					ifNone:  [ false ].
+]
+
+{ #category : #'as yet unclassified' }
+SIBiblioteca >> usuariosAtrasados [
+	^(self prestamosAtrasados collect: [:prestamo | prestamo usuario ] into: Set new) asArray.
 ]

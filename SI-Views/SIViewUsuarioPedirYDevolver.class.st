@@ -11,7 +11,10 @@ Class {
 		'btnDevolverLibros',
 		'btnDevolverAudioLibros',
 		'prestamoAudioLibro',
-		'prestamoLibro'
+		'prestamoLibro',
+		'labelCanasta',
+		'lbLeftDays',
+		'lbLeftDaysAL'
 	],
 	#category : #'SI-Views'
 }
@@ -59,8 +62,14 @@ SIViewUsuarioPedirYDevolver >> initializeUsuario: unUsuario biblioteca: unaBibli
 	self initialize.
 	usuario := unUsuario.
 	biblioteca := unaBiblioteca .
-	self addMorph: (SIColumn new 
+	self addMorph: (SIColumn new
+				addMorph: (LabelMorph contents: 'Libros Disponibles');
 				addMorph: (inTable := SIDragAndDropTable model: (SIModelDragAndDrop array: #()) headers: #(Titulo Autores));
+				addMorph: (SIRow new
+						addMorph: (lbLeftDays := LabelMorph contents: '');
+						addMorph: (labelCanasta := LabelMorph contents: 'Canasta');
+						addMorph: (lbLeftDaysAL := LabelMorph contents: '')
+						);
 				addMorph: (outTable := (SIDragAndDropTable model: (SIModelDragAndDrop array: #()) headers: #(Titulo Autores)) extent: 100@140; vResizing: #rigid; yourself);
 				addMorph: (SIRow new
 					addMorph: SISpacer new;
@@ -80,6 +89,8 @@ SIViewUsuarioPedirYDevolver >> prepararDevolverAudioLibros [
 	outTable disable.
 	btnPedir disable.
 	btnDevolverAudioLibros enable.
+	labelCanasta contents: ' - '.
+	lbLeftDaysAL contents: 'Dias restantes para Audio Libros: ', prestamoAudioLibro diasHastaVencimiento asInteger asString.
 ]
 
 { #category : #'display protocol' }
@@ -88,6 +99,8 @@ SIViewUsuarioPedirYDevolver >> prepararDevolverLibros [
 	outTable disable.
 	btnPedir disable.
 	btnDevolverLibros enable.
+	labelCanasta contents: ' - '.
+	lbLeftDays contents: 'Días Restantes: ', prestamoLibro diasHastaVencimiento asInteger asString.
 ]
 
 { #category : #'display protocol' }
@@ -97,6 +110,9 @@ SIViewUsuarioPedirYDevolver >> prepararPedirPrestamo [
 	btnPedir enable.
 	btnDevolverLibros disable.
 	btnDevolverAudioLibros disable.
+	lbLeftDays contents: ''.
+	lbLeftDaysAL contents: ''.
+	labelCanasta contents: 'Canasta'.
 ]
 
 { #category : #refresh }

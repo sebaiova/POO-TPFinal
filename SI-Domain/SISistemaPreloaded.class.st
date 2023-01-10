@@ -26,7 +26,7 @@ SISistemaPreloaded >> initialize [
 	bLibros := self loadBooks: (self agregarBiblioteca: (b := SIBiblioteca id: 'B' nombre: 'Francisco P. Moreno' telefono: 45132458 direccion: 'Av. Leloir y Sta Fe' representante: 'Yeray Salazar')).
 	cLibros := self loadBooks: (self agregarBiblioteca: (c := SIBiblioteca id: 'C' nombre: 'Juan Jose Brion' telefono: 42658752 direccion: 'Av. Leloir 842'  representante: 'Guillermina Llorens' )).
 			
-	b registrarPrestamoUsuario: seba libros: (OrderedCollection new add: (bLibros at: 3); 
+	b registrarPrestamoAtrasadoUsuario: seba libros: (OrderedCollection new add: (bLibros at: 3); 
 																						add: (bLibros at: 8);
 																						yourself).			
 "					

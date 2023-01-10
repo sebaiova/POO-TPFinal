@@ -42,9 +42,16 @@ SIViewAdministrar >> initializeSistema: unSistema [
 			yourself
 			).
 			
-	tabs addPage: (tablaUsuarios := SITable model: (SIModelUsuarios sistema: sistema) headers: #(Nombre Apellido DNI)) label: 'Usuarios'.
-	tabs addPage: ((tablaBiblioteca := SITable model: modelBiblioteca headers: #(ID Nombre Dirección Teléfono Representante)) 
-		addMorphBack: (SIRow new 
+	tabs addPage: (SIColumn new 
+				addMorph: (SIRow new addMorph: (LabelMorph contents: 'Doble click para Detalles'); addMorph: SISpacer new;
+							addMorph: ((self iconNamed: #smallNew) asMorph ); addMorph: (LabelMorph contents: '=  usuario Plus'));		
+				addMorph: (tablaUsuarios := SITable model: (SIModelUsuarios sistema: sistema) headers: #(Nombre Apellido DNI))) 
+				label: 'Usuarios'.
+						
+	tabs addPage: (SIColumn new 
+		addMorph: (SIRow new addMorph: (LabelMorph contents: 'Doble click para Detalles'); addMorph: SISpacer new);
+		addMorph: (tablaBiblioteca := SITable model: modelBiblioteca headers: #(ID Nombre Dirección Teléfono Representante));
+		addMorph: (SIRow new 
 			addMorph: SISpacer new;
 			addMorph: (SIButton label: 'Agregar Biblioteca' target: self message: #actionAgregarBiblioteca);
 			yourself

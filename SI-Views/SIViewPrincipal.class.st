@@ -48,7 +48,7 @@ SIViewPrincipal >> actionRegistrarse [
 	self addMorph: (SIViewRegistrarUsuario sistema: sistema).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #verification }
 SIViewPrincipal >> esContraseñaVacio [ 
 	tfContraseña text ifEmpty: [ tag bad: 'Ingrese su contraseña'. tfContraseña rejected. ^true ]
 						ifNotEmpty: [ tfContraseña accepted. ^false ].
@@ -60,7 +60,7 @@ SIViewPrincipal >> esDNIInvalido [
 							ifNotNil: [ tfUsuario accepted. false ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #verification }
 SIViewPrincipal >> esUsuarioVacio [ 
 	tfUsuario text isEmpty ifTrue: [ tag bad: 'Ingrese su DNI'. tfUsuario rejected. ^true ]
 									ifFalse: [ tfUsuario accepted. ^false ]
