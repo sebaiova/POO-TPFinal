@@ -4,11 +4,6 @@ Class {
 	#category : #'SI-UIComponents'
 }
 
-{ #category : #'instance creation' }
-SIView class >> new: aModel [
-	^self new initialize: aModel.
-]
-
 { #category : #initialization }
 SIView >> initialize [
 	super initialize. 			
