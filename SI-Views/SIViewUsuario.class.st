@@ -2,60 +2,46 @@ Class {
 	#name : #SIViewUsuario,
 	#superclass : #SIView,
 	#instVars : [
-		'usuario',
-		'sistema',
 		'btnNormal',
 		'tag'
 	],
 	#category : #'SI-Views'
 }
 
-{ #category : #'instance creation' }
-SIViewUsuario class >> new [ 
-	self error: 'Usar usuario:sistema: en lugar de new'.
-]
-
-{ #category : #'instance creation' }
-SIViewUsuario class >> usuario: unUsuario sistema: elSistema [ 
-	^super new initializeUsuario: unUsuario sistema: elSistema.
-]
-
 { #category : #button }
 SIViewUsuario >> actionCambiarBibliotecasInteres [
-	self addMorph: (SIViewUsuarioBibliotecasDeInteres usuario: usuario bibliotecas: sistema bibliotecas).
+	self addMorph: (SIViewUsuarioBibliotecasDeInteres interface: iface).
 ]
 
 { #category : #button }
 SIViewUsuario >> actionPedirYDevolver [
-	self addMorph: (SIViewUsuarioBibliotecas usuario: usuario).
+	self addMorph: (SIViewUsuarioBibliotecas interface: iface).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #button }
 SIViewUsuario >> actionSolicituarNormal [
-	(sistema convertirANormal: usuario) ifFalse: [ tag bad: 'Hubo un problema al solicitar dejar de ser Plus.' ]
+	(iface sys convertirANormal: iface user) ifFalse: [ tag bad: 'Hubo un problema al solicitar dejar de ser Plus.' ]
 												ifTrue: [ 
 													owner addMorph: (SIMessage contents: 'Ha dejado de ser Plus.').
 													self delete ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #button }
 SIViewUsuario >> actionSolicituarPlus [
-	(sistema convertirAPlus: usuario) ifFalse: [ tag bad: 'Hubo un problema al solicitar el cambio a Plus.' ]
+	(iface sys convertirAPlus: iface user) ifFalse: [ tag bad: 'Hubo un problema al solicitar el cambio a Plus.' ]
 												ifTrue: [ 
 													owner addMorph: (SIMessage contents: 'Solicitud Plus Aceptada!').
 													self delete ].
 ]
 
 { #category : #initialization }
-SIViewUsuario >> initializeUsuario: unUsuario sistema: elSistema [
+SIViewUsuario >> initializeInterface: aSIInterface [
 	| buttonSize btnPlus |
-	self initialize.
-	usuario := unUsuario.
-	sistema := elSistema.
+	super initializeInterface: aSIInterface.
 	buttonSize := 200@24.
 	 self addMorph: (SIColumn new cellInset: 20;
 					 	addMorph: SISpacer new; 
-						addMorph: (LabelMorph contents: ('Bienvenido/a ', usuario nombre, '!'));
+						addMorph: (LabelMorph contents: ('Bienvenido/a ', iface user nombre, '!'));
 					 	addMorph: SISpacer new;
 						addMorph: ((SIButton label: 'Pedir y Devolver' target: self  message: 'actionPedirYDevolver' ) extent: buttonSize) ;
 						addMorph: ((SIButton label: 'Cambiar Bibliotecas de Interes' target: self  message: 'actionCambiarBibliotecasInteres' ) extent: buttonSize);
@@ -67,8 +53,7 @@ SIViewUsuario >> initializeUsuario: unUsuario sistema: elSistema [
 					  		addMorph: (SIButton label: 'Cerrar Sesion' target: self message: #delete);
 					  		addMorph: SISpacer new)).
 								
-	usuario esPlus ifTrue: [ btnPlus disable ] ifFalse: [  btnNormal disable ].			
-									
-	usuario bibliotecasDeInteres ifEmpty: [ self addMorph: (SIViewUsuarioBibliotecasDeInteres usuario: usuario bibliotecas: sistema bibliotecas) ].
+	iface user esPlus ifTrue: [ btnPlus disable ] ifFalse: [  btnNormal disable ].									
+	iface user bibliotecasDeInteres ifEmpty: [ self addMorph: (SIViewUsuarioBibliotecasDeInteres interface: iface) ].
 	^self.
 ]

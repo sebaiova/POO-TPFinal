@@ -20,12 +20,6 @@ SIModelBibliotecas >> agregar: unaBiblioteca [
 	^a.
 ]
 
-{ #category : #accessing }
-SIModelBibliotecas >> getModelLibros: ofIndex [ 
-	^SIModelLibros biblioteca: (self elementAt: ofIndex) sistema: sistema.
-	
-]
-
 { #category : #initialization }
 SIModelBibliotecas >> initializeSistema: unSistema [
 	self initialize.

@@ -4,24 +4,15 @@ Class {
 	#category : #'SI-Views'
 }
 
-{ #category : #'instance creation' }
-SIViewUsuarioBibliotecas class >> new [ 
-	self error: 'Usar usuario: en lugar de new'.
-]
-
-{ #category : #'instance creation' }
-SIViewUsuarioBibliotecas class >> usuario: unUsuario [ 
-	^super new initializeUsuario: unUsuario.
-]
-
 { #category : #initialization }
-SIViewUsuarioBibliotecas >> initializeUsuario: unUsuario [
-	| tabs |
-	self initialize.
+SIViewUsuarioBibliotecas >> initializeInterface: aSIInterface [
+	| tabs bibliotecas|
+	super initializeInterface: aSIInterface.
 	self	addMorph: (SIColumn new 
 				addMorph: (tabs := SITabs new);
 				addMorph: (SIRow new addMorph: (SIButton label: 'Atras' target: self message: #delete); addMorph: SISpacer new)).
-				
-	unUsuario bibliotecasDeInteres do: [ :biblioteca | tabs addPage: (SIViewUsuarioPedirYDevolver usuario: unUsuario biblioteca: biblioteca) label: biblioteca nombre ].
-	tabs selectedPageIndex: 1. 
+	
+	bibliotecas := iface user bibliotecasDeInteres.
+	tabs onTabChanged: [ :index | iface lib: ( bibliotecas at: index) ].
+	bibliotecas do: [ :biblioteca | iface lib: biblioteca. tabs addPage: (SIViewUsuarioPedirYDevolver interface: iface) label: biblioteca nombre ].
 ]

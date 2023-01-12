@@ -5,35 +5,24 @@ Class {
 		'tfNombre',
 		'tfEditorial',
 		'tfAño',
-		'lfAutores',
-		'modelLibros'
+		'lfAutores'
 	],
 	#category : #'SI-Views'
 }
 
-{ #category : #'instance creation' }
-SIViewAgregarLibro class >> model: aModelLibros [
-	^super new initializeModel: aModelLibros .
-]
-
-{ #category : #'instance creation' }
-SIViewAgregarLibro class >> new [ 
-	self error: 'Usar model: en lugar de new'
-]
-
 { #category : #button }
 SIViewAgregarLibro >> actionAgregar [
-	modelLibros add: (SILibro nombre: tfNombre text editorial: tfEditorial text año: tfAño text autores: (lfAutores elements collect: [ :nombre | SIAutor nombre: nombre ])).
+	| model |
+	model := iface model .
+	model add: (SILibro nombre: tfNombre text editorial: tfEditorial text año: tfAño text autores: (lfAutores elements collect: [ :nombre | SIAutor nombre: nombre ])).
 	self delete.
 
 ]
 
 { #category : #initialization }
-SIViewAgregarLibro >> initializeModel: aModelLibros [
-	self initialize.
-	modelLibros := aModelLibros.
+SIViewAgregarLibro >> initializeInterface: aSIInterface [
+	super initializeInterface: aSIInterface.
 	^self addMorph: (SIColumn new 
-	
 				addMorph: SISpacer new;
 				addMorph: (SIRow new
 					addMorph: SISpacer new;	

@@ -28,6 +28,12 @@ SIModelLibros >> add: unLibro [
 	self refresh.
 ]
 
+{ #category : #adding }
+SIModelLibros >> agregar: unLibro [
+	sistema agregarLibro: unLibro enLaBiblioteca:  biblioteca.
+	self refresh.
+]
+
 { #category : #defaults }
 SIModelLibros >> iconFor: anElement at: idColumn [ 
 	idColumn = 'Disponible' ifTrue: [
@@ -60,6 +66,11 @@ SIModelLibros >> refresh [
 SIModelLibros >> remove: unLibro [ 
 	biblioteca removerLibro: unLibro.
 	self refresh.
+]
+
+{ #category : #removing }
+SIModelLibros >> removeAt: index [ 
+	self remove: (elements at: index).
 ]
 
 { #category : #'as yet unclassified' }

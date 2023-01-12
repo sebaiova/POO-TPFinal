@@ -6,61 +6,47 @@ Class {
 		'ftDireccion',
 		'ftTelefono',
 		'tfNombre',
-		'modelLibros',
-		'modelIndex',
 		'tablaLibros'
 	],
 	#category : #'SI-Views'
 }
 
-{ #category : #'instance creation' }
-SIViewDetalleBiblioteca class >> modelIndex: aModelIndex [ 
-	^super new initializeModelIndex: aModelIndex.
-]
-
-{ #category : #'instance creation' }
-SIViewDetalleBiblioteca class >> new [ 
-	self error: 'No llamar new.'
-]
-
 { #category : #button }
 SIViewDetalleBiblioteca >> actionAgregarLibro [
-	^self addMorph: (SIViewAgregarLibro model: modelLibros).
+	iface model: tablaLibros model.
+	^self addMorph: (SIViewAgregarLibro interface: iface).
 ]
 
 { #category : #button }
 SIViewDetalleBiblioteca >> actionConfirmarDatos [
 	|biblioteca|
-	biblioteca := modelIndex element.
+	biblioteca := iface modelIndex element.
 	biblioteca nombre: tfNombre text.
 	biblioteca telefono: ftTelefono text.
 	biblioteca representante: ftRepresentante text.
 	biblioteca direccion: ftDireccion text.
-	modelIndex elementChanged.
+	iface modelIndex elementChanged.
 ]
 
-{ #category : #'as yet unclassified' }
-SIViewDetalleBiblioteca >> actionDarDeBaja [ 
-	modelLibros remove: tablaLibros selected.
+{ #category : #button }
+SIViewDetalleBiblioteca >> actionDarDeBaja [
+	tablaLibros eliminar.
 ]
 
 { #category : #initialization }
-SIViewDetalleBiblioteca >> initializeModelIndex: aModelIndex [
+SIViewDetalleBiblioteca >> initializeInterface: aSIInterface [
  	| biblioteca tabs tablaPrestamos tableLibrosPrestamo |
-	
-	self initialize;
-		addMorph: (SIColumn new 
+	super initializeInterface: aSIInterface .
+	self 	addMorph: (SIColumn new 
 			addMorph: (tabs := SITabs new);
 			addMorph: (SIRow new 
 				addMorph: (SIButton label: 'Atras' target: self message: #delete);
 				addMorph: SISpacer new;
 				yourself
 				)).
-				
-	modelIndex := aModelIndex.
-	biblioteca := aModelIndex element.		
-	modelLibros := modelIndex model getModelLibros: modelIndex index.
-			
+
+	biblioteca := iface modelIndex element.
+	
 	tabs addPage: (SIColumn new
 			addMorph: SISpacer new;
 			addMorph: (tfNombre := (SITextFieldTagged tag: 'Nombre:') text: biblioteca nombre);
@@ -74,7 +60,7 @@ SIViewDetalleBiblioteca >> initializeModelIndex: aModelIndex [
 	 	label: 'Datos'.
 		
 	tabs addPage: (SIColumn new 
-			addMorph: (tablaLibros := SITable model: modelLibros headers: #(Titulo Disponible Año Editorial Autores)); 		
+			addMorph: (tablaLibros := SITable model: (SIModelLibros biblioteca: biblioteca sistema: iface sys) headers: #(Titulo Disponible Año Editorial Autores)); 		
 			addMorph: (SIRow new 
 				addMorph: SISpacer new;
 				addMorph: (SIButton label: 'Dar de Baja' target: self message: #actionDarDeBaja); 

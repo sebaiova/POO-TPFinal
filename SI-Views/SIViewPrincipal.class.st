@@ -2,7 +2,6 @@ Class {
 	#name : #SIViewPrincipal,
 	#superclass : #SIView,
 	#instVars : [
-		'sistema',
 		'tfUsuario',
 		'tfContraseña',
 		'tag'
@@ -10,34 +9,25 @@ Class {
 	#category : #'SI-Views'
 }
 
-{ #category : #'instance creation' }
-SIViewPrincipal class >> new [
-	self error: 'Usar sistema:unSistema en lugar de new.'
-]
-
-{ #category : #'instance creation' }
-SIViewPrincipal class >> sistema: unSistema [
-	^super new initializeSistema: unSistema.
-]
-
 { #category : #button }
 SIViewPrincipal >> actionAdministrar [
-	self addMorph: (SIViewAdministrar sistema: sistema).
+	self addMorph: (SIViewAdministrar interface: iface).
 ]
 
-{ #category : #button }
+{ #category : #initialization }
 SIViewPrincipal >> actionIniciarSesion [
 	| usuario |
 	
 	self esUsuarioVacio ifFalse: [
 		self esDNIInvalido ifFalse: [ 
 			self esContraseñaVacio ifFalse: [
-				usuario := sistema logging: tfUsuario text asInteger password: tfContraseña text.
+				usuario := iface sys logging: tfUsuario text asInteger password: tfContraseña text.
 				usuario ifNil: [ tag bad: 'Usuario o contraseña incorrectos' ] 
 					  			ifNotNil: [ tfContraseña accepted. tfUsuario accepted.
 										tag clear.
 										tfContraseña text: ''.
-										self addMorph: ( SIViewUsuario usuario: usuario sistema: sistema)]
+										iface user: usuario.
+										self addMorph: (SIViewUsuario interface: iface)]
 						 ]
 					]
 				].
@@ -45,7 +35,7 @@ SIViewPrincipal >> actionIniciarSesion [
 
 { #category : #button }
 SIViewPrincipal >> actionRegistrarse [
-	self addMorph: (SIViewRegistrarUsuario sistema: sistema).
+	self addMorph: (SIViewRegistrarUsuario interface: iface).
 ]
 
 { #category : #verification }
@@ -67,9 +57,8 @@ SIViewPrincipal >> esUsuarioVacio [
 ]
 
 { #category : #initialization }
-SIViewPrincipal >> initializeSistema: unSistema [
-	self initialize.
-	sistema := unSistema.
+SIViewPrincipal >> initializeInterface: aSIInterface [
+	super initializeInterface: aSIInterface.
 	^self
 		addMorph: ( SIColumn new
 				addMorph: SISpacer new;

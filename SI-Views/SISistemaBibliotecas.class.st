@@ -1,28 +1,24 @@
 Class {
 	#name : #SISistemaBibliotecas,
 	#superclass : #SIView,
-	#instVars : [
-		'sistema'
-	],
 	#category : #'SI-Views'
 }
 
 { #category : #'instance creation' }
 SISistemaBibliotecas class >> run [
-	^self new initialize: SISistema new.
+	^self new initializeInterface: (SIInterface sistema: SISistema new).
 ]
 
 { #category : #'instance creation' }
 SISistemaBibliotecas class >> runPreloaded [
-	^self new initialize: SISistemaPreloaded new.
+		^self new initializeInterface: (SIInterface sistema: SISistemaPreloaded new).
 ]
 
 { #category : #initialization }
-SISistemaBibliotecas >> initialize: unSistema [
-	self initialize.
-	sistema := unSistema.
+SISistemaBibliotecas >> initializeInterface: aSIInterface [
+	super initializeInterface: aSIInterface.
 	^self	extent: 800@500;
-			addMorph: (SIViewPrincipal sistema: sistema);
+			addMorph: (SIViewPrincipal interface: iface);
 			
 			openInWindowLabeled: 'Sistema de Bibliotecas';
 			yourself.

@@ -2,7 +2,6 @@ Class {
 	#name : #SIViewAdministrar,
 	#superclass : #SIView,
 	#instVars : [
-		'sistema',
 		'tablaBiblioteca',
 		'tablaUsuarios',
 		'modelBiblioteca'
@@ -10,27 +9,17 @@ Class {
 	#category : #'SI-Views'
 }
 
-{ #category : #'instance creation' }
-SIViewAdministrar class >> new [ 
-	self error: 'Usar sistema: en lugar de new'
-]
-
-{ #category : #'instance creation' }
-SIViewAdministrar class >> sistema: unSistema [
-	^super new initializeSistema: unSistema. 
-]
-
 { #category : #button }
 SIViewAdministrar >> actionAgregarBiblioteca [
-	self addMorph: (SIViewAgregarBiblioteca model: modelBiblioteca)
+	iface model: tablaBiblioteca model.
+	self addMorph: (SIViewAgregarBiblioteca interface: iface).
 ]
 
 { #category : #initialization }
-SIViewAdministrar >> initializeSistema: unSistema [
+SIViewAdministrar >> initializeInterface: aSIInterface [
 	| tabs |
-	self initialize.
-	sistema := unSistema.
-	modelBiblioteca := (SIModelBibliotecas sistema: sistema).
+	super initializeInterface: aSIInterface.
+	modelBiblioteca := (SIModelBibliotecas sistema: iface sys).
 	
 	self addMorph: (SIColumn new
 			addMorph: (tabs := SITabs new);
@@ -45,7 +34,7 @@ SIViewAdministrar >> initializeSistema: unSistema [
 	tabs addPage: (SIColumn new 
 				addMorph: (SIRow new addMorph: (LabelMorph contents: 'Doble click para Detalles'); addMorph: SISpacer new;
 							addMorph: ((self iconNamed: #smallNew) asMorph ); addMorph: (LabelMorph contents: '=  usuario Plus'));		
-				addMorph: (tablaUsuarios := SITable model: (SIModelUsuarios sistema: sistema) headers: #(Nombre Apellido DNI))) 
+				addMorph: (tablaUsuarios := SITable model: (SIModelUsuarios sistema: iface sys) headers: #(Nombre Apellido DNI))) 
 				label: 'Usuarios'.
 						
 	tabs addPage: (SIColumn new 
@@ -60,8 +49,8 @@ SIViewAdministrar >> initializeSistema: unSistema [
 	) label: 'Bibliotecas'.	
 	tabs selectedPageIndex: 1.
 	
-	tablaUsuarios onDoubleClick: [ :modelIndex | self addMorph: (SIViewDetalleUsuario modelIndex: modelIndex sistema: sistema) ].
-	tablaBiblioteca onDoubleClick: [ :modelIndex | self addMorph: (SIViewDetalleBiblioteca modelIndex: modelIndex)].
+	tablaUsuarios onDoubleClick: [ :modelIndex | iface user: modelIndex element. self addMorph: (SIViewDetalleUsuario interface: iface) ].
+	tablaBiblioteca onDoubleClick: [ :modelIndex | iface modelIndex: modelIndex. self addMorph: (SIViewDetalleBiblioteca interface: iface)].
 	^self.
 
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : #SIMessage,
-	#superclass : #SIView,
+	#superclass : #SIPane,
 	#category : #'SI-UIComponents'
 }
 

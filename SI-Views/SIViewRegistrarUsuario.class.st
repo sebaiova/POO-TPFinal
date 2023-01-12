@@ -2,7 +2,6 @@ Class {
 	#name : #SIViewRegistrarUsuario,
 	#superclass : #SIView,
 	#instVars : [
-		'sistema',
 		'tfRepetirPass',
 		'tfPass',
 		'tfDNI',
@@ -13,16 +12,6 @@ Class {
 	#category : #'SI-Views'
 }
 
-{ #category : #'instance creation' }
-SIViewRegistrarUsuario class >> new [
-	self error: 'Usar sistema:unSistema en lugar de new.'
-]
-
-{ #category : #'instance creation' }
-SIViewRegistrarUsuario class >> sistema: unSistema [
-	^super new initializeSistema: unSistema.
-]
-
 { #category : #button }
 SIViewRegistrarUsuario >> actionRegistrar [
 	self esNombreVacio ifFalse: [
@@ -31,7 +20,7 @@ SIViewRegistrarUsuario >> actionRegistrar [
 				self existeDNI ifFalse: [
 					self esPassVacio ifFalse: [
 						self passEquals ifTrue: [ 
-								sistema agregarUsuario: tfDNI text asInteger nombre: tfNombre text apellido: tfApellido text password: tfPass text.
+								iface sys agregarUsuario: tfDNI text asInteger nombre: tfNombre text apellido: tfApellido text password: tfPass text.
 								self delete.
 								]
 							]
@@ -67,14 +56,13 @@ SIViewRegistrarUsuario >> esPassVacio [
 
 { #category : #verification }
 SIViewRegistrarUsuario >> existeDNI [ 
-	^(sistema existeDNIUsuario: tfDNI text asInteger) ifTrue: [ tfDNI rejected. tag bad: 'El DNI ya existe en el sistema.'. true ] 
+	^(iface sys existeDNIUsuario: tfDNI text asInteger) ifTrue: [ tfDNI rejected. tag bad: 'El DNI ya existe en el sistema.'. true ] 
 																ifFalse: [ tfDNI accepted. false ]
 ]
 
 { #category : #initialization }
-SIViewRegistrarUsuario >> initializeSistema: unSistema [
-	self initialize.
-	sistema := unSistema.
+SIViewRegistrarUsuario >> initializeInterface: aSIInterface [
+	super initializeInterface: aSIInterface.
 	^self
 		addMorph: (SIColumn new
 			addMorph: SISpacer new;

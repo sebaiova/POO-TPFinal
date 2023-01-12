@@ -6,36 +6,24 @@ Class {
 		'tfDireccion',
 		'tfTelefono',
 		'tfRepresentante',
-		'modelBibliotecas',
 		'tfID',
 		'tag'
 	],
 	#category : #'SI-Views'
 }
 
-{ #category : #'instance creation' }
-SIViewAgregarBiblioteca class >> model: aModelLibros [
-	^super new initializeModel: aModelLibros .
-]
-
-{ #category : #'instance creation' }
-SIViewAgregarBiblioteca class >> new [ 
-	self error: 'Usar model: en lugar de new'
-]
-
 { #category : #button }
 SIViewAgregarBiblioteca >> actionAgregar [
 	(tfID text isEmpty) ifTrue: [ tag bad: 'Ingrese una ID'. tfID rejected ]
 							ifFalse: [  
-									(modelBibliotecas agregar: (SIBiblioteca id: tfID text nombre: tfNombre text telefono: tfTelefono text direccion: tfDireccion text representante: tfRepresentante text))
+									(iface model agregar: (SIBiblioteca id: tfID text nombre: tfNombre text telefono: tfTelefono text direccion: tfDireccion text representante: tfRepresentante text))
 									ifNil: 	  [ tag bad: 'ID ya existente'. tfID rejected  ]  
 									ifNotNil:  [	self delete ]].
 ]
 
 { #category : #initialization }
-SIViewAgregarBiblioteca >> initializeModel: aModelBiblioteca [
-	self initialize.
-	modelBibliotecas := aModelBiblioteca.
+SIViewAgregarBiblioteca >> initializeInterface: aSIInterface [
+	super initializeInterface: aSIInterface .
 	^self addMorph: (SIColumn new 
 				addMorph: SISpacer new;
 				addMorph: (tag := SITag new);
