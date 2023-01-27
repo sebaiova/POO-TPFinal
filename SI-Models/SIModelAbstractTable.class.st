@@ -1,8 +1,16 @@
 Class {
 	#name : #SIModelAbstractTable,
 	#superclass : #FTSimpleDataSource,
+	#instVars : [
+		'iface'
+	],
 	#category : #'SI-Models'
 }
+
+{ #category : #'instance creation' }
+SIModelAbstractTable class >> interface: anSIInterface [ 
+	^self new initializeInterface: anSIInterface .
+]
 
 { #category : #accessing }
 SIModelAbstractTable >> cellColumn: column row: rowIndex [
@@ -39,12 +47,20 @@ SIModelAbstractTable >> iconFor: anElement at: idColumn [
 	^nil.
 ]
 
+{ #category : #initialization }
+SIModelAbstractTable >> initializeInterface: anSIInterface [
+	self initialize.
+	iface := anSIInterface.
+	self refresh.
+	^self.
+]
+
 { #category : #accessing }
 SIModelAbstractTable >> numberOfRows [ 
 	^elements size.
 ]
 
-{ #category : #accessing }
+{ #category : #refresh }
 SIModelAbstractTable >> refresh [ 
 	self subclassResponsibility .
 ]

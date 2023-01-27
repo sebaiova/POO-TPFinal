@@ -9,7 +9,7 @@ Class {
 	#category : #'SI-Models'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 SIModelIndex class >> model: aModel index: aIndex [ 
 	^super new initializeModel: aModel index: aIndex.
 ]

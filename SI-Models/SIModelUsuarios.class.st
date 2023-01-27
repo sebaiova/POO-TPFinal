@@ -1,21 +1,8 @@
 Class {
 	#name : #SIModelUsuarios,
 	#superclass : #SIModelAbstractTable,
-	#instVars : [
-		'sistema'
-	],
 	#category : #'SI-Models'
 }
-
-{ #category : #'instance creation' }
-SIModelUsuarios class >> new [
-	self error: 'Usar sistema: en lugar de new.'
-]
-
-{ #category : #'instance creation' }
-SIModelUsuarios class >> sistema: unSistema [ 
-	^super new initializeSistema: unSistema.
-]
 
 { #category : #defaults }
 SIModelUsuarios >> iconFor: anElement at: idColumn [ 
@@ -26,17 +13,9 @@ SIModelUsuarios >> iconFor: anElement at: idColumn [
 	^nil.
 ]
 
-{ #category : #initialization }
-SIModelUsuarios >> initializeSistema: unSistema [
-	self initialize.
-	sistema := unSistema.
-	self refresh.
-	^self.
-]
-
 { #category : #accessing }
 SIModelUsuarios >> refresh [ 
-	elements := sistema usuarios.
+	elements := iface sys usuarios.
 	self changed: #refresh.
 ]
 

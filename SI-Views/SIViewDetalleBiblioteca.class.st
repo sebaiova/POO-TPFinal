@@ -46,6 +46,7 @@ SIViewDetalleBiblioteca >> initializeInterface: aSIInterface [
 				)).
 
 	biblioteca := iface modelIndex element.
+	iface lib: biblioteca.
 	
 	tabs addPage: (SIColumn new
 			addMorph: SISpacer new;
@@ -60,7 +61,7 @@ SIViewDetalleBiblioteca >> initializeInterface: aSIInterface [
 	 	label: 'Datos'.
 		
 	tabs addPage: (SIColumn new 
-			addMorph: (tablaLibros := SITable model: (SIModelLibros biblioteca: biblioteca sistema: iface sys) headers: #(Titulo Disponible Año Editorial Autores)); 		
+			addMorph: (tablaLibros := SITable model: (SIModelLibrosBiblioteca interface: iface) headers: #(Titulo Disponible Año Editorial Autores)); 		
 			addMorph: (SIRow new 
 				addMorph: SISpacer new;
 				addMorph: (SIButton label: 'Dar de Baja' target: self message: #actionDarDeBaja); 
@@ -70,13 +71,13 @@ SIViewDetalleBiblioteca >> initializeInterface: aSIInterface [
 		label: 'Libros'.
 			
 	tabs addPage: (SIColumn new
-		addMorph: (tablaPrestamos := SITable model: (SIModelPrestamosBiblioteca biblioteca: biblioteca) headers: #('Usuario' 'Fecha Inicio' 'Fecha Limite' 'Cantidad de Libros'));
+		addMorph: (tablaPrestamos := SITable model: (SIModelPrestamosBiblioteca interface: iface) headers: #('Usuario' 'Fecha Inicio' 'Fecha Limite' 'Cantidad de Libros'));
 		addMorph: (tableLibrosPrestamo := SITable model: FTEasyListDataSource new headers: #(Titulo Año Editorial Autores))
 	
 	) label: 'Prestamos'.
 	tabs selectedPageIndex: 1.
 			
-	tablaPrestamos onClick: [ :index | tableLibrosPrestamo model: (SIModelLibros prestamo: index element) ].
+	tablaPrestamos onClick: [ :index | iface loan: index element. tableLibrosPrestamo model: (SIModelLibrosPrestamo interface: iface) ].
 
 	^self
 ]
