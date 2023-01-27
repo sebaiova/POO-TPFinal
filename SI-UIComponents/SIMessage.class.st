@@ -13,6 +13,7 @@ SIMessage class >> contents: aString [
 SIMessage >> initializeContents: aString [
 	^self initialize;
 			color: (Color black alpha: 0.6);
+			layoutPolicy: StackLayout new;
 			addMorph: (SIPane new extent: 256@96; vResizing: #rigid; hResizing: #rigid; borderStyle: BorderStyle raised;
 						addMorph: (SIColumn new listCentering: #center; wrapCentering: #center; cellInset: 20;
 							addMorph: (LabelMorph contents: aString);
