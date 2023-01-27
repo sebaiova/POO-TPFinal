@@ -19,7 +19,7 @@ SIViewAdministrar >> actionAgregarBiblioteca [
 SIViewAdministrar >> initializeInterface: aSIInterface [
 	| tabs |
 	super initializeInterface: aSIInterface.
-	modelBiblioteca := (SIModelBibliotecas sistema: iface sys).
+	modelBiblioteca := (SIModelBibliotecas interface: iface).
 	
 	self addMorph: (SIColumn new
 			addMorph: (tabs := SITabs new);
@@ -34,7 +34,7 @@ SIViewAdministrar >> initializeInterface: aSIInterface [
 	tabs addPage: (SIColumn new 
 				addMorph: (SIRow new addMorph: (LabelMorph contents: 'Doble click para Detalles'); addMorph: SISpacer new;
 							addMorph: ((self iconNamed: #smallNew) asMorph ); addMorph: (LabelMorph contents: '=  usuario Plus'));		
-				addMorph: (tablaUsuarios := SITable model: (SIModelUsuarios sistema: iface sys) headers: #(Nombre Apellido DNI))) 
+				addMorph: (tablaUsuarios := SITable model: (SIModelUsuarios interface: iface) headers: #(Nombre Apellido DNI))) 
 				label: 'Usuarios'.
 						
 	tabs addPage: (SIColumn new 

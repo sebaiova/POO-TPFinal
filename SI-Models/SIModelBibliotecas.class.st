@@ -1,36 +1,20 @@
 Class {
 	#name : #SIModelBibliotecas,
 	#superclass : #SIModelAbstractTable,
-	#instVars : [
-		'sistema'
-	],
 	#category : #'SI-Models'
 }
-
-{ #category : #'instance creation' }
-SIModelBibliotecas class >> sistema: unSistema [ 
-	^super new initializeSistema: unSistema.
-]
 
 { #category : #adding }
 SIModelBibliotecas >> agregar: unaBiblioteca [
 	| a |
-	a := sistema agregarBiblioteca: unaBiblioteca.
+	a := iface sys agregarBiblioteca: unaBiblioteca.
 	self refresh.
 	^a.
 ]
 
-{ #category : #initialization }
-SIModelBibliotecas >> initializeSistema: unSistema [
-	self initialize.
-	sistema := unSistema.
-	self refresh.
-	^self.
-]
-
 { #category : #refresh }
 SIModelBibliotecas >> refresh [ 
-	elements := sistema bibliotecas.
+	elements := iface sys bibliotecas.
 	self changed: #refresh.
 ]
 

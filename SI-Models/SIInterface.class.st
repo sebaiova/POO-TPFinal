@@ -5,6 +5,7 @@ Class {
 		'sistema',
 		'lib',
 		'user',
+		'loan',
 		'modelIndex',
 		'model'
 	],
@@ -36,6 +37,16 @@ SIInterface >> lib [
 { #category : #accessing }
 SIInterface >> lib: unaBiblioteca [
 	lib := unaBiblioteca .
+]
+
+{ #category : #accessing }
+SIInterface >> loan [ 
+	^loan.
+]
+
+{ #category : #accessing }
+SIInterface >> loan: unPrestamo [ 
+	loan := unPrestamo .
 ]
 
 { #category : #accessing }

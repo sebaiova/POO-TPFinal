@@ -1,6 +1,6 @@
 Class {
 	#name : #SIModelDragAndDrop,
-	#superclass : #SIModelLibros,
+	#superclass : #SIModelLibrosBiblioteca,
 	#category : #'SI-Models'
 }
 
