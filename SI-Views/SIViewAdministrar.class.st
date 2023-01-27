@@ -3,8 +3,7 @@ Class {
 	#superclass : #SIView,
 	#instVars : [
 		'tablaBiblioteca',
-		'tablaUsuarios',
-		'modelBiblioteca'
+		'tablaUsuarios'
 	],
 	#category : #'SI-Views'
 }
@@ -17,7 +16,7 @@ SIViewAdministrar >> actionAgregarBiblioteca [
 
 { #category : #initialization }
 SIViewAdministrar >> initializeInterface: aSIInterface [
-	| tabs |
+	| tabs modelBiblioteca |
 	super initializeInterface: aSIInterface.
 	modelBiblioteca := (SIModelBibliotecas interface: iface).
 	
