@@ -11,9 +11,7 @@ SILayout >> initialize [
 			cellInset: 4;
 			layoutInset: 4;
 			reverseTableCells: true;
-		"	cellPositioning: #center;"
 			listCentering: #center;
-	"		wrapCentering: #center;"
 			initializeOrientation;
 			yourself.
 ]
