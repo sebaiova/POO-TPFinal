@@ -44,8 +44,8 @@ SIViewUsuario >> initializeInterface: aSIInterface [
 					 	addMorph: SIPane new;
 						addMorph: ((SIButton label: 'Pedir y Devolver' target: self  message: 'actionPedirYDevolver' ) extent: buttonSize) ;
 						addMorph: ((SIButton label: 'Cambiar Bibliotecas de Interes' target: self  message: 'actionCambiarBibliotecasInteres' ) extent: buttonSize);
-						addMorph: (btnPlus := (SIButton label: 'Solicitar Usuario Plus' target: self  message: 'actionSolicituarPlus' ) extent: buttonSize);
-						addMorph: (btnNormal := (SIButton label: 'Solicitar Usuario Normal' target: self  message: 'actionSolicituarNormal' ) extent: buttonSize); 
+						addMorph: (btnPlus := (SIButton label: 'Solicitar Usuario Plus' target: self  message: 'actionSolicitarPlus' ) extent: buttonSize);
+						addMorph: (btnNormal := (SIButton label: 'Solicitar Usuario Normal' target: self  message: 'actionSolicitarNormal' ) extent: buttonSize); 
 						addMorph: (tag := SITag new);
 					 	addMorph: SIPane new; 	
 						addMorph: (SIRow new
