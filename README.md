@@ -21,3 +21,7 @@ Con datos precargados
 ```
 SISistemaBibliotecas runPreloaded
 ```
+
+## Informe
+
+[Link](https://drive.google.com/file/d/1_iJqCFgVzaf3MgpiyYQVjKa-V9gea4ZJ/view?usp=sharing)
