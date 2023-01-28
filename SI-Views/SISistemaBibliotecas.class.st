@@ -11,7 +11,7 @@ SISistemaBibliotecas class >> run [
 
 { #category : #'instance creation' }
 SISistemaBibliotecas class >> runPreloaded [
-		^self new initializeInterface: (SIInterface sistema: SISistemaPreloaded new).
+		^self new initializeInterface: (SIInterface sistema: SISistemaPreCargado new).
 ]
 
 { #category : #initialization }

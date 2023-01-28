@@ -57,8 +57,8 @@ SISistema >> existeIDBiblioteca: unID [
 	^colBibliotecas detect: [ :biblioteca | biblioteca hasID: unID ] ifFound: [true] ifNone: [false]. 
 ]
 
-{ #category : #'as yet unclassified' }
-SISistema >> generarListadoUsuariosRegistrados [ 
+{ #category : #usuarios }
+SISistema >> generarListadoUsuariosRestrasados [ 
 	|colRetrasos|
 	colRetrasos := OrderedCollection new.
 	colBibliotecas do: [ :biblioteca | biblioteca usuariosAtrasados 
@@ -93,12 +93,6 @@ SISistema >> obtenerUsuario: aDNI [
 { #category : #usuarios }
 SISistema >> prestamosActivosDeUsuario: unUsuario [
 	^colBibliotecas inject: OrderedCollection new into: [ :col :biblioteca | col addAll: (biblioteca prestamos select: [ :prestamo| (prestamo esDeUsuario: unUsuario) and: prestamo estaActivo ]). col].
-		
-]
-
-{ #category : #usuarios }
-SISistema >> prestamosDeUsuario: unUsuario [
-	^colBibliotecas inject: OrderedCollection new into: [ :col :biblioteca | col addAll: (biblioteca prestamos select: [ :prestamo| prestamo esDeUsuario: unUsuario ]). col].
 		
 ]
 

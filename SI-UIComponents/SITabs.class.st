@@ -2,7 +2,7 @@ Class {
 	#name : #SITabs,
 	#superclass : #TabGroupMorph,
 	#instVars : [
-		'onBlockChangedBlock'
+		'onTabChangedBlock'
 	],
 	#category : #'SI-UIComponents'
 }
@@ -15,7 +15,7 @@ SITabs >> addPage: morph label: label [
 { #category : #initialization }
 SITabs >> initialize [
 	super initialize.
-	onBlockChangedBlock := [ :index | nil ].
+	onTabChangedBlock := [ :index | nil ].
 	^self	
 			layoutPolicy: TableLayout new;
 			cellPositioning: #center;
@@ -28,12 +28,12 @@ SITabs >> initialize [
 
 { #category : #events }
 SITabs >> onTabChanged: aBlock [ "[:index | ]"
-	onBlockChangedBlock := aBlock.
+	onTabChangedBlock := aBlock.
 ]
 
 { #category : #page }
 SITabs >> updatePageIndex: index [
-	onBlockChangedBlock value: index.
+	onTabChangedBlock value: index.
 	^super updatePageIndex: index.
 	
 

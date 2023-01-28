@@ -35,11 +35,6 @@ SIUsuario >> = other [
 	^dni = other dni
 ]
 
-{ #category : #adding }
-SIUsuario >> addBibliotecaInteres: unaBiblioteca [
-	colBibliotecasInteres add: unaBiblioteca .
-]
-
 { #category : #accessing }
 SIUsuario >> apellido [
 	^apellido

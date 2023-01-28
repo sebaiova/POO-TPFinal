@@ -5,12 +5,6 @@ Class {
 }
 
 { #category : #adding }
-SIModelLibrosBiblioteca >> add: unLibro [
-	iface sys agregarLibro: unLibro enLaBiblioteca: iface lib.
-	self refresh.
-]
-
-{ #category : #adding }
 SIModelLibrosBiblioteca >> agregar: unLibro [
 	iface sys agregarLibro: unLibro enLaBiblioteca: iface lib.
 	self refresh.
@@ -46,7 +40,7 @@ SIModelLibrosBiblioteca >> removeAt: index [
 	self remove: (elements at: index).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SIModelLibrosBiblioteca >> stringFor: anElement at: idColumn [
 	idColumn = 'Titulo'		ifTrue: [ ^anElement nombre ].
 	idColumn = 'Año'			ifTrue: [ ^anElement año ].

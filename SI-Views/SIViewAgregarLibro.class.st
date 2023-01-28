@@ -14,7 +14,7 @@ Class {
 SIViewAgregarLibro >> actionAgregar [
 	| model |
 	model := iface model .
-	model add: (SILibro nombre: tfNombre text editorial: tfEditorial text año: tfAño text autores: (lfAutores elements collect: [ :nombre | SIAutor nombre: nombre ])).
+	model agregar: (SILibro nombre: tfNombre text editorial: tfEditorial text año: tfAño text autores: (lfAutores elements collect: [ :nombre | SIAutor nombre: nombre ])).
 	self delete.
 
 ]

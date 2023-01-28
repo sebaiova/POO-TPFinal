@@ -42,7 +42,7 @@ SIModelAbstractTable >> elementAt: anIndex [
 	^elements at: anIndex.
 ]
 
-{ #category : #defaults }
+{ #category : #accessing }
 SIModelAbstractTable >> iconFor: anElement at: idColumn [
 	^nil.
 ]
@@ -65,7 +65,7 @@ SIModelAbstractTable >> refresh [
 	self subclassResponsibility .
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SIModelAbstractTable >> stringFor: anElement at: idColumn [ 
 	^anElement asString.
 ]

@@ -2,14 +2,14 @@ Class {
 	#name : #SIBiblioteca,
 	#superclass : #Object,
 	#instVars : [
-		'identificador',
 		'direccion',
 		'nombre',
 		'telefono',
 		'representante',
 		'colLibros',
 		'colPrestamos',
-		'diasPrestamo'
+		'diasPrestamo',
+		'id'
 	],
 	#category : #'SI-Domain'
 }
@@ -66,18 +66,18 @@ SIBiblioteca >> direccion: aDireccion [
 
 { #category : #accessing }
 SIBiblioteca >> hasID: unID [ 
-	^ identificador = unID.
+	^ id = unID.
 ]
 
 { #category : #accessing }
 SIBiblioteca >> id [ 
-	^identificador.
+	^id.
 ]
 
 { #category : #initialization }
 SIBiblioteca >> initializeID: unID nombre: unNombre telefono: unTelefono direccion: unaDireccion representante: unRepresentante [
 	self initialize.
-	identificador := unID.
+	id := unID.
 	nombre := unNombre.
 	telefono := unTelefono.
 	direccion := unaDireccion.
@@ -123,7 +123,7 @@ SIBiblioteca >> prestamosActivosDe: unUsuario [
 	^colPrestamos select: [ :prestamo | (prestamo esDeUsuario: unUsuario) and: prestamo estaActivo ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SIBiblioteca >> prestamosAtrasados [ 
 	^colPrestamos select: [ :prestamo | prestamo estaRetrasado ].
 ]
@@ -204,7 +204,7 @@ SIBiblioteca >> tienePrestamoActivo: unUsuario [
 					ifNone:  [ false ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SIBiblioteca >> usuariosAtrasados [
 	^(self prestamosAtrasados collect: [:prestamo | prestamo usuario ] into: Set new) asArray.
 ]

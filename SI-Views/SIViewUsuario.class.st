@@ -2,7 +2,6 @@ Class {
 	#name : #SIViewUsuario,
 	#superclass : #SIView,
 	#instVars : [
-		'btnNormal',
 		'tag'
 	],
 	#category : #'SI-Views'
@@ -19,7 +18,7 @@ SIViewUsuario >> actionPedirYDevolver [
 ]
 
 { #category : #button }
-SIViewUsuario >> actionSolicituarNormal [
+SIViewUsuario >> actionSolicitarNormal [
 	(iface sys convertirANormal: iface user) ifFalse: [ tag bad: 'Hubo un problema al solicitar dejar de ser Plus.' ]
 												ifTrue: [ 
 													owner addMorph: (SIMessage contents: 'Ha dejado de ser Plus.').
@@ -27,7 +26,7 @@ SIViewUsuario >> actionSolicituarNormal [
 ]
 
 { #category : #button }
-SIViewUsuario >> actionSolicituarPlus [
+SIViewUsuario >> actionSolicitarPlus [
 	(iface sys convertirAPlus: iface user) ifFalse: [ tag bad: 'Hubo un problema al solicitar el cambio a Plus.' ]
 												ifTrue: [ 
 													owner addMorph: (SIMessage contents: 'Solicitud Plus Aceptada!').
@@ -36,7 +35,7 @@ SIViewUsuario >> actionSolicituarPlus [
 
 { #category : #initialization }
 SIViewUsuario >> initializeInterface: aSIInterface [
-	| buttonSize btnPlus |
+	| buttonSize btnPlus btnNormal |
 	super initializeInterface: aSIInterface.
 	buttonSize := 200@24.
 	 self addMorph: (SIColumn new cellInset: 20;

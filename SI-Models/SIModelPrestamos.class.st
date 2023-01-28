@@ -4,7 +4,7 @@ Class {
 	#category : #'SI-Models'
 }
 
-{ #category : #defaults }
+{ #category : #accessing }
 SIModelPrestamos >> iconFor: anElement at: idColumn [ 
 	(idColumn = 'Fecha Limite') ifTrue: [
 				 anElement estaRetrasado ifTrue: [ ^ (self iconNamed: #smallError ) asMorph. ]
@@ -13,7 +13,7 @@ SIModelPrestamos >> iconFor: anElement at: idColumn [
 	^nil.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SIModelPrestamos >> stringFor: anElement at: idColumn [
 	idColumn = 'Fecha Inicio'			ifTrue: [ ^anElement fecha ddmmyyyy ].
 	idColumn = 'Fecha Limite'			ifTrue: [ ^anElement fechaMaxima ddmmyyyy ].

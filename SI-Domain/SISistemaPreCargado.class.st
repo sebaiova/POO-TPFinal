@@ -1,42 +1,19 @@
 Class {
-	#name : #SISistemaPreloaded,
+	#name : #SISistemaPreCargado,
 	#superclass : #SISistema,
 	#category : #'SI-Domain'
 }
 
 { #category : #'private - loading' }
-SISistemaPreloaded >> cargarAutores: unArrayNombres [
+SISistemaPreCargado >> cargarAutores: unArrayNombres [
 	|autores autor|
 	autores := OrderedCollection new.
 	unArrayNombres do: [ :aNombre | autor := (SIAutor nombre: aNombre). colAutores add: autor. autores add: autor].
 	^autores.
 ]
 
-{ #category : #initialization }
-SISistemaPreloaded >> initialize [ 
-	|seba a b c aLibros bLibros cLibros |
-	super initialize.
-	self agregarUsuario: (seba := SIUsuario dni: 39062823 nombre: 'Sebastian' apellido: 'Iovaldi' password: '1234');
-			agregarUsuario: (SIUsuario dni: 43484212 nombre: 'Leonard' apellido: 'Fernandez' password: 1234);
-			agregarUsuario: (SIUsuario dni: 44216402 nombre: 'Medel' apellido: 'Joaquin' password: 1234);
-			agregarUsuario: (SIUsuario dni: 43275843 nombre: 'Leonel' apellido: 'Llancaqueo' password: 1234);
-			agregarUsuario: (SIUsuario dni: 44287842 nombre: 'Cristopher' apellido: 'Ovaillos' password: 1234).
-
-	aLibros := self loadBooks: (self agregarBiblioteca: (a := SIBiblioteca id: 'A' nombre: 'Juan Bautista Alberdi'  telefono: 45228338 direccion: 'Av. Argentina 844' representante: 'Bernardino Teruel')).
-	bLibros := self loadBooks: (self agregarBiblioteca: (b := SIBiblioteca id: 'B' nombre: 'Francisco P. Moreno' telefono: 45132458 direccion: 'Av. Leloir y Sta Fe' representante: 'Yeray Salazar')).
-	cLibros := self loadBooks: (self agregarBiblioteca: (c := SIBiblioteca id: 'C' nombre: 'Juan Jose Brion' telefono: 42658752 direccion: 'Av. Leloir 842'  representante: 'Guillermina Llorens' )).
-			
-	b registrarPrestamoAtrasadoUsuario: seba libros: (OrderedCollection new add: (bLibros at: 3); 
-																						add: (bLibros at: 8);
-																						yourself).			
-"					
-	c registrarPrestamoUsuario: seba 
-	libros: (OrderedCollection new add: (Libro nombre: 'My Great Predecessors, Part 1' editorial: 'Everyman Chess' año: 2020 autores: (self cargarAutores: #('Garry Kasparov'))); yourself)."
-	^self
-]
-
 { #category : #'private - loading' }
-SISistemaPreloaded >> loadBooks: biblioteca [
+SISistemaPreCargado >> cargarLibros: biblioteca [
 		biblioteca 				
 			agregarLibro: (SILibro nombre: 'OpenGL SuperBible' editorial: 'Addison-Wesley Professional' año: 2013 autores: (self cargarAutores: #('Graham Sellers' 'Richard S. Wright' 'Jr. Nicholas Haemel')));
 			agregarLibro: (SILibro nombre: 'Computer Organization and Design' editorial: 'Morgan Kaufmann' año: 2013 autores: (self cargarAutores: #('David A. Patterson' 'John L. Hennessy')));
@@ -65,4 +42,27 @@ SISistemaPreloaded >> loadBooks: biblioteca [
 			agregarLibro: (SILibro nombre: 'Opening Developments' editorial: 'Edition Olms' año: 2009	 autores: (self cargarAutores: #('Mark Dvoretsky')));
 			agregarLibro: (SILibro nombre: 'The French Tarrasch' editorial: 'Batsford' año: 1998 autores: (self cargarAutores: #('John Emms'))).
 	^biblioteca libros.
+]
+
+{ #category : #initialization }
+SISistemaPreCargado >> initialize [ 
+	|seba a b c aLibros bLibros cLibros |
+	super initialize.
+	self agregarUsuario: (seba := SIUsuario dni: 39062823 nombre: 'Sebastian' apellido: 'Iovaldi' password: '1234');
+			agregarUsuario: (SIUsuario dni: 43484212 nombre: 'Leonard' apellido: 'Fernandez' password: 1234);
+			agregarUsuario: (SIUsuario dni: 44216402 nombre: 'Medel' apellido: 'Joaquin' password: 1234);
+			agregarUsuario: (SIUsuario dni: 43275843 nombre: 'Leonel' apellido: 'Llancaqueo' password: 1234);
+			agregarUsuario: (SIUsuario dni: 44287842 nombre: 'Cristopher' apellido: 'Ovaillos' password: 1234).
+
+	aLibros := self cargarLibros: (self agregarBiblioteca: (a := SIBiblioteca id: 'A' nombre: 'Juan Bautista Alberdi'  telefono: 45228338 direccion: 'Av. Argentina 844' representante: 'Bernardino Teruel')).
+	bLibros := self cargarLibros: (self agregarBiblioteca: (b := SIBiblioteca id: 'B' nombre: 'Francisco P. Moreno' telefono: 45132458 direccion: 'Av. Leloir y Sta Fe' representante: 'Yeray Salazar')).
+	cLibros := self cargarLibros: (self agregarBiblioteca: (c := SIBiblioteca id: 'C' nombre: 'Juan Jose Brion' telefono: 42658752 direccion: 'Av. Leloir 842'  representante: 'Guillermina Llorens' )).
+			
+	b registrarPrestamoAtrasadoUsuario: seba libros: (OrderedCollection new add: (bLibros at: 3); 
+																						add: (bLibros at: 8);
+																						yourself).			
+"					
+	c registrarPrestamoUsuario: seba 
+	libros: (OrderedCollection new add: (Libro nombre: 'My Great Predecessors, Part 1' editorial: 'Everyman Chess' año: 2020 autores: (self cargarAutores: #('Garry Kasparov'))); yourself)."
+	^self
 ]
