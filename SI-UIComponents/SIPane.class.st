@@ -1,6 +1,6 @@
 Class {
 	#name : #SIPane,
-	#superclass : #Morph,
+	#superclass : #PanelMorph,
 	#category : #'SI-UIComponents'
 }
 
@@ -9,7 +9,7 @@ SIPane >> initialize [
 	super initialize.
 	^self	
 			layoutPolicy: TableLayout new;
-			color: Color darkGray darker;
+			color: self theme baseColor;
 			borderColor: self color;
 			vResizing: #spaceFill; 
 			hResizing: #spaceFill;

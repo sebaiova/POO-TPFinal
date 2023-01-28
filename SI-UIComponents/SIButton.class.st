@@ -21,13 +21,13 @@ SIButton class >> new [
 
 { #category : #protocol }
 SIButton >> disable [ 
-	self color: Color gray darker darker.
+	self color: self theme baseColor.
 	disabled := true.
 ]
 
 { #category : #protocol }
 SIButton >> enable [ 
-	self color: Color gray.
+	self color: self theme baseColor lighter lighter.
 	disabled := false.
 ]
 
