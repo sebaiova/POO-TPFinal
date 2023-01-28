@@ -1,10 +1,10 @@
 Class {
 	#name : #SIView,
-	#superclass : #SIPane,
+	#superclass : #Morph,
 	#instVars : [
 		'iface'
 	],
-	#category : #'SI-UIComponents'
+	#category : #'SI-Views'
 }
 
 { #category : #'instance creation' }
