@@ -8,6 +8,12 @@ Class {
 	#category : #'SI-UIComponents'
 }
 
+{ #category : #accessing }
+SITextField class >> tag: aTag [
+	^super new initializeTag: aTag;
+		yourself.
+]
+
 { #category : #initialization }
 SITextField >> accepted [
 	border color: Color gray.
@@ -27,6 +33,14 @@ SITextField >> initialize [
 							addMorph: (textField := RubTextFieldMorph new width: 200);
 							yourself
 							);
+			yourself.
+]
+
+{ #category : #initialization }
+SITextField >> initializeTag: string [
+	self initialize.
+	^self	
+			addMorph: (LabelMorph contents: string);
 			yourself.
 ]
 

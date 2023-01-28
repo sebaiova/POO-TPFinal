@@ -67,11 +67,11 @@ SIViewRegistrarUsuario >> initializeInterface: aSIInterface [
 		addMorph: (SIColumn new
 			addMorph: SIPane new;
 			addMorph: (tag 	:= SITag new);
-			addMorph: (tfNombre 		:= SITextFieldTagged tag: 'Nombre');
-			addMorph: (tfApellido 	:= SITextFieldTagged tag: 'Apellido');		
-			addMorph: (tfDNI 			:= SITextFieldTagged tag: 'DNI');
-			addMorph: (tfPass 			:= SITextFieldTagged tag: 'Contraseña');
-			addMorph: (tfRepetirPass	:= SITextFieldTagged tag: 'Repetir Constraseña');
+			addMorph: (tfNombre 		:= SITextField tag: 'Nombre');
+			addMorph: (tfApellido 	:= SITextField tag: 'Apellido');		
+			addMorph: (tfDNI 			:= SITextField tag: 'DNI');
+			addMorph: (tfPass 			:= SITextField tag: 'Contraseña');
+			addMorph: (tfRepetirPass	:= SITextField tag: 'Repetir Constraseña');
 			addMorph: SIPane new;
 			addMorph: (SIRow new
 				addMorph: (SIButton label: 'Atras' target: self message: 'delete' );

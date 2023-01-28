@@ -27,11 +27,11 @@ SIViewAgregarBiblioteca >> initializeInterface: aSIInterface [
 	^self addMorph: (SIColumn new 
 				addMorph: SIPane new;
 				addMorph: (tag := SITag new);
-				addMorph: (tfID := SITextFieldTagged tag: 'ID');
-				addMorph: (tfNombre := SITextFieldTagged tag: 'Nombre');
-				addMorph: (tfDireccion := SITextFieldTagged tag: 'Dirección');
-				addMorph: (tfTelefono := SITextFieldTagged tag: 'Teléfono');
-				addMorph: (tfRepresentante := SITextFieldTagged tag: 'Representante');		
+				addMorph: (tfID := SITextField tag: 'ID');
+				addMorph: (tfNombre := SITextField tag: 'Nombre');
+				addMorph: (tfDireccion := SITextField tag: 'Dirección');
+				addMorph: (tfTelefono := SITextField tag: 'Teléfono');
+				addMorph: (tfRepresentante := SITextField tag: 'Representante');		
 				addMorph: SIPane new;			
 				addMorph: (SIRow new
 					addMorph: (SIButton label: 'Atras' target: self message: #delete);

@@ -63,8 +63,8 @@ SIViewPrincipal >> initializeInterface: aSIInterface [
 		addMorph: ( SIColumn new
 				addMorph: SIPane new;
 				addMorph: (tag := SITag new);
-				addMorph: (tfUsuario := SITextFieldTagged tag: 'DNI');
-				addMorph: (tfContraseña := SITextFieldTagged tag: 'Contraseña');
+				addMorph: (tfUsuario := SITextField tag: 'DNI');
+				addMorph: (tfContraseña := SITextField tag: 'Contraseña');
 				addMorph: SIPane new;
 				addMorph: (SIRow new
 					addMorph: (SIButton label: 'Administrar' target: self message: 'actionAdministrar'); 

@@ -50,10 +50,10 @@ SIViewDetalleBiblioteca >> initializeInterface: aSIInterface [
 	
 	tabs addPage: (SIColumn new
 			addMorph: SIPane new;
-			addMorph: (tfNombre := (SITextFieldTagged tag: 'Nombre:') text: biblioteca nombre);
-			addMorph: (ftTelefono := (SITextFieldTagged tag: 'Teléfono') text: biblioteca telefono asString);
-			addMorph: (ftDireccion := (SITextFieldTagged tag: 'Dirección') text: biblioteca direccion);
-			addMorph: (ftRepresentante := (SITextFieldTagged tag: 'Representante') text: biblioteca representante);	
+			addMorph: (tfNombre := (SITextField tag: 'Nombre:') text: biblioteca nombre);
+			addMorph: (ftTelefono := (SITextField tag: 'Teléfono') text: biblioteca telefono asString);
+			addMorph: (ftDireccion := (SITextField tag: 'Dirección') text: biblioteca direccion);
+			addMorph: (ftRepresentante := (SITextField tag: 'Representante') text: biblioteca representante);	
 			addMorph: SIPane new;
 			addMorph: (SIButton label: 'Confirmar' target: self message: #actionConfirmarDatos);
 			addMorph: SIPane new

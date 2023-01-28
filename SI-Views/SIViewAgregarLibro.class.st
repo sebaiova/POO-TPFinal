@@ -27,9 +27,9 @@ SIViewAgregarLibro >> initializeInterface: aSIInterface [
 				addMorph: (SIRow new
 					addMorph: SIPane new;	
 					addMorph: (SIColumn new 
-						addMorph: (tfNombre := SITextFieldTagged tag: 'Nombre');
-						addMorph: (tfAño := SITextFieldTagged tag: 'Año');
-						addMorph: (tfEditorial := SITextFieldTagged tag: 'Editorial');
+						addMorph: (tfNombre := SITextField tag: 'Nombre');
+						addMorph: (tfAño := SITextField tag: 'Año');
+						addMorph: (tfEditorial := SITextField tag: 'Editorial');
 						yourself
 					);
 					addMorph: (SIColumn new 
