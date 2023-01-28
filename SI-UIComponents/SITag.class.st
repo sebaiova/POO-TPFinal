@@ -22,9 +22,10 @@ SITag >> good: aText [
 ]
 
 { #category : #initialization }
-SITag >> initialize [ 
+SITag >> initialize [
 	super initialize.
-	^ super contents: '';
-		color: Color red;
-		yourself.
+	^ self
+		  contents: '';
+		  color: Color red;
+		  yourself
 ]
