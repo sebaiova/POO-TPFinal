@@ -1,6 +1,6 @@
 Class {
 	#name : #SIPane,
-	#superclass : #PanelMorph,
+	#superclass : #Morph,
 	#category : #'SI-UIComponents'
 }
 
