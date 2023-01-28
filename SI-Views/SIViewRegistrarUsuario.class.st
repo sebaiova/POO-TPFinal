@@ -65,17 +65,17 @@ SIViewRegistrarUsuario >> initializeInterface: aSIInterface [
 	super initializeInterface: aSIInterface.
 	^self
 		addMorph: (SIColumn new
-			addMorph: SISpacer new;
+			addMorph: SIPane new;
 			addMorph: (tag 	:= SITag new);
 			addMorph: (tfNombre 		:= SITextFieldTagged tag: 'Nombre');
 			addMorph: (tfApellido 	:= SITextFieldTagged tag: 'Apellido');		
 			addMorph: (tfDNI 			:= SITextFieldTagged tag: 'DNI');
 			addMorph: (tfPass 			:= SITextFieldTagged tag: 'Contraseña');
 			addMorph: (tfRepetirPass	:= SITextFieldTagged tag: 'Repetir Constraseña');
-			addMorph: SISpacer new;
+			addMorph: SIPane new;
 			addMorph: (SIRow new
 				addMorph: (SIButton label: 'Atras' target: self message: 'delete' );
-				addMorph: (SISpacer new);
+				addMorph: (SIPane new);
 				addMorph: (SIButton label: 'Crear Cuenta' target: self message: 'actionRegistrar' );
 				yourself );
 			yourself);

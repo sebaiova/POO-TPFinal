@@ -23,9 +23,9 @@ SIViewAgregarLibro >> actionAgregar [
 SIViewAgregarLibro >> initializeInterface: aSIInterface [
 	super initializeInterface: aSIInterface.
 	^self addMorph: (SIColumn new 
-				addMorph: SISpacer new;
+				addMorph: SIPane new;
 				addMorph: (SIRow new
-					addMorph: SISpacer new;	
+					addMorph: SIPane new;	
 					addMorph: (SIColumn new 
 						addMorph: (tfNombre := SITextFieldTagged tag: 'Nombre');
 						addMorph: (tfAño := SITextFieldTagged tag: 'Año');
@@ -35,13 +35,13 @@ SIViewAgregarLibro >> initializeInterface: aSIInterface [
 					addMorph: (SIColumn new 
 						addMorph: (LabelMorph contents: 'Autores');
 						addMorph: (lfAutores := SIListInput new));
-					addMorph: SISpacer new;	
+					addMorph: SIPane new;	
 					yourself
 				);
-				addMorph: SISpacer new;	
+				addMorph: SIPane new;	
 				addMorph: (SIRow new
 					addMorph: (SIButton label: 'Atras' target: self message: #delete);
-					addMorph: SISpacer new;
+					addMorph: SIPane new;
 					addMorph: (SIButton label: 'Agregar' target: self message: #actionAgregar);
 					yourself
 				));

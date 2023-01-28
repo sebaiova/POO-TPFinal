@@ -6,7 +6,8 @@ Class {
 		'lib',
 		'user',
 		'loan',
-		'modelIndex'
+		'modelIndex',
+		'model'
 	],
 	#category : #'SI-Models'
 }
@@ -46,6 +47,16 @@ SIInterface >> loan [
 { #category : #accessing }
 SIInterface >> loan: unPrestamo [ 
 	loan := unPrestamo .
+]
+
+{ #category : #accessing }
+SIInterface >> model [ 
+	^model.
+]
+
+{ #category : #accessing }
+SIInterface >> model: aModel [ 
+	model := aModel.
 ]
 
 { #category : #accessing }

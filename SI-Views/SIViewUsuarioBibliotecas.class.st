@@ -10,7 +10,7 @@ SIViewUsuarioBibliotecas >> initializeInterface: aSIInterface [
 	super initializeInterface: aSIInterface.
 	self	addMorph: (SIColumn new 
 				addMorph: (tabs := SITabs new);
-				addMorph: (SIRow new addMorph: (SIButton label: 'Atras' target: self message: #delete); addMorph: SISpacer new)).
+				addMorph: (SIRow new addMorph: (SIButton label: 'Atras' target: self message: #delete); addMorph: SIPane new)).
 	
 	bibliotecas := iface user bibliotecasDeInteres.
 	tabs onTabChanged: [ :index | iface lib: ( bibliotecas at: index) ].

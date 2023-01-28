@@ -35,7 +35,7 @@ SIViewUsuarioBibliotecasDeInteres >> initializeInterface: aSIInterface [
 			 addMorph: (outTable := SIDragAndDropTable model: (SIModelDragAndDrop array: bibliotecasDeInteres) headers: #( Nombre Dirección Teléfono Representante ));
 			 addMorph: (SIRow new
 					  addMorph: (SIButton label: 'Cerrar Sesion' target: self message: #actionCerrarSesion);
-					  addMorph: SISpacer new;
+					  addMorph: SIPane new;
 					  addMorph: (tag := SITag new);
 					  addMorph:(SIButton label: 'Aceptar' target: self message: #actionAceptar)))
 ]

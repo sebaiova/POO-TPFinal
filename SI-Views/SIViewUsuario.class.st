@@ -40,18 +40,18 @@ SIViewUsuario >> initializeInterface: aSIInterface [
 	super initializeInterface: aSIInterface.
 	buttonSize := 200@24.
 	 self addMorph: (SIColumn new cellInset: 20;
-					 	addMorph: SISpacer new; 
+					 	addMorph: SIPane new; 
 						addMorph: (LabelMorph contents: ('Bienvenido/a ', iface user nombre, '!'));
-					 	addMorph: SISpacer new;
+					 	addMorph: SIPane new;
 						addMorph: ((SIButton label: 'Pedir y Devolver' target: self  message: 'actionPedirYDevolver' ) extent: buttonSize) ;
 						addMorph: ((SIButton label: 'Cambiar Bibliotecas de Interes' target: self  message: 'actionCambiarBibliotecasInteres' ) extent: buttonSize);
 						addMorph: (btnPlus := (SIButton label: 'Solicitar Usuario Plus' target: self  message: 'actionSolicituarPlus' ) extent: buttonSize);
 						addMorph: (btnNormal := (SIButton label: 'Solicitar Usuario Normal' target: self  message: 'actionSolicituarNormal' ) extent: buttonSize); 
 						addMorph: (tag := SITag new);
-					 	addMorph: SISpacer new; 	
+					 	addMorph: SIPane new; 	
 						addMorph: (SIRow new
 					  		addMorph: (SIButton label: 'Cerrar Sesion' target: self message: #delete);
-					  		addMorph: SISpacer new)).
+					  		addMorph: SIPane new)).
 								
 	iface user esPlus ifTrue: [ btnPlus disable ] ifFalse: [  btnNormal disable ].									
 	iface user bibliotecasDeInteres ifEmpty: [ self addMorph: (SIViewUsuarioBibliotecasDeInteres interface: iface) ].

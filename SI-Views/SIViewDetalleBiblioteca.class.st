@@ -41,7 +41,7 @@ SIViewDetalleBiblioteca >> initializeInterface: aSIInterface [
 			addMorph: (tabs := SITabs new);
 			addMorph: (SIRow new 
 				addMorph: (SIButton label: 'Atras' target: self message: #delete);
-				addMorph: SISpacer new;
+				addMorph: SIPane new;
 				yourself
 				)).
 
@@ -49,21 +49,21 @@ SIViewDetalleBiblioteca >> initializeInterface: aSIInterface [
 	iface lib: biblioteca.
 	
 	tabs addPage: (SIColumn new
-			addMorph: SISpacer new;
+			addMorph: SIPane new;
 			addMorph: (tfNombre := (SITextFieldTagged tag: 'Nombre:') text: biblioteca nombre);
 			addMorph: (ftTelefono := (SITextFieldTagged tag: 'Teléfono') text: biblioteca telefono asString);
 			addMorph: (ftDireccion := (SITextFieldTagged tag: 'Dirección') text: biblioteca direccion);
 			addMorph: (ftRepresentante := (SITextFieldTagged tag: 'Representante') text: biblioteca representante);	
-			addMorph: SISpacer new;
+			addMorph: SIPane new;
 			addMorph: (SIButton label: 'Confirmar' target: self message: #actionConfirmarDatos);
-			addMorph: SISpacer new
+			addMorph: SIPane new
 			)
 	 	label: 'Datos'.
 		
 	tabs addPage: (SIColumn new 
 			addMorph: (tablaLibros := SITable model: (SIModelLibrosBiblioteca interface: iface) headers: #(Titulo Disponible Año Editorial Autores)); 		
 			addMorph: (SIRow new 
-				addMorph: SISpacer new;
+				addMorph: SIPane new;
 				addMorph: (SIButton label: 'Dar de Baja' target: self message: #actionDarDeBaja); 
 				addMorph: (SIButton label: 'Agregar Libro' target: self message: #actionAgregarLibro)
 				)

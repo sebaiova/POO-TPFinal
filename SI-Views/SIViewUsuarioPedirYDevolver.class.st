@@ -59,7 +59,7 @@ SIViewUsuarioPedirYDevolver >> initializeInterface: aSIInterface [
 						);
 				addMorph: (outTable := (SIDragAndDropTable model: (SIModelDragAndDrop array: #()) headers: #(Titulo Autores)) extent: 100@140; vResizing: #rigid; yourself);
 				addMorph: (SIRow new
-					addMorph: SISpacer new;
+					addMorph: SIPane new;
 					addMorph: (tag := SITag new);
 					addMorph: ((btnDevolverLibros := (SIButton label: 'Devolver Libros' target: self message: #actionDevolverLibros ) disable; yourself));
 					addMorph: ((btnDevolverAudioLibros := (SIButton label: 'Devolver Audio Libros' target: self message: #actionDevolverAudioLibros) disable; yourself));

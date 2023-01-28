@@ -61,14 +61,14 @@ SIViewPrincipal >> initializeInterface: aSIInterface [
 	super initializeInterface: aSIInterface.
 	^self
 		addMorph: ( SIColumn new
-				addMorph: SISpacer new;
+				addMorph: SIPane new;
 				addMorph: (tag := SITag new);
 				addMorph: (tfUsuario := SITextFieldTagged tag: 'DNI');
 				addMorph: (tfContraseña := SITextFieldTagged tag: 'Contraseña');
-				addMorph: SISpacer new;
+				addMorph: SIPane new;
 				addMorph: (SIRow new
 					addMorph: (SIButton label: 'Administrar' target: self message: 'actionAdministrar'); 
-					addMorph: SISpacer new;
+					addMorph: SIPane new;
 					addMorph: (SIButton label: 'Registrarse' target: self message: 'actionRegistrarse');
 					addMorph: (SIButton label: 'Iniciar Sesión' target: self message: 'actionIniciarSesion');
 					yourself

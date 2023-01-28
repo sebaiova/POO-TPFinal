@@ -16,7 +16,7 @@ SIViewDetalleUsuario >> initializeInterface: aSIInterface [
 			addMorph: (tablaPrestamos := SITable model: (SIModelPrestamosUsuario interface: iface) headers: #('Fecha Inicio' 'Fecha Limite' 'Cantidad de Libros'));				
 			addMorph: (LabelMorph new contents: 'Libros del prestamo');
 			addMorph: (tablaLibros := SITable model: FTEasyListDataSource new headers: #(Titulo Año Editorial Autores));		
-			addMorph: (SIRow new 	addMorph: (SIButton label: 'Atras' target: self message: #delete);	addMorph: SISpacer new)
+			addMorph: (SIRow new 	addMorph: (SIButton label: 'Atras' target: self message: #delete);	addMorph: SIPane new)
 		).
 		
 	tablaPrestamos onClick: [ :modelIndex | iface loan: modelIndex element. tablaLibros model: (SIModelLibrosPrestamo interface: iface) ].

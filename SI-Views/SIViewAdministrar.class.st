@@ -24,23 +24,23 @@ SIViewAdministrar >> initializeInterface: aSIInterface [
 			addMorph: (tabs := SITabs new);
 			addMorph: (SIRow new
 				addMorph: (SIButton label: 'Atras' target: self message: #delete);
-				addMorph: SISpacer new;
+				addMorph: SIPane new;
 				yourself
 				);
 			yourself
 			).
 			
 	tabs addPage: (SIColumn new 
-				addMorph: (SIRow new addMorph: (LabelMorph contents: 'Doble click para Detalles'); addMorph: SISpacer new;
+				addMorph: (SIRow new addMorph: (LabelMorph contents: 'Doble click para Detalles'); addMorph: SIPane new;
 							addMorph: ((self iconNamed: #smallNew) asMorph ); addMorph: (LabelMorph contents: '=  usuario Plus'));		
 				addMorph: (tablaUsuarios := SITable model: (SIModelUsuarios interface: iface) headers: #(Nombre Apellido DNI))) 
 				label: 'Usuarios'.
 						
 	tabs addPage: (SIColumn new 
-		addMorph: (SIRow new addMorph: (LabelMorph contents: 'Doble click para Detalles'); addMorph: SISpacer new);
+		addMorph: (SIRow new addMorph: (LabelMorph contents: 'Doble click para Detalles'); addMorph: SIPane new);
 		addMorph: (tablaBiblioteca := SITable model: modelBiblioteca headers: #(ID Nombre Dirección Teléfono Representante));
 		addMorph: (SIRow new 
-			addMorph: SISpacer new;
+			addMorph: SIPane new;
 			addMorph: (SIButton label: 'Agregar Biblioteca' target: self message: #actionAgregarBiblioteca);
 			yourself
 		);
