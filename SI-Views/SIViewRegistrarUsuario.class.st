@@ -20,7 +20,7 @@ SIViewRegistrarUsuario >> actionRegistrar [
 				self existeDNI ifFalse: [
 					self esPassVacio ifFalse: [
 						self passEquals ifTrue: [ 
-								iface sys agregarUsuario: tfDNI text asInteger nombre: tfNombre text apellido: tfApellido text password: tfPass text.
+								iface sys agregarUsuario: (SIUsuario dni: tfDNI text asInteger nombre: tfNombre text apellido: tfApellido text password: tfPass text).
 								self delete.
 								]
 							]
@@ -56,7 +56,7 @@ SIViewRegistrarUsuario >> esPassVacio [
 
 { #category : #verification }
 SIViewRegistrarUsuario >> existeDNI [ 
-	^(iface sys existeDNIUsuario: tfDNI text asInteger) ifTrue: [ tfDNI rejected. tag bad: 'El DNI ya existe en el sistema.'. true ] 
+	^(iface sys existeDNI: tfDNI text asInteger) ifTrue: [ tfDNI rejected. tag bad: 'El DNI ya existe en el sistema.'. true ] 
 																ifFalse: [ tfDNI accepted. false ]
 ]
 

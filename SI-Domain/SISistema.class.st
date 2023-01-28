@@ -27,11 +27,6 @@ SISistema >> agregarUsuario: unUsuario [
 	colUsuarios add: unUsuario.
 ]
 
-{ #category : #usuarios }
-SISistema >> agregarUsuario: unDNI nombre: unNombre apellido: unApellido password: unPassword [ 
-	colUsuarios add: (SIUsuario dni: unDNI nombre: unNombre apellido: unApellido password: unPassword).
-]
-
 { #category : #bibliotecas }
 SISistema >> bibliotecas [ 
 	^colBibliotecas asArray. 
@@ -52,7 +47,7 @@ SISistema >> convertirAPlus: unUsuario [
 ]
 
 { #category : #usuarios }
-SISistema >> existeDNIUsuario: unDNI [
+SISistema >> existeDNI: unDNI [
 	^colUsuarios detect: [ :user | user hasDNI: unDNI ] ifFound: [true] ifNone: [false]. 
 	
 ]

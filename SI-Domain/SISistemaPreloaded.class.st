@@ -17,10 +17,10 @@ SISistemaPreloaded >> initialize [
 	|seba a b c aLibros bLibros cLibros |
 	super initialize.
 	self agregarUsuario: (seba := SIUsuario dni: 39062823 nombre: 'Sebastian' apellido: 'Iovaldi' password: '1234');
-			agregarUsuario: 43484212 nombre: 'Leonard' apellido: 'Fernandez' password: 1234;
-			agregarUsuario: 44216402 nombre: 'Medel' apellido: 'Joaquin' password: 1234;
-			agregarUsuario: 43275843 nombre: 'Leonel' apellido: 'Llancaqueo' password: 1234;
-			agregarUsuario: 44287842 nombre: 'Cristopher' apellido: 'Ovaillos' password: 1234.
+			agregarUsuario: (SIUsuario dni: 43484212 nombre: 'Leonard' apellido: 'Fernandez' password: 1234);
+			agregarUsuario: (SIUsuario dni: 44216402 nombre: 'Medel' apellido: 'Joaquin' password: 1234);
+			agregarUsuario: (SIUsuario dni: 43275843 nombre: 'Leonel' apellido: 'Llancaqueo' password: 1234);
+			agregarUsuario: (SIUsuario dni: 44287842 nombre: 'Cristopher' apellido: 'Ovaillos' password: 1234).
 
 	aLibros := self loadBooks: (self agregarBiblioteca: (a := SIBiblioteca id: 'A' nombre: 'Juan Bautista Alberdi'  telefono: 45228338 direccion: 'Av. Argentina 844' representante: 'Bernardino Teruel')).
 	bLibros := self loadBooks: (self agregarBiblioteca: (b := SIBiblioteca id: 'B' nombre: 'Francisco P. Moreno' telefono: 45132458 direccion: 'Av. Leloir y Sta Fe' representante: 'Yeray Salazar')).
