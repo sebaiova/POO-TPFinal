@@ -5,7 +5,8 @@ Class {
 		'tfNombre',
 		'tfEditorial',
 		'tfAño',
-		'lfAutores'
+		'lfAutores',
+		'cbAudioLibro'
 	],
 	#category : #'SI-Views'
 }
@@ -14,9 +15,15 @@ Class {
 SIViewAgregarLibro >> actionAgregar [
 	| model |
 	model := iface model .
-	model agregar: (SILibro nombre: tfNombre text editorial: tfEditorial text año: tfAño text autores: (lfAutores elements collect: [ :nombre | SIAutor nombre: nombre ])).
+	model agregar: (self claseDeLibro nombre: tfNombre text editorial: tfEditorial text año: tfAño text autores: (lfAutores elements collect: [ :nombre | SIAutor nombre: nombre ])).
 	self delete.
 
+]
+
+{ #category : #button }
+SIViewAgregarLibro >> claseDeLibro [
+	cbAudioLibro selected ifTrue: [ ^SIAudioLibro  ].
+	^SILibro.
 ]
 
 { #category : #initialization }
@@ -30,6 +37,10 @@ SIViewAgregarLibro >> initializeInterface: aSIInterface [
 						addMorph: (tfNombre := SITextField tag: 'Nombre');
 						addMorph: (tfAño := SITextField tag: 'Año');
 						addMorph: (tfEditorial := SITextField tag: 'Editorial');
+						addMorph: (SIRow new 
+								addMorph: (LabelMorph contents: 'Audio Libro');
+								addMorph: (cbAudioLibro := CheckboxButtonMorph new)
+							)
 						yourself
 					);
 					addMorph: (SIColumn new 
