@@ -25,3 +25,5 @@ SISistemaBibliotecas runPreloaded
 ## Informe
 
 [Link](https://drive.google.com/file/d/1_iJqCFgVzaf3MgpiyYQVjKa-V9gea4ZJ/view?usp=sharing)
+
+[Link V2](https://drive.google.com/file/d/1q9iXlrkvZWmYhDFmroWABCVJc6JacCKV/view?usp=sharing)
